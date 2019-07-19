@@ -1,0 +1,5020 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dda43c45498132044baa3512b31becdd, type: 3}
+  m_Name: strippingConfigure
+  m_EditorClassIdentifier: 
+  useStripper: 0
+  enableLog: 0
+  useWhitelist: 1
+  defaultShaderVariantsStripperFilter:
+    shaderGuid: 
+    mask: 129
+    shaderName: 
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  mFilters:
+  - shaderGuid: 
+    mask: 4
+    shaderName: 
+    shaderType: 0
+    passType: 10
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: 
+    mask: 8
+    shaderName: 
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 18
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: 
+    mask: 128
+    shaderName: 
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DEBUG
+    - FOG_LINEAR
+    - FOG_EXP
+    - FOG_EXP2
+    - DYNAMICLIGHTMAP_ON
+    - DIRLIGHTMAP_COMBINED
+    - LIGHTPROBE_SH
+    - SHADOWS_SOFT
+    - _ALPHAPREMULTIPLY_ON
+    - VERTEXLIGHT_ON
+    - SHADOWS_CUBE
+    - DIRECTIONAL_COOKIE
+    - POINT_COOKIE
+    - SPOT
+    - EDITOR_VISUALIZATION
+  mWhitelist:
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Sprite/SpritesPixelLit.shader/Spine/Sprite/Pixel
+      Lit
+    mask: 129
+    shaderName: Spine/Sprite/Pixel Lit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ADDITIVEBLEND
+    - _ADDITIVEBLEND_SOFT
+    - _MULTIPLYBLEND
+    - _MULTIPLYBLEND_X2
+    - _FIXED_NORMALS_VIEWSPACE
+    - _FIXED_NORMALS_VIEWSPACE_BACKFACE
+    - _FIXED_NORMALS_MODELSPACE
+    - _FIXED_NORMALS_MODELSPACE_BACKFACE
+    - _SPECULAR
+    - _SPECULAR_GLOSSMAP
+    - _NORMALMAP
+    - _ALPHA_CLIP
+    - _EMISSION
+    - _RIM_LIGHTING
+    - _DIFFUSE_RAMP
+    - _COLOR_ADJUST
+    - _TEXTURE_BLEND
+    - _SPHERICAL_HARMONICS
+    - _FOG
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - PIXELSNAP_ON
+    - ETC1_EXTERNAL_ALPHA
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Res/Temp/Roles/RoleShader201809/Shaders/TestShader/Standard.shader/Test-Standard
+    mask: 129
+    shaderName: Test-Standard
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _NORMALDISTMODEL_BECKMANN
+    - _NORMALDISTMODEL_GAUSSIAN
+    - _NORMALDISTMODEL_GGX
+    - _NORMALDISTMODEL_TROWBRIDGEREITZ
+    - _SMITHGEOSHADOWMODEL_BECKMAN
+    - _SMITHGEOSHADOWMODEL_GGX
+    - _SMITHGEOSHADOWMODEL_SCHLICK
+    - _SMITHGEOSHADOWMODEL_SCHLICKBECKMAN
+    - _SMITHGEOSHADOWMODEL_SCHLICKGGX
+    - _NORMALMAP
+    - _ALPHATEST_ON
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _EMISSION
+    - _METALLICGLOSSMAP
+    - _DETAIL_MULX2
+    - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+    - _SPECULARHIGHLIGHTS_OFF
+    - _GLOSSYREFLECTIONS_OFF
+    - _PARALLAXMAP
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - INSTANCING_ON
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+    - EDITOR_VISUALIZATION
+  - shaderGuid: Assets/Shader/Art/Shader/ScenePBR/Standard.shader/LDJ/Standard
+    mask: 129
+    shaderName: LDJ/Standard
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _AO
+    - _BRDF_HIGH
+    - _BRDF_LOW
+    - _BRDF_MEDIUM
+    - _BRDF_TYPE_GGX
+    - _CHECK_SSS_NONE
+    - _CUBEMAPDIR_ENABLE_ON
+    - _CUBEMAPENABLE_ON
+    - _D_BRDF_DIFFUSE_NONE
+    - _D_BRDF_GI_NONE
+    - _D_BRDF_NONE
+    - _D_BRDF_SPECULAR_NONE
+    - _D_SSS_NONE
+    - _D_TEX_NONE
+    - _DEBUG_NORMAL_NONE
+    - _DETAIL_MULX2
+    - _DIRECTXNORMAL_ON
+    - _DisableIndirectDiffuse
+    - _DisableIndirectSpecular
+    - _DisableNormalTexture
+    - _DisableShadowMask
+    - _EMISSION
+    - _ENABLE_CUBEMAP_ON
+    - _ENABLE_EMISSION_ON
+    - _ENABLE_SSSFRESNEL_ON
+    - _EnableCustomRefelctiveCube
+    - _ENABLEDEBUGCOLOR_ON
+    - _EYE_SPECULAR_ENABLE_ON
+    - _EYELUMINANCECOLOR_ON
+    - _EYEREFROTAION_ON
+    - _GLOSSYREFLECTIONS_OFF
+    - _IndirectDiffuseMaskToSpecular
+    - _KEYWORD0_ON
+    - _KEYWORD1_ON
+    - _KEYWORD2_ON
+    - _METALLIC_TYPE_NONE
+    - _MetallicAndSmoothnessFromTexture
+    - _METALLICCHANNEL_NONE
+    - _METALLICGLOSSMAP
+    - _NORMAL_DIR_NONE
+    - _NORMAL_TYPE_NONE
+    - _NORMALDISTMODEL_BECKMANN
+    - _NormalFromTexture
+    - _NORMALMAP
+    - _RAIN_ENABLE
+    - _SECONDLIGHTENABLE_ON
+    - _SKINCHANNEL_ZERO
+    - _SMITHGEOSHADOWMODEL_BECKMAN
+    - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+    - _SMOOTHNESSCHANNEL_NONE
+    - _SPECGLOSSMAP
+    - _SPECULARHIGHLIGHTS_OFF
+    - _SSSCALTYPE_CALU
+    - _SSSCALTYPE_OFF
+    - _SSSTYPE_NONE
+    - CY_FOG_ON
+    - DIRECTIONAL
+    - DIRECTIONAL_COOKIE
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - EDITOR_VISUALIZATION
+    - INSTANCING_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - POINT
+    - POINT_COOKIE
+    - RAIN_ENABLE
+    - SHADOWS_CUBE
+    - SHADOWS_DEPTH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - SPOT
+    - TINT_ENABLE
+    - TOD_ON
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Res/Tools/CYFog/UnityShader/CYStandard.shader/CYStandard
+    mask: 129
+    shaderName: CYStandard
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _NORMALMAP
+    - _ALPHATEST_ON
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _EMISSION
+    - _METALLICGLOSSMAP
+    - _DETAIL_MULX2
+    - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+    - _SPECULARHIGHLIGHTS_OFF
+    - _GLOSSYREFLECTIONS_OFF
+    - _PARALLAXMAP
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - INSTANCING_ON
+    - CY_FOG_ON
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+    - EDITOR_VISUALIZATION
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Sprite/SpritesVertexLit.shader/Spine/Sprite/Vertex
+      Lit
+    mask: 129
+    shaderName: Spine/Sprite/Vertex Lit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ADDITIVEBLEND
+    - _ADDITIVEBLEND_SOFT
+    - _MULTIPLYBLEND
+    - _MULTIPLYBLEND_X2
+    - _FIXED_NORMALS_VIEWSPACE
+    - _FIXED_NORMALS_VIEWSPACE_BACKFACE
+    - _FIXED_NORMALS_MODELSPACE
+    - _FIXED_NORMALS_MODELSPACE_BACKFACE
+    - _SPECULAR
+    - _SPECULAR_GLOSSMAP
+    - _NORMALMAP
+    - _ALPHA_CLIP
+    - _EMISSION
+    - _DIFFUSE_RAMP
+    - _COLOR_ADJUST
+    - _RIM_LIGHTING
+    - _TEXTURE_BLEND
+    - _SPHERICAL_HARMONICS
+    - _FOG
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - PIXELSNAP_ON
+    - ETC1_EXTERNAL_ALPHA
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Res/Temp/Scenes/dimian/dimian.shader/Shader Forge/dimian
+    mask: 129
+    shaderName: Shader Forge/dimian
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - LIGHTMAP_OFF
+    - DIRLIGHTMAP_OFF
+    - DIRLIGHTMAP_SEPARATE
+    - DYNAMICLIGHTMAP_OFF
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_StandardVertexColor.shader/ProBuilder/Standard
+      Vertex Color
+    mask: 129
+    shaderName: ProBuilder/Standard Vertex Color
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - LIGHTMAP_OFF
+    - DIRLIGHTMAP_OFF
+    - DIRLIGHTMAP_SEPARATE
+    - DYNAMICLIGHTMAP_OFF
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/Uber.shader/Hidden/PostProcessing/Uber
+    mask: 129
+    shaderName: Hidden/PostProcessing/Uber
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - COLOR_GRADING_LDR_2D
+    - COLOR_GRADING_HDR_2D
+    - COLOR_GRADING_HDR_3D
+    - STEREO_INSTANCING_ENABLED
+    - STEREO_DOUBLEWIDE_TARGET
+    - DISTORT
+    - CHROMATIC_ABERRATION
+    - CHROMATIC_ABERRATION_LOW
+    - BLOOM
+    - BLOOM_LOW
+    - VIGNETTE
+    - GRAIN
+    - FINALPASS
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Sprite/SpritesUnlit.shader/Spine/Sprite/Unlit
+    mask: 129
+    shaderName: Spine/Sprite/Unlit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ADDITIVEBLEND
+    - _ADDITIVEBLEND_SOFT
+    - _MULTIPLYBLEND
+    - _MULTIPLYBLEND_X2
+    - _ALPHA_CLIP
+    - _TEXTURE_BLEND
+    - _COLOR_ADJUST
+    - _FOG
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - PIXELSNAP_ON
+    - ETC1_EXTERNAL_ALPHA
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_add_distort_zhezhao.shader/LDJ/Fx/add_distort_zhezhao
+    mask: 129
+    shaderName: LDJ/Fx/add_distort_zhezhao
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - LIGHTMAP_OFF
+    - DIRLIGHTMAP_OFF
+    - DIRLIGHTMAP_SEPARATE
+    - DYNAMICLIGHTMAP_OFF
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Art/Effect/shui.shader/LDJ/Fx/shui
+    mask: 129
+    shaderName: LDJ/Fx/shui
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - LIGHTMAP_OFF
+    - DIRLIGHTMAP_OFF
+    - DIRLIGHTMAP_SEPARATE
+    - DYNAMICLIGHTMAP_OFF
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Code/External/DCG Shaders/Water Shader/Shaders/WaterSurfaceDX11.shader/DCG/Water
+      Shader/Water Surface DX11
+    mask: 129
+    shaderName: DCG/Water Shader/Water Surface DX11
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _INVERSEWAVES_ON
+    - _USEDISPWAVES_ON
+    - _USEFAKEREFLECTION_ON
+    - _USERADIALMASK_ON
+    - _USEREFLECTION_ON
+    - DIRECTIONAL
+    - DIRECTIONAL_COOKIE
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - POINT
+    - POINT_COOKIE
+    - SHADOWS_CUBE
+    - SHADOWS_DEPTH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - SPOT
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Code/External/DCG Shaders/Water Shader/Shaders/WaterSurfaceOpenGL.shader/DCG/Water
+      Shader/Water Surface OpenGL
+    mask: 129
+    shaderName: DCG/Water Shader/Water Surface OpenGL
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _INVERSEDIRECTION_ON
+    - _INVERSEWAVES_ON
+    - _USEDISPWAVES_ON
+    - _USEFAKEREFLECTION_ON
+    - _USEMASK_ON
+    - _USERADIALMASK_ON
+    - _USEREFLECTION_ON
+    - DIRECTIONAL
+    - DIRECTIONAL_COOKIE
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - POINT
+    - POINT_COOKIE
+    - SHADOWS_CUBE
+    - SHADOWS_DEPTH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - SPOT
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Scene/HeightTerrain/LDJ_HeightTerrain.shader/LDJ/HeightTerrain
+    mask: 129
+    shaderName: LDJ/HeightTerrain
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _TERRAIN_NORMAL_MAP
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - CY_FOG_ON
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+    - EDITOR_VISUALIZATION
+  - shaderGuid: Assets/Shader/Art/Scene/TOD/TODTreeBranch/Tree.shader/LDJ/TOD/TreeBranch
+    mask: 129
+    shaderName: LDJ/TOD/TreeBranch
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - CY_FOG_ON
+    - DIRECTIONAL
+    - DIRECTIONAL_COOKIE
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - EDITOR_VISUALIZATION
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - POINT
+    - POINT_COOKIE
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - SPOT
+    - TOD_ON
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/katong rongjie.shader/katong+rongjie
+    mask: 129
+    shaderName: katong+rongjie
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Art/Effect/Ice_add.shader/LDJ/Fx/Ice_add
+    mask: 129
+    shaderName: LDJ/Fx/Ice_add
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_AddUV.shader/LDJ/Fx/LDJ_AddUV
+    mask: 129
+    shaderName: LDJ/Fx/LDJ_AddUV
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _ONEUV_ON
+    - _OPACITYSELF_ON
+    - _REF_ON_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/Hudun.shader/LDJ/Fx/Hudun
+    mask: 129
+    shaderName: LDJ/Fx/Hudun
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_AlphaUV.shader/LDJ/Fx/LDJ_AlphaUV
+    mask: 129
+    shaderName: LDJ/Fx/LDJ_AlphaUV
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _ONEUV_ON
+    - _OPACITYSELF_ON
+    - _REF_ON_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Scene/WavingGrass.shader/LDJ/Scene/Grass
+    mask: 129
+    shaderName: LDJ/Scene/Grass
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - INSTANCING_ON
+    - TOD_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Code/External/DCG Shaders/Water Shader/Shaders/Backface.shader/DCG/Water
+      Shader/Backface Distortion
+    mask: 129
+    shaderName: DCG/Water Shader/Backface Distortion
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Resources/Shaders/map_line_unlit.shader/Unlit/map_line_unlit
+    mask: 129
+    shaderName: Unlit/map_line_unlit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Scene/WavingGrassNoGroundTex.shader/LDJ/Scene/Grass_No_GroundTex
+    mask: 129
+    shaderName: LDJ/Scene/Grass_No_GroundTex
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHATEST_ON
+    - _BRDF_HIGH
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - GEOM_TYPE_LEAF
+    - INSTANCING_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - TOD_ON
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_Water.shader/FAE/Water
+    mask: 129
+    shaderName: FAE/Water
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _WORLDSPACETILING_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Resources/Shaders/map_region_unlit_shader.shader/Unlit/map_region_unlit
+    mask: 129
+    shaderName: Unlit/map_region_unlit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Program/BlendBack.shader/LDJ/Fx/BlendBack
+    mask: 129
+    shaderName: LDJ/Fx/BlendBack
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/TFP_Water_NonDepth_Reflection.shader/TFP/TFP_Water_NonDepth_Reflection
+    mask: 129
+    shaderName: TFP/TFP_Water_NonDepth_Reflection
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _USEFOAM_ON
+    - CY_FOG_ON
+    - DIRECTIONAL
+    - DIRECTIONAL_COOKIE
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - POINT
+    - POINT_COOKIE
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - SPOT
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Code/External/DCG Shaders/Water Shader/Shaders/Caustics.shader/DCG/Water
+      Shader/Caustics
+    mask: 129
+    shaderName: DCG/Water Shader/Caustics
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - POINT
+    - SPOT
+    - POINT_COOKIE
+    - DIRECTIONAL_COOKIE
+  - shaderGuid: Assets/Shader/Art/Effect/Fresnel-rongjie.shader/LDJ/Fx/Fresnel_rongjie
+    mask: 129
+    shaderName: LDJ/Fx/Fresnel_rongjie
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Resources/ldj_add_distort.shader/LDJ/Fx/Additive_distort
+    mask: 129
+    shaderName: LDJ/Fx/Additive_distort
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Art/UI/ldj_UI_Saturation.shader/LDJ/UI/UITex_Saturation
+    mask: 129
+    shaderName: LDJ/UI/UITex_Saturation
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Art/UI/ldj_UI_Disslove.shader/LDJ/UI/UITex_Disslove
+    mask: 129
+    shaderName: LDJ/UI/UITex_Disslove
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_add_one_Disslove.shader/LDJ/Fx/ldj_add_one_Disslove
+    mask: 129
+    shaderName: LDJ/Fx/ldj_add_one_Disslove
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_ScrollHighlight.shader/Hidden/ProBuilder/ScrollHighlight
+    mask: 129
+    shaderName: Hidden/ProBuilder/ScrollHighlight
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_alpha_Disslove.shader/LDJ/Fx/Alphablend_Disslove
+    mask: 129
+    shaderName: LDJ/Fx/Alphablend_Disslove
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _SSSCALTYPE_OFF
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_Alpha_distort3.shader/LDJ/Fx/Alpha_distort3
+    mask: 129
+    shaderName: LDJ/Fx/Alpha_distort3
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_alpha_distort_DissloveUV.shader/LDJ/Fx/ldj_alpha_distort_DissloveUV
+    mask: 129
+    shaderName: LDJ/Fx/ldj_alpha_distort_DissloveUV
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _ONEUV_ON
+    - _REF_ON_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_alpha_distort_DissloveUV_Depth.shader/LDJ/Fx/ldj_alpha_distort_DissloveUV_Depth
+    mask: 129
+    shaderName: LDJ/Fx/ldj_alpha_distort_DissloveUV_Depth
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _OPACITYSELF_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_Additive_Disslove.shader/LDJ/Fx/Additive_Disslove
+    mask: 129
+    shaderName: LDJ/Fx/Additive_Disslove
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_add_distort3.shader/LDJ/Fx/add_distort3
+    mask: 129
+    shaderName: LDJ/Fx/add_distort3
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/add_uv.shader/LDJ/Fx/add_uv
+    mask: 129
+    shaderName: LDJ/Fx/add_uv
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_add_distort.shader/LDJ/Fx/Additive_distort
+    mask: 129
+    shaderName: LDJ/Fx/Additive_distort
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _ONEUV_ON
+    - _REF_ON_ON
+    - _SSSCALTYPE_OFF
+    - _UV_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/katong_one.shader/LDJ/Fx/katong_one
+    mask: 129
+    shaderName: LDJ/Fx/katong_one
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/Add.shader/LDJ/Fx/add
+    mask: 129
+    shaderName: LDJ/Fx/add
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _BRDF_TYPE_GGX
+    - _CHECK_SSS_NONE
+    - _D_BRDF_DIFFUSE_NONE
+    - _D_BRDF_GI_NONE
+    - _D_BRDF_NONE
+    - _D_BRDF_SPECULAR_NONE
+    - _D_SSS_NONE
+    - _D_TEX_NONE
+    - _DEBUG_NORMAL_NONE
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _EMISSION
+    - _METALLIC_TYPE_NONE
+    - _METALLICCHANNEL_NONE
+    - _NORMAL_DIR_NONE
+    - _NORMAL_TYPE_NONE
+    - _ONEUV_ON
+    - _OPTION_NONE
+    - _REF_ON_ON
+    - _SKINCHANNEL_ZERO
+    - _SMOOTHNESSCHANNEL_NONE
+    - _SSSCALTYPE_OFF
+    - _SSSTYPE_NONE
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/hudie_add.shader/LDJ/Fx/hudie_add
+    mask: 129
+    shaderName: LDJ/Fx/hudie_add
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/Fresnel-b.shader/LDJ/Fx/Fresnel-b
+    mask: 129
+    shaderName: LDJ/Fx/Fresnel-b
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/Alpha_uv.shader/LDJ/Fx/Alpha_uv
+    mask: 129
+    shaderName: LDJ/Fx/Alpha_uv
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSOLVE_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/Alpha_trail.shader/LDJ/Fx/Alpha_trail
+    mask: 129
+    shaderName: LDJ/Fx/Alpha_trail
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/Add_clip.shader/LDJ/Fx/add_clip
+    mask: 129
+    shaderName: LDJ/Fx/add_clip
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/Alpha-Blended_a.shader/LDJ/Fx/Alpha-Blended_a
+    mask: 129
+    shaderName: LDJ/Fx/Alpha-Blended_a
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _OPACITYSELF_ON
+    - _REF_ON_ON
+    - _SSSCALTYPE_OFF
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/Alpha-Blended.shader/LDJ/Fx/Alpha-Blended
+    mask: 129
+    shaderName: LDJ/Fx/Alpha-Blended
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _ONEUV_ON
+    - _REF_ON_ON
+    - _SSSCALTYPE_OFF
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_add_distort _rj.shader/LDJ/Fx/ldj_add_distort
+      _rj
+    mask: 129
+    shaderName: LDJ/Fx/ldj_add_distort _rj
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _ONEUV_ON
+    - _REF_ON_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_blend_distort.shader/LDJ/Fx/Alpha Blended_distort
+    mask: 129
+    shaderName: LDJ/Fx/Alpha Blended_distort
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _ONEUV_ON
+    - _REF_ON_ON
+    - _SSSCALTYPE_OFF
+    - _UV_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_wutiFresnel_01.shader/LDJ/Fx/ldj_wutiFresnel_01
+    mask: 129
+    shaderName: LDJ/Fx/ldj_wutiFresnel_01
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/yanwu_uv.shader/LDJ/Fx/yanwu_uv
+    mask: 129
+    shaderName: LDJ/Fx/yanwu_uv
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_trail.shader/LDJ/Fx/ldj_trail
+    mask: 129
+    shaderName: LDJ/Fx/ldj_trail
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/uv_one.shader/LDJ/Fx/uv_one
+    mask: 129
+    shaderName: LDJ/Fx/uv_one
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/UV_directional_Alpha.shader/LDJ/Fx/UV_directional_Alpha
+    mask: 129
+    shaderName: LDJ/Fx/UV_directional_Alpha
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/UV_directional_add.shader/LDJ/Fx/UV_directional_add
+    mask: 129
+    shaderName: LDJ/Fx/UV_directional_add
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/wuti_Fresnel.shader/LDJ/Fx/wuti_Fresnel
+    mask: 129
+    shaderName: LDJ/Fx/wuti_Fresnel
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/UV_daogung_b.shader/LDJ/Fx/UV_daogung_b
+    mask: 129
+    shaderName: LDJ/Fx/UV_daogung_b
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/long_fresnel_01.shader/LDJ/Fx/long_fresnel_01
+    mask: 129
+    shaderName: LDJ/Fx/long_fresnel_01
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Code/External/DCG Shaders/Water Shader/Shaders/UnderWaterDistortion.shader/Hidden/DCG/Water
+      Shader/Underwater
+    mask: 129
+    shaderName: Hidden/DCG/Water Shader/Underwater
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_Twist.shader/LDJ/Fx/ldj_Twist
+    mask: 129
+    shaderName: LDJ/Fx/ldj_Twist
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _DISSLOVE_ON
+    - _DISSOLVE_ON
+    - _ONEUV_ON
+    - _REF_ON_ON
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - SHADOWS_SHADOWMASK
+    - VERTEXLIGHT_ON
+  - shaderGuid: Assets/Shader/Art/Effect/UI_uv.shader/LDJ/Fx/UI_uv
+    mask: 129
+    shaderName: LDJ/Fx/UI_uv
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Shader/Art/Effect/uv_one_a.shader/LDJ/Fx/uv_one_a
+    mask: 129
+    shaderName: LDJ/Fx/uv_one_a
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - DIRECTIONAL
+    - DIRLIGHTMAP_COMBINED
+    - DYNAMICLIGHTMAP_ON
+    - LIGHTMAP_ON
+    - LIGHTMAP_SHADOW_MIXING
+    - LIGHTPROBE_SH
+    - SHADOWS_SCREEN
+    - VERTEXLIGHT_ON
+    - SHADOWS_SHADOWMASK
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/FinalPass.shader/Hidden/PostProcessing/FinalPass
+    mask: 129
+    shaderName: Hidden/PostProcessing/FinalPass
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FXAA
+    - FXAA_LOW
+    - FXAA_KEEP_ALPHA
+    - STEREO_INSTANCING_ENABLED
+    - STEREO_DOUBLEWIDE_TARGET
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/ScalableAO.shader/Hidden/PostProcessing/ScalableAO
+    mask: 129
+    shaderName: Hidden/PostProcessing/ScalableAO
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - APPLY_FORWARD_FOG
+    - FOG_LINEAR
+    - FOG_EXP
+    - FOG_EXP2
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/DepthOfField.shader/Hidden/PostProcessing/DepthOfField
+    mask: 129
+    shaderName: Hidden/PostProcessing/DepthOfField
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Role/NewShaderLight/LDJ_PBRBody_FaceLight.shader/LDJ/Role/PBRBody_Face_Light
+    mask: 129
+    shaderName: LDJ/Role/PBRBody_Face_Light
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+    - _SSSCALTYPE_CALU
+    - _SSSCALTYPE_CONST
+    - CY_FOG_ON
+    - TOD_ON
+  - shaderGuid: Assets/Shader/Art/Role/NewShaderLight/LDJ_PBREyeLight.shader/LDJ/Role/PBREye_Light
+    mask: 129
+    shaderName: LDJ/Role/PBREye_Light
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _CUBEMAPDIR_ENABLE_ON
+    - _EYE_ENABLE_ON
+    - _EYE_SPECULAR_ENABLE_ON
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+    - _SSSCALTYPE_OFF
+    - CY_FOG_ON
+    - TOD_ON
+  - shaderGuid: Assets/Shader/Art/Role/NewShaderLight/LDJ_PBRHairLight.shader/LDJ/Role/PBRHair_Light
+    mask: 129
+    shaderName: LDJ/Role/PBRHair_Light
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _BRDF_TYPE_GGX
+    - _CHECK_SSS_NONE
+    - _D_BRDF_DIFFUSE_NONE
+    - _D_BRDF_GI_NONE
+    - _D_BRDF_NONE
+    - _D_BRDF_SPECULAR_NONE
+    - _D_SSS_NONE
+    - _D_TEX_NONE
+    - _DEBUG_NORMAL_NONE
+    - _ENABLEDEBUGCOLOR_ON
+    - _METALLIC_TYPE_NONE
+    - _METALLICCHANNEL_NONE
+    - _METALLICGLOSSMAP
+    - _NORMAL_DIR_NONE
+    - _NORMAL_TYPE_NONE
+    - _NORMALMAP
+    - _SKINCHANNEL_ZERO
+    - _SMOOTHNESSCHANNEL_NONE
+    - _SSSCALTYPE_OFF
+    - _SSSTYPE_NONE
+    - CY_FOG_ON
+    - TOD_ON
+    - USE_BINORMAL
+    - USE_FLOWMAP
+  - shaderGuid: Assets/Shader/Art/Role/NewShaderLight/LDJ_PBRBodLight.shader/LDJ/Role/PBRBodyLight
+    mask: 129
+    shaderName: LDJ/Role/PBRBodyLight
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _BRDF_HIGH
+    - _BRDF_TYPE_GGX
+    - _CHECK_SSS_NONE
+    - _CUBEMAPENABLE_ON
+    - _D_BRDF_DIFFUSE_NONE
+    - _D_BRDF_GI_NONE
+    - _D_BRDF_NONE
+    - _D_BRDF_SPECULAR_NONE
+    - _D_SSS_NONE
+    - _D_TEX_NONE
+    - _DEBUG_NORMAL_NONE
+    - _EMISSION
+    - _ENABLE_CUBEMAP_ON
+    - _ENABLE_EMISSION_ON
+    - _ENABLE_SSSCUSTOM_ON
+    - _METALLIC_TYPE_NONE
+    - _METALLICCHANNEL_NONE
+    - _METALLICGLOSSMAP
+    - _NORMAL_DIR_NONE
+    - _NORMAL_TYPE_NONE
+    - _NORMALMAP
+    - _SECONDLIGHTENABLE_ON
+    - _SKINCHANNEL_ZERO
+    - _SMOOTHNESSCHANNEL_NONE
+    - _SSSCALTYPE_CALU
+    - _SSSCALTYPE_CONST
+    - _SSSCALTYPE_OFF
+    - _SSSTYPE_NONE
+    - _USESILK_ON
+    - CY_FOG_ON
+    - TOD_ON
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_Grass.shader/FAE/Grass
+    mask: 129
+    shaderName: FAE/Grass
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHATEST_ON
+    - _VS_TOUCHBEND_ON
+    - GEOM_TYPE_LEAF
+    - GPU_FRUSTUM_ON
+    - INSTANCING_ON
+    - SHADOWS_CUBE
+    - SHADOWS_DEPTH
+    - UNITY_PASS_SHADOWCASTER
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Sprite/CameraNormalsTexture.shader/Hidden/Sprite-CameraNormalsTexture
+    mask: 129
+    shaderName: Hidden/Sprite-CameraNormalsTexture
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Sprite/CameraDepthTexture.shader/Hidden/Sprite-CameraDepthTexture
+    mask: 129
+    shaderName: Hidden/Sprite-CameraDepthTexture
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Sprite/CameraDepthNormalsTexture.shader/Hidden/Sprite-CameraDepthNormalsTexture
+    mask: 129
+    shaderName: Hidden/Sprite-CameraDepthNormalsTexture
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Temp/Roles/ShenDu/Lutify/Shaders/Lutify2D.shader/Hidden/Lutify
+      2D
+    mask: 129
+    shaderName: Hidden/Lutify 2D
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Spine/Spine-SkeletonLit.shader/Spine/Skeleton Lit
+    mask: 129
+    shaderName: Spine/Skeleton Lit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - POINT
+    - SPOT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Art/Scene/TOD/CYSkybox.shader/LDJ/TOD/Skybox/6 Sided
+    mask: 129
+    shaderName: LDJ/TOD/Skybox/6 Sided
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - CY_FOG_ON
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Sprite/SpriteDepthNormalsTexture.shader/Hidden/Internal-SpriteDepthNormalsTexture
+    mask: 129
+    shaderName: Hidden/Internal-SpriteDepthNormalsTexture
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/MultiScaleVO.shader/Hidden/PostProcessing/MultiScaleVO
+    mask: 129
+    shaderName: Hidden/PostProcessing/MultiScaleVO
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - APPLY_FORWARD_FOG
+    - FOG_LINEAR
+    - FOG_EXP
+    - FOG_EXP2
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/Bloom.shader/Hidden/PostProcessing/Bloom
+    mask: 129
+    shaderName: Hidden/PostProcessing/Bloom
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_TreeBranch.shader/FAE/Tree Branch
+    mask: 129
+    shaderName: FAE/Tree Branch
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - CY_FOG_ON
+    - INSTANCING_ON
+    - GPU_FRUSTUM_ON
+  - shaderGuid: Assets/Shader/Temp/CustomizeTerrain/Standard-FirstPass.shader/LDJ/Terrain/Standard
+    mask: 129
+    shaderName: LDJ/Terrain/Standard
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - _NORMALMAP
+  - shaderGuid: Assets/Shader/Temp/CustomizeTerrain/Standard-AddPass.shader/LDJ/TerrainEngine/Splatmap/Standard-AddPass
+    mask: 129
+    shaderName: LDJ/TerrainEngine/Splatmap/Standard-AddPass
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+    - _NORMALMAP
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/tree/LDJ_TreeBranch_NoWorldSpace.shader/LDJ/Foliage/Tree
+      Branch_NoWorldSpace
+    mask: 129
+    shaderName: LDJ/Foliage/Tree Branch_NoWorldSpace
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _BRDF_HIGH
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+    - CY_FOG_ON
+    - INSTANCING_ON
+    - SHADOWS_CUBE
+    - SHADOWS_DEPTH
+    - UNITY_PASS_SHADOWCASTER
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/tree/LDJ_TreeBranch.shader/LDJ/Foliage/Tree
+      Branch
+    mask: 129
+    shaderName: LDJ/Foliage/Tree Branch
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHATEST_ON
+    - _BRDF_HIGH
+    - _BRDF_TYPE_GGX
+    - _CHECK_SSS_NONE
+    - _D_BRDF_DIFFUSE_NONE
+    - _D_BRDF_GI_NONE
+    - _D_BRDF_NONE
+    - _D_BRDF_SPECULAR_NONE
+    - _D_SSS_NONE
+    - _D_TEX_NONE
+    - _DEBUG_NORMAL_NONE
+    - _METALLIC_TYPE_NONE
+    - _METALLICCHANNEL_NONE
+    - _NORMAL_DIR_NONE
+    - _NORMAL_TYPE_NONE
+    - _SKINCHANNEL_ZERO
+    - _SMOOTHNESSCHANNEL_NONE
+    - _SSSCALTYPE_OFF
+    - _SSSTYPE_NONE
+    - INSTANCING_ON
+    - LOD_FADE_CROSSFADE
+    - SHADOWS_CUBE
+    - SHADOWS_DEPTH
+    - UNITY_PASS_SHADOWCASTER
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_YSF_Carpetbrick_shader.shader/LDJ/Scene/YSF_Carpetbrick_shader
+    mask: 129
+    shaderName: LDJ/Scene/YSF_Carpetbrick_shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _KEYWORD2_ON
+    - _KEYWORD0_ON
+    - _KEYWORD1_ON
+  - shaderGuid: Assets/Shader/Art/Scene/PFWater/PFWater.shader/LDJ/Nature/Water
+    mask: 129
+    shaderName: LDJ/Nature/Water
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _EdgeTextureControl
+    - _EdgeTextureDetail
+    - _EdgeDetailByTexture
+  - shaderGuid: Assets/Shader/Art/Role/NewShaderLight/LDJ_PBREyeLight_Avatar.shader/LDJ/Avatar/PBREye_Light
+    mask: 129
+    shaderName: LDJ/Avatar/PBREye_Light
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHATEST_ON
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - CY_FOG_ON
+  - shaderGuid: Assets/Code/External/SceneCull/Resources/SceneCullTransparent.shader/Engine/SceneCull/Transparent
+    mask: 129
+    shaderName: Engine/SceneCull/Transparent
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - LIGHTMAP_OFF
+    - LIGHTMAP_ON
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Shader/Art/Role/NewShaderLight/LDJ_PBRBody_FaceLight_Avatar.shader/LDJ/Avatar/PBRBody_Face_Light
+    mask: 129
+    shaderName: LDJ/Avatar/PBRBody_Face_Light
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+    - _SSSCALTYPE_CONST
+    - CY_FOG_ON
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/DeferredFog.shader/Hidden/PostProcessing/DeferredFog
+    mask: 129
+    shaderName: Hidden/PostProcessing/DeferredFog
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_LINEAR
+    - FOG_EXP
+    - FOG_EXP2
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Debug/Overlays.shader/Hidden/PostProcessing/Debug/Overlays
+    mask: 129
+    shaderName: Hidden/PostProcessing/Debug/Overlays
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - SOURCE_GBUFFER
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/SubpixelMorphologicalAntialiasing.shader/Hidden/PostProcessing/SubpixelMorphologicalAntialiasing
+    mask: 129
+    shaderName: Hidden/PostProcessing/SubpixelMorphologicalAntialiasing
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/SkeletonGraphic/Shaders/Spine-SkeletonGraphic-TintBlack.shader/Spine/SkeletonGraphic
+      Tint Black
+    mask: 129
+    shaderName: Spine/SkeletonGraphic Tint Black
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - UNITY_UI_ALPHACLIP
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/SkeletonGraphic/Shaders/Spine-SkeletonGraphic.shader/Spine/SkeletonGraphic
+    mask: 129
+    shaderName: Spine/SkeletonGraphic
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - UNITY_UI_ALPHACLIP
+  - shaderGuid: Assets/Shader/Spine/BlendModes/Spine-Skeleton-PMA-Additive.shader/Spine/Blend
+      Modes/Skeleton PMA Additive
+    mask: 129
+    shaderName: Spine/Blend Modes/Skeleton PMA Additive
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Spine/BlendModes/Spine-Skeleton-PMA-Multiply.shader/Spine/Blend
+      Modes/Skeleton PMA Multiply
+    mask: 129
+    shaderName: Spine/Blend Modes/Skeleton PMA Multiply
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Spine/BlendModes/Spine-Skeleton-PMA-Screen.shader/Spine/Blend
+      Modes/Skeleton PMA Screen
+    mask: 129
+    shaderName: Spine/Blend Modes/Skeleton PMA Screen
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Spine/Spine-Skeleton.shader/Spine/Skeleton
+    mask: 129
+    shaderName: Spine/Skeleton
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Shader/Spine/Spine-Skeleton-TintBlack.shader/Spine/Skeleton
+      Tint Black
+    mask: 129
+    shaderName: Spine/Skeleton Tint Black
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Res/Temp/Roles/ShenDu/Lutify/Shaders/Lutify3D.shader/Hidden/Lutify
+      3D
+    mask: 129
+    shaderName: Hidden/Lutify 3D
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Spine-Skeleton-Fill.shader/Spine/Skeleton
+      Fill
+    mask: 129
+    shaderName: Spine/Skeleton Fill
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Spine-Skeleton-Tint.shader/Spine/Skeleton
+      Tint
+    mask: 129
+    shaderName: Spine/Skeleton Tint
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Shaders/Spine-Special-Skeleton-Grayscale.shader/Spine/Special/Skeleton
+      Grayscale
+    mask: 129
+    shaderName: Spine/Special/Skeleton Grayscale
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _STRAIGHT_ALPHA_INPUT
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/Lut2DBaker.shader/Hidden/PostProcessing/Lut2DBaker
+    mask: 129
+    shaderName: Hidden/PostProcessing/Lut2DBaker
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - TONEMAPPING_ACES
+    - TONEMAPPING_NEUTRAL
+    - TONEMAPPING_CUSTOM
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/MotionBlur.shader/Hidden/PostProcessing/MotionBlur
+    mask: 129
+    shaderName: Hidden/PostProcessing/MotionBlur
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel1/T4M 2 Textures Auto
+      BeastLM 2DrawCall.shader/T4MShaders/ShaderModel1/T4M 2 Textures Auto BeastLM
+      2DrawCall
+    mask: 129
+    shaderName: T4MShaders/ShaderModel1/T4M 2 Textures Auto BeastLM 2DrawCall
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _BRDF_HIGH
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+  - shaderGuid: Assets/Res/Temp/Scenes/Test_Qingezi/APOLLO_MR_Standard_CutOut.shader/APOLLO_Mirror/Cutout
+    mask: 129
+    shaderName: APOLLO_Mirror/Cutout
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - METAL_ON
+    - PROMETHEUS_ON
+    - AO_ON
+    - CR_ON
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_TreeTrunk.shader/FAE/Tree Trunk
+    mask: 129
+    shaderName: FAE/Tree Trunk
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - INSTANCING_ON
+    - GPU_FRUSTUM_ON
+  - shaderGuid: Assets/Shader/Art/Scene/FAE_Grass.shader/FAE/Grass
+    mask: 129
+    shaderName: FAE/Grass
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - INSTANCING_ON
+    - LOD_FADE_CROSSFADE
+  - shaderGuid: Assets/Shader/Art/Scene/Unlit-AlphaTest.shader/PF/Unlit/Transparent
+      Cutout
+    mask: 129
+    shaderName: PF/Unlit/Transparent Cutout
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/tree/LDJ_TreeTrunk.shader/LDJ/Foliage/Tree
+      Trunk
+    mask: 129
+    shaderName: LDJ/Foliage/Tree Trunk
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - INSTANCING_ON
+    - LOD_FADE_CROSSFADE
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_TreeBillboard.shader/FAE/Tree Billboard
+    mask: 129
+    shaderName: FAE/Tree Billboard
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - INSTANCING_ON
+    - GPU_FRUSTUM_ON
+  - shaderGuid: Assets/Res/SceneAsset/Model/Map/Yuhuayuan_TOD/RainEffect/Shaders/CYRainFall.shader/Hidden/CYRainFall
+    mask: 129
+    shaderName: Hidden/CYRainFall
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - RAINFALL_DISABLE
+    - RAINFALL_ENABLE
+    - DROPLET_DISABLE
+    - DROPLET_ENABLE
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_Cliff.shader/FAE/Cliff
+    mask: 129
+    shaderName: FAE/Cliff
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+    - UNITY_PASS_SHADOWCASTER
+    - INSTANCING_ON
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_Cliff_Coverage.shader/FAE/Cliff
+      coverage
+    mask: 129
+    shaderName: FAE/Cliff coverage
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - SHADOWS_DEPTH
+    - SHADOWS_CUBE
+    - UNITY_PASS_SHADOWCASTER
+    - INSTANCING_ON
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_SunshaftParticle.shader/FAE/Sunshaft
+      Particle
+    mask: 129
+    shaderName: FAE/Sunshaft Particle
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_Foliage.shader/FAE/Foliage
+    mask: 129
+    shaderName: FAE/Foliage
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHATEST_ON
+    - _EMISSION
+    - GEOM_TYPE_LEAF
+    - GPU_FRUSTUM_ON
+    - INSTANCING_ON
+  - shaderGuid: Assets/Resources/Shaders/map_tile_unlit.shader/Unlit/map_tile_unlit
+    mask: 129
+    shaderName: Unlit/map_tile_unlit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_Sunshaft.shader/FAE/Sunshaft
+    mask: 129
+    shaderName: FAE/Sunshaft
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Shader/Program/Lime/Lime_Particle_Add.shader/GameEffects/Additive
+    mask: 129
+    shaderName: GameEffects/Additive
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/ScreenSpaceReflections.shader/Hidden/PostProcessing/ScreenSpaceReflections
+    mask: 129
+    shaderName: Hidden/PostProcessing/ScreenSpaceReflections
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/Lime/Lime_Particle_AddSmooth.shader/GameEffects/Additive
+      (Soft)
+    mask: 129
+    shaderName: GameEffects/Additive (Soft)
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Debug/LightMeter.shader/Hidden/PostProcessing/Debug/LightMeter
+    mask: 129
+    shaderName: Hidden/PostProcessing/Debug/LightMeter
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - COLOR_GRADING_HDR
+    - AUTO_EXPOSURE
+  - shaderGuid: Assets/Shader/Program/Lime/Lime_Particle_AlphaBlend.shader/GameEffects/Alpha
+      Blended
+    mask: 129
+    shaderName: GameEffects/Alpha Blended
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - FOG_EXP
+    - FOG_EXP2
+    - FOG_LINEAR
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel1/T4M 2 Textures ManualAdd
+      BeastLM_1DC.shader/T4MShaders/ShaderModel1/T4M 2 Textures ManualAdd BeastLM_1DC
+    mask: 129
+    shaderName: T4MShaders/ShaderModel1/T4M 2 Textures ManualAdd BeastLM_1DC
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Scene/TOD/AzureStandardPixelCloud.shader/Azure[Sky]/Standard/Pixel
+      Cloud
+    mask: 129
+    shaderName: Azure[Sky]/Standard/Pixel Cloud
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - WEATHER_ENABLE
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/Texture2DLerp.shader/Hidden/PostProcessing/Texture2DLerp
+    mask: 129
+    shaderName: Hidden/PostProcessing/Texture2DLerp
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_Cutout_WithFog.shader/LDJ/Scene/Cutout/DiffuseWithFog
+    mask: 129
+    shaderName: LDJ/Scene/Cutout/DiffuseWithFog
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _BRDF_HIGH
+    - _EMISSION
+    - CY_FOG_ON
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Editor/Trackball.shader/Hidden/PostProcessing/Editor/Trackball
+    mask: 129
+    shaderName: Hidden/PostProcessing/Editor/Trackball
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Colored
+      2.shader/Hidden/Unlit/Transparent Colored 2
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Colored 2
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Effect/ScreenWater.shader/LDJ/Fx/ScreenWater
+    mask: 129
+    shaderName: LDJ/Fx/ScreenWater
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_Cutout_Diffuse.shader/LDJ/Scene/CutoutDiffuse
+    mask: 129
+    shaderName: LDJ/Scene/CutoutDiffuse
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - _BRDF_HIGH
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+    - CY_FOG_ON
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_AlphaReflection.shader/LDJ/Scene/AlphaReflection
+    mask: 129
+    shaderName: LDJ/Scene/AlphaReflection
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - CY_FOG_ON
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/TemporalAntialiasing.shader/Hidden/PostProcessing/TemporalAntialiasing
+    mask: 129
+    shaderName: Hidden/PostProcessing/TemporalAntialiasing
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Colored
+      1.shader/Hidden/Unlit/Transparent Colored 1
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Colored 1
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/Spine/Runtime/spine-unity/Modules/Ghost/Shaders/Spine-Special-Skeleton-Ghost.shader/Spine/Special/SkeletonGhost
+    mask: 129
+    shaderName: Spine/Special/SkeletonGhost
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Editor/CurveGrid.shader/Hidden/PostProcessing/Editor/CurveGrid
+    mask: 129
+    shaderName: Hidden/PostProcessing/Editor/CurveGrid
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Scene/WaterRipple/PhysicalRipple.shader/PF/PhysicalRipple
+    mask: 129
+    shaderName: PF/PhysicalRipple
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/GrainBaker.shader/Hidden/PostProcessing/GrainBaker
+    mask: 129
+    shaderName: Hidden/PostProcessing/GrainBaker
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/CopyStdFromTexArray.shader/Hidden/PostProcessing/CopyStdFromTexArray
+    mask: 129
+    shaderName: Hidden/PostProcessing/CopyStdFromTexArray
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Scene/TurbidWater/TurbidWater.shader/LDJ/Nature/TurbidWater
+    mask: 129
+    shaderName: LDJ/Nature/TurbidWater
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _BRDF_HIGH
+    - CY_FOG_ON
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Colored
+      3.shader/Hidden/Unlit/Transparent Colored 3
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Colored 3
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Masked.shader/Unlit/Transparent
+      Masked
+    mask: 129
+    shaderName: Unlit/Transparent Masked
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Masked
+      1.shader/Hidden/Unlit/Transparent Masked 1
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Masked 1
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Masked
+      2.shader/Hidden/Unlit/Transparent Masked 2
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Masked 2
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Scene/FAE_Grass_ios.shader/FAE/Grass_ios
+    mask: 129
+    shaderName: FAE/Grass_ios
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - INSTANCING_ON
+  - shaderGuid: Assets/Shader/Art/Scene/Alpha-DiffuseWithFog.shader/LDJ/Scene/Transparent/DiffuseWithFog
+    mask: 129
+    shaderName: LDJ/Scene/Transparent/DiffuseWithFog
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHABLEND_ON
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _BRDF_HIGH
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+    - _USENORMAL_DISABLE
+    - _USERIMLIGHT_DISABLE
+    - _USESPEC_DISABLE
+    - _USEVERTEXANIM_DISABLE
+    - CY_FOG_ON
+  - shaderGuid: Assets/Shader/Art/Role/Role_Transparent.shader/LDJ/Role_Transparent
+    mask: 129
+    shaderName: LDJ/Role_Transparent
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Masked
+      3.shader/Hidden/Unlit/Transparent Masked 3
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Masked 3
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/UI/PerformanceUI/Shaders/GraphMobile.shader/Graphy/Graph
+      Mobile
+    mask: 129
+    shaderName: Graphy/Graph Mobile
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - PIXELSNAP_ON
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/Copy.shader/Hidden/PostProcessing/Copy
+    mask: 129
+    shaderName: Hidden/PostProcessing/Copy
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/CopyStd.shader/Hidden/PostProcessing/CopyStd
+    mask: 129
+    shaderName: Hidden/PostProcessing/CopyStd
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/CopyStdFromDoubleWide.shader/Hidden/PostProcessing/CopyStdFromDoubleWide
+    mask: 129
+    shaderName: Hidden/PostProcessing/CopyStdFromDoubleWide
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Scene/WaterRipple/GenNormal.shader/GenNormal
+    mask: 129
+    shaderName: GenNormal
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _NeedGenHeight
+  - shaderGuid: Assets/Shader/Art/Scene/Alpha-DiffuseWithFogWithLight.shader/LDJ/Scene/Transparent/DiffuseWithFogWithLight
+    mask: 129
+    shaderName: LDJ/Scene/Transparent/DiffuseWithFogWithLight
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _BRDF_HIGH
+    - CY_FOG_ON
+  - shaderGuid: Assets/Code/External/SoliaGlow/BlurShader.shader/SoliaGlow/Blur
+    mask: 129
+    shaderName: SoliaGlow/Blur
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_Mobile_Diffuse.shader/LDJ/Scene/MobileDiffuse
+    mask: 129
+    shaderName: LDJ/Scene/MobileDiffuse
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _NORMALMAP
+    - CY_FOG_ON
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Text.shader/Unlit/Text
+    mask: 129
+    shaderName: Unlit/Text
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unlit/T4M World Projection
+      Shader Unlit+LM.shader/T4MShaders/ShaderModel2/Unlit/T4M World Projection Shader
+      + LM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Unlit/T4M World Projection Shader + LM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - LIGHTMAP_ON
+    - LIGHTMAP_OFF
+  - shaderGuid: Assets/Shader/Program/CameraEffect_SkillBW.shader/CameraEffects/SkillBW
+    mask: 129
+    shaderName: CameraEffects/SkillBW
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Colored.shader/Unlit/Transparent
+      Colored
+    mask: 129
+    shaderName: Unlit/Transparent Colored
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unlit/6TexturesUnlit.shader/T4MShaders/ShaderModel2/Unlit/T4M
+      6 Textures Unlit LM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Unlit/T4M 6 Textures Unlit LM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - LIGHTMAP_ON
+    - LIGHTMAP_OFF
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unlit/4TexturesUnlit.shader/T4MShaders/ShaderModel2/Unlit/T4M
+      4 Textures Unlit LM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Unlit/T4M 4 Textures Unlit LM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - LIGHTMAP_ON
+    - LIGHTMAP_OFF
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unlit/5TexturesUnlit.shader/T4MShaders/ShaderModel2/Unlit/T4M
+      5 Textures Unlit LM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Unlit/T4M 5 Textures Unlit LM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - LIGHTMAP_ON
+    - LIGHTMAP_OFF
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unlit/3TexturesUnlit.shader/T4MShaders/ShaderModel2/Unlit/T4M
+      3 Textures Unlit LM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Unlit/T4M 3 Textures Unlit LM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - LIGHTMAP_ON
+    - LIGHTMAP_OFF
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unlit/2TexturesUnlit.shader/T4MShaders/ShaderModel2/Unlit/T4M
+      2 Textures Unlit LM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Unlit/T4M 2 Textures Unlit LM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - LIGHTMAP_ON
+    - LIGHTMAP_OFF
+  - shaderGuid: Assets/Shader/Program/GameUI - Transparent Colored Depth 1.shader/GameUI/Transparent
+      Colored Depth 1
+    mask: 129
+    shaderName: GameUI/Transparent Colored Depth 1
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/DCG Shaders/Water Shader/Shaders/WaterFog.shader/Hidden/DCG/Water
+      Shader/Water Fog
+    mask: 129
+    shaderName: Hidden/DCG/Water Shader/Water Fog
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _FOG_SUNLIGHT
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Premultiplied
+      Colored.shader/Unlit/Premultiplied Colored
+    mask: 129
+    shaderName: Unlit/Premultiplied Colored
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/UIDamage.shader/GameEffects/UIDamage
+    mask: 129
+    shaderName: GameEffects/UIDamage
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/GameUI - Transparent Colored Depth.shader/GameUI/Transparent
+      Colored Depth
+    mask: 129
+    shaderName: GameUI/Transparent Colored Depth
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Builtins/DiscardAlpha.shader/Hidden/PostProcessing/DiscardAlpha
+    mask: 129
+    shaderName: Hidden/PostProcessing/DiscardAlpha
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/Lime/Lime_Wipe.shader/GameEffects/Lime_Wipe
+    mask: 129
+    shaderName: GameEffects/Lime_Wipe
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/GameUI - DrawLine.shader/GameUI/DrawLine
+    mask: 129
+    shaderName: GameUI/DrawLine
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/UIMaskGrey.shader/GameEffects/UIMaskGrey
+    mask: 129
+    shaderName: GameEffects/UIMaskGrey
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Premultiplied
+      Colored 3.shader/Hidden/Unlit/Premultiplied Colored 3
+    mask: 129
+    shaderName: Hidden/Unlit/Premultiplied Colored 3
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/EntityShadow.shader/GameEffects/EntityShadow
+    mask: 129
+    shaderName: GameEffects/EntityShadow
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Premultiplied
+      Colored 2.shader/Hidden/Unlit/Premultiplied Colored 2
+    mask: 129
+    shaderName: Hidden/Unlit/Premultiplied Colored 2
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Premultiplied
+      Colored 1.shader/Hidden/Unlit/Premultiplied Colored 1
+    mask: 129
+    shaderName: Hidden/Unlit/Premultiplied Colored 1
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Debug/Histogram.shader/Hidden/PostProcessing/Debug/Histogram
+    mask: 129
+    shaderName: Hidden/PostProcessing/Debug/Histogram
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Premultiplied
+      Colored (TextureClip).shader/Hidden/Unlit/Premultiplied Colored (TextureClip)
+    mask: 129
+    shaderName: Hidden/Unlit/Premultiplied Colored (TextureClip)
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Debug/Vectorscope.shader/Hidden/PostProcessing/Debug/Vectorscope
+    mask: 129
+    shaderName: Hidden/PostProcessing/Debug/Vectorscope
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Effect/ldj_ShieldFx.shader/LDJ/Fx/ShieldFX
+    mask: 129
+    shaderName: LDJ/Fx/ShieldFX
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Debug/Waveform.shader/Hidden/PostProcessing/Debug/Waveform
+    mask: 129
+    shaderName: Hidden/PostProcessing/Debug/Waveform
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/PostProcessingV2/PostProcessing/Shaders/Editor/ConvertToLog.shader/Hidden/PostProcessing/Editor/ConvertToLog
+    mask: 129
+    shaderName: Hidden/PostProcessing/Editor/ConvertToLog
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/Grass/Scripts/Editor/SubstanceBakerShader.shader/FAE/Substance
+      Baker
+    mask: 129
+    shaderName: FAE/Substance Baker
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Spine/Utility/Hidden-Spine-Bones.shader/Hidden/Spine/Bones
+    mask: 129
+    shaderName: Hidden/Spine/Bones
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Spine/Utility/HiddenPass.shader/Spine/Special/HiddenPass
+    mask: 129
+    shaderName: Spine/Special/HiddenPass
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/Grass/Scripts/Editor/PigmentMapComposite.shader/Hidden/PigmentMapComposite
+    mask: 129
+    shaderName: Hidden/PigmentMapComposite
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/ProFlares/Shaders/ProFlareShader.shader/ProFlares/Textured
+      Flare Shader
+    mask: 129
+    shaderName: ProFlares/Textured Flare Shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/UIMaskGrey 1.shader/GameEffects/UIMaskGrey 1
+    mask: 129
+    shaderName: GameEffects/UIMaskGrey 1
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/CameraEffect_WaterWave.shader/CameraEffects/WaterWave
+    mask: 129
+    shaderName: CameraEffects/WaterWave
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/CameraEffect_ToBlack.shader/CameraEffects/ToBlack
+    mask: 129
+    shaderName: CameraEffects/ToBlack
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Packed
+      2.shader/Hidden/Unlit/Transparent Packed 2
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Packed 2
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_Sky_Transparent.shader/LDJ/Scene/SkyTransparent
+    mask: 129
+    shaderName: LDJ/Scene/SkyTransparent
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_YSF_Brick_shader.shader/LDJ/Scene/YSF_Brick_shader
+    mask: 129
+    shaderName: LDJ/Scene/YSF_Brick_shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SoliaGlow/BlendColor.shader/SoliaGlow/BlendColor
+    mask: 129
+    shaderName: SoliaGlow/BlendColor
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_YSF_Carpet_shader.shader/YSF_carpet_shader
+    mask: 129
+    shaderName: YSF_carpet_shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Colored
+      (TextureClip).shader/Hidden/Unlit/Transparent Colored (TextureClip)
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Colored (TextureClip)
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_YSF_MetalHW_shader.shader/LDJ/Scene/YSF_metalHW_shader
+    mask: 129
+    shaderName: LDJ/Scene/YSF_metalHW_shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Colored
+      (Packed) (TextureClip).shader/Unlit/Transparent Colored (Packed) (TextureClip)
+    mask: 129
+    shaderName: Unlit/Transparent Colored (Packed) (TextureClip)
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ-god-rays.shader/LDJ/Scene/Blinking
+      GodRays
+    mask: 129
+    shaderName: LDJ/Scene/Blinking GodRays
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/CYED_TAShaders_VegetationBend_Leaf.shader/Transparent/TAShaders/VegetationBend_Leaf
+    mask: 129
+    shaderName: Transparent/TAShaders/VegetationBend_Leaf
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+  - shaderGuid: Assets/Shader/Art/Shader/Role/Unlit-TextureColor.shader/LDJ/Role/TextureColor
+    mask: 129
+    shaderName: LDJ/Role/TextureColor
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Text 3.shader/Hidden/Unlit/Text
+      3
+    mask: 129
+    shaderName: Hidden/Unlit/Text 3
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Packed
+      3.shader/Hidden/Unlit/Transparent Packed 3
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Packed 3
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/YMNCJ_dibiaocenter.shader/LDJ/Scene/YMNCJ_dibiaocenter
+    mask: 129
+    shaderName: LDJ/Scene/YMNCJ_dibiaocenter
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Text 1.shader/Hidden/Unlit/Text
+      1
+    mask: 129
+    shaderName: Hidden/Unlit/Text 1
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Text (TextureClip).shader/Hidden/Unlit/Text
+      (TextureClip)
+    mask: 129
+    shaderName: Hidden/Unlit/Text (TextureClip)
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/UI/UI_BurnOut_Dissolve.shader/LDJ/UI/Burnout Dissolve
+    mask: 129
+    shaderName: LDJ/UI/Burnout Dissolve
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/UI/UIWaterWave.shader/LDJ/UI/UIWaterWave
+    mask: 129
+    shaderName: LDJ/UI/UIWaterWave
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/UI/Video_PostProcess.shader/LDJ/Video_PostProcess
+    mask: 129
+    shaderName: LDJ/Video_PostProcess
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Scene/TOD/CloudNightSky.shader/LDJ/TOD/CloudNightSky
+    mask: 129
+    shaderName: LDJ/TOD/CloudNightSky
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Scene/SceneCloud.shader/LDJ/SceneCloud
+    mask: 129
+    shaderName: LDJ/SceneCloud
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Program/CameraEffect_Brightness.shader/CameraEffects/Brightness
+    mask: 129
+    shaderName: CameraEffects/Brightness
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Shader/Scene/LDJ_Mobile Vertex Colored.shader/LDJ/Mobile/Vertex
+      Colored
+    mask: 129
+    shaderName: LDJ/Mobile/Vertex Colored
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Packed.shader/Unlit/Transparent
+      Packed
+    mask: 129
+    shaderName: Unlit/Transparent Packed
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Transparent Packed
+      1.shader/Hidden/Unlit/Transparent Packed 1
+    mask: 129
+    shaderName: Hidden/Unlit/Transparent Packed 1
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/NGUI/Resources/Shaders/Unlit - Text 2.shader/Hidden/Unlit/Text
+      2
+    mask: 129
+    shaderName: Hidden/Unlit/Text 2
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Bump/T4M 3 TexturesBumped.shader/T4MShaders/ShaderModel2/Bump/T4M
+      3 Textures Bumped
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Bump/T4M 3 Textures Bumped
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SoliaGlow/GlowShaderAlpha.shader/SoliaGlow/GlowShaderAlpha
+    mask: 129
+    shaderName: SoliaGlow/GlowShaderAlpha
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - _BRDF_HIGH
+    - _BRDF_TYPE_GGX
+    - _CHECK_SSS_NONE
+    - _CUBEMAPENABLE_ON
+    - _D_BRDF_DIFFUSE_NONE
+    - _D_BRDF_GI_NONE
+    - _D_BRDF_NONE
+    - _D_BRDF_SPECULAR_NONE
+    - _D_SSS_NONE
+    - _D_TEX_NONE
+    - _DEBUG_NORMAL_NONE
+    - _EMISSION
+    - _ENABLE_CUBEMAP_ON
+    - _IndirectDiffuseMaskToSpecular
+    - _METALLIC_TYPE_NONE
+    - _METALLICCHANNEL_NONE
+    - _METALLICGLOSSMAP
+    - _NORMAL_DIR_NONE
+    - _NORMAL_TYPE_NONE
+    - _NORMALMAP
+    - _SKINCHANNEL_ZERO
+    - _SMOOTHNESSCHANNEL_NONE
+    - _SSSCALTYPE_OFF
+    - _SSSTYPE_NONE
+  - shaderGuid: Assets/Code/External/SoliaGlow/ExtractNeedBloom.shader/SoliaGlow/ExtractNeedBloom
+    mask: 129
+    shaderName: SoliaGlow/ExtractNeedBloom
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Bump/T4M 3 TexturesBump.shader/T4MShaders/ShaderModel3/Bump/T4M
+      3 Textures Bump
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Bump/T4M 3 Textures Bump
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Bump/T4M 4 TexturesBump.shader/T4MShaders/ShaderModel3/Bump/T4M
+      4 Textures Bump
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Bump/T4M 4 Textures Bump
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/BumpSpec/T4M 2 TexturesBumpSpec.shader/T4MShaders/ShaderModel3/BumpSpec/T4M
+      2 Textures Bump Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/BumpSpec/T4M 2 Textures Bump Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/BumpSpec/T4M 3 TexturesBumpSpec.shader/T4MShaders/ShaderModel3/BumpSpec/T4M
+      3 Textures Bump Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/BumpSpec/T4M 3 Textures Bump Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/BumpSpec/T4M 4 TexturesBumpSpec.shader/T4MShaders/ShaderModel3/BumpSpec/T4M
+      4 Textures Bump Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/BumpSpec/T4M 4 Textures Bump Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Diffuse/T4M 2 Textures.shader/T4MShaders/ShaderModel3/Diffuse/T4M
+      2 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Diffuse/T4M 2 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Diffuse/T4M 3 Textures.shader/T4MShaders/ShaderModel3/Diffuse/T4M
+      3 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Diffuse/T4M 3 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Diffuse/T4M 4 Textures.shader/T4MShaders/ShaderModel3/Diffuse/T4M
+      4 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Diffuse/T4M 4 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Diffuse/T4M 5 Textures.shader/T4MShaders/ShaderModel3/Diffuse/T4M
+      5 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Diffuse/T4M 5 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Bump/T4M 2 TexturesBump.shader/T4MShaders/ShaderModel3/Bump/T4M
+      2 Textures Bump
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Bump/T4M 2 Textures Bump
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Diffuse/T4M 6 Textures.shader/T4MShaders/ShaderModel3/Diffuse/T4M
+      6 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Diffuse/T4M 6 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Specular/T4M 3 TexturesSpec.shader/T4MShaders/ShaderModel3/Specular/T4M
+      3 Textures Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Specular/T4M 3 Textures Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SoliaGlow/CompositeShader.shader/SoliaGlow/Composite
+    mask: 129
+    shaderName: SoliaGlow/Composite
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/Timeline/com.unity.cinemachine@2.2.8/Editor/Resources/CMWaveform.shader/CMWaveform
+    mask: 129
+    shaderName: CMWaveform
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/CYOU/AvatarSDK/Src/HistoryCode/avater_selected.shader/avater/avater_select
+    mask: 129
+    shaderName: avater/avater_select
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/CYOU/U3DNavigation2Grid/Editor/Res/Unlit Transparent Color.shader/NAV/Unlit
+      Transparent Color
+    mask: 129
+    shaderName: NAV/Unlit Transparent Color
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Effects/Prefabs/LYJTestEffect/Mobile-Particle-Add-Tint.shader/Mobile/Particles/Additive(Tint
+      Color)
+    mask: 129
+    shaderName: Mobile/Particles/Additive(Tint Color)
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Temp/Grass/Shaders/FAE_FogSheet.shader/FAE/Fog sheet
+    mask: 129
+    shaderName: FAE/Fog sheet
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _EMISSION
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Bump/T4M 2 TexturesBumped.shader/T4MShaders/ShaderModel2/Bump/T4M
+      2 Textures Bumped
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Bump/T4M 2 Textures Bumped
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel1/T4M 2 Textures ManualAdd
+      CustoLM 1DC.shader/T4MShaders/ShaderModel1/T4M 2 Textures ManualAdd CustoLM
+      1DC
+    mask: 129
+    shaderName: T4MShaders/ShaderModel1/T4M 2 Textures ManualAdd CustoLM 1DC
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Specular/T4M 2 TexturesSpec.shader/T4MShaders/ShaderModel3/Specular/T4M
+      2 Textures Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Specular/T4M 2 Textures Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unlit/6TexturesUnlitNoLM.shader/T4MShaders/ShaderModel2/Unlit/T4M
+      6 Textures Unlit NoLM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Unlit/T4M 6 Textures Unlit NoLM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unified/T4M 4 TexturesUnified.shader/T4MShaders/ShaderModel2/MobileLM/T4M
+      4 Textures for Mobile
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/MobileLM/T4M 4 Textures for Mobile
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unified/T4M 3 TexturesUnified.shader/T4MShaders/ShaderModel2/MobileLM/T4M
+      3 Textures for Mobile
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/MobileLM/T4M 3 Textures for Mobile
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Bump/T4M 3 TexturesBumped
+      Mobile.shader/T4MShaders/ShaderModel2/Bump/T4M 3 Textures Bumped Mobile
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Bump/T4M 3 Textures Bumped Mobile
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Bump/T4M 4 TexturesBumped.shader/T4MShaders/ShaderModel2/Bump/T4M
+      4 Textures Bumped
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Bump/T4M 4 Textures Bumped
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/BumpSpec/T4M 2 TexturesBumpSpec.shader/T4MShaders/ShaderModel2/Bump/T4M
+      2 Textures Bump Specular
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Bump/T4M 2 Textures Bump Specular
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/BumpSpec/T4M 2 TexturesBumpSpec
+      Mobile.shader/T4MShaders/ShaderModel2/Bump/T4M 2 Textures Bump Specular Mobile
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Bump/T4M 2 Textures Bump Specular Mobile
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/BumpSpec/T4M 3 TexturesBumpSpec.shader/T4MShaders/ShaderModel2/Bump/T4M
+      3 Textures Bump Specular
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Bump/T4M 3 Textures Bump Specular
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Diffuse/T4M 2 Textures.shader/T4MShaders/ShaderModel2/Diffuse/T4M
+      2 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Diffuse/T4M 2 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Diffuse/T4M 3 Textures.shader/T4MShaders/ShaderModel2/Diffuse/T4M
+      3 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Diffuse/T4M 3 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Diffuse/T4M 4 Textures.shader/T4MShaders/ShaderModel2/Diffuse/T4M
+      4 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Diffuse/T4M 4 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Diffuse/T4M 5 Textures.shader/T4MShaders/ShaderModel2/Diffuse/T4M
+      5 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Diffuse/T4M 5 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Diffuse/T4M 6 Textures.shader/T4MShaders/ShaderModel2/Diffuse/T4M
+      6 Textures
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Diffuse/T4M 6 Textures
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Diffuse/T4M World Projection
+      Shader.shader/T4MShaders/ShaderModel2/Diffuse/T4M World Projection Shader
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Diffuse/T4M World Projection Shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/DirectionLM/T4M 2 TexturesBumped
+      DLM.shader/T4MShaders/ShaderModel2/BumpDLM/T4M 2 Textures Bumped DLM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/BumpDLM/T4M 2 Textures Bumped DLM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/DirectionLM/T4M 2 TexturesBumped
+      DLM mobile.shader/T4MShaders/ShaderModel2/BumpDLM/T4M 2 Textures Bumped DLM
+      Mobile
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/BumpDLM/T4M 2 Textures Bumped DLM Mobile
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/DirectionLM/T4M 3 TexturesBumped
+      DLM.shader/T4MShaders/ShaderModel2/BumpDLM/T4M 3 Textures Bumped DLM
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/BumpDLM/T4M 3 Textures Bumped DLM
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Specular/T4M 2 Textures
+      Spec.shader/T4MShaders/ShaderModel2/Specular/T4M 2 Textures Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Specular/T4M 2 Textures Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Specular/T4M 3 Textures
+      Spec.shader/T4MShaders/ShaderModel2/Specular/T4M 3 Textures Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Specular/T4M 3 Textures Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Specular/T4M 4 Textures
+      Spec.shader/T4MShaders/ShaderModel2/Specular/T4M 4 Textures Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Specular/T4M 4 Textures Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Toon/T4M 2 Textures
+      Toon.shader/T4MShaders/ShaderModel2/Toon/T4M 2 Textures Toon
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Toon/T4M 2 Textures Toon
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Toon/T4M 3 Textures
+      Toon.shader/T4MShaders/ShaderModel2/Toon/T4M 3 Textures Toon
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Toon/T4M 3 Textures Toon
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Toon/T4M 4 Textures
+      Toon.shader/T4MShaders/ShaderModel2/Toon/T4M 4 Textures Toon
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Toon/T4M 4 Textures Toon
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Unified/T4M 2 TexturesUnified.shader/T4MShaders/ShaderModel2/MobileLM/T4M
+      2 Textures for Mobile
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/MobileLM/T4M 2 Textures for Mobile
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Temp/Roles/ShenDu/Lutify/Shaders/Lutify-Preview-Gamma.shader/Hidden/Lutify-Preview-Gamma
+    mask: 129
+    shaderName: Hidden/Lutify-Preview-Gamma
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Temp/Roles/ShenDu/Lutify/Shaders/Lutify-Preview-Linear.shader/Hidden/Lutify-Preview-Linear
+    mask: 129
+    shaderName: Hidden/Lutify-Preview-Linear
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel3/Specular/T4M 4 TexturesSpec.shader/T4MShaders/ShaderModel3/Specular/T4M
+      4 Textures Spec
+    mask: 129
+    shaderName: T4MShaders/ShaderModel3/Specular/T4M 4 Textures Spec
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Manual/Unlit Text.shader/Super
+      Text Mesh/Unlit/Manual/Default Text
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Manual/Default Text
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Resources/Shaders/map_building_unlit_shader.shader/Unlit/map_building_unlit
+    mask: 129
+    shaderName: Unlit/map_building_unlit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Unlit Cull Back.shader/Super
+      Text Mesh/Unlit/Cull Back
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Cull Back
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Resources/Shaders/map_transparent_shader.shader/Custom/MapTransparent
+    mask: 129
+    shaderName: Custom/MapTransparent
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Resources/Shaders/map_vertexColor_shader.shader/ Vertex Colored
+    mask: 129
+    shaderName: ' Vertex Colored'
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Camera/CameraFilterPack_Blur_Radial_Fast.shader/CameraFilterPack/Blur_Radial_Fast
+    mask: 129
+    shaderName: CameraFilterPack/Blur_Radial_Fast
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Manual/UnlitMask.shader/Super
+      Text Mesh/Unlit/Manual/DefaultMask
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Manual/DefaultMask
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/PlantPreview.shader/Hidden/PlantPreview
+    mask: 129
+    shaderName: Hidden/PlantPreview
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Manual/Unlit.shader/Super
+      Text Mesh/Unlit/Manual/Default
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Manual/Default
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/UI/UI Outline.shader/Super
+      Text Mesh/UI/Outline
+    mask: 129
+    shaderName: Super Text Mesh/UI/Outline
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Resources/Shaders/map_building_surface_shader.shader/Custom/map_building_surface_shader
+    mask: 129
+    shaderName: Custom/map_building_surface_shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/UI/UI Masked.shader/Super
+      Text Mesh/UI/Masked
+    mask: 129
+    shaderName: Super Text Mesh/UI/Masked
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/UI/UI.shader/Super Text
+      Mesh/UI/Standard
+    mask: 129
+    shaderName: Super Text Mesh/UI/Standard
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Shader/Art/Effect/DistortMask.shader/LDJ/Fx/DistortMask
+    mask: 129
+    shaderName: LDJ/Fx/DistortMask
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/SDF/SDF Unlit Outline.shader/Super
+      Text Mesh/SDF/Unlit Outline
+    mask: 129
+    shaderName: Super Text Mesh/SDF/Unlit Outline
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/SDF/SDF Unlit DropshadowAndOutline.shader/Super
+      Text Mesh/SDF/Unlit Dropshadow and Outline
+    mask: 129
+    shaderName: Super Text Mesh/SDF/Unlit Dropshadow and Outline
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/SDF/SDF Unlit Dropshadow.shader/Super
+      Text Mesh/SDF/Unlit Dropshadow
+    mask: 129
+    shaderName: Super Text Mesh/SDF/Unlit Dropshadow
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/SDF/SDF Unlit.shader/Super
+      Text Mesh/SDF/Unlit
+    mask: 129
+    shaderName: Super Text Mesh/SDF/Unlit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Lit/Lit Standard.shader/Super
+      Text Mesh/Lit/Standard
+    mask: 129
+    shaderName: Super Text Mesh/Lit/Standard
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Lit/Lit Lambert.shader/Super
+      Text Mesh/Lit/Lambert
+    mask: 129
+    shaderName: Super Text Mesh/Lit/Lambert
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/ShaderModel2/Bump/T4M 2 TexturesBumped
+      Mobile.shader/T4MShaders/ShaderModel2/Bump/T4M 2 Textures Bumped Mobile
+    mask: 129
+    shaderName: T4MShaders/ShaderModel2/Bump/T4M 2 Textures Bumped Mobile
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/UI/UI Dropshadow.shader/Super
+      Text Mesh/UI/Dropshadow
+    mask: 129
+    shaderName: Super Text Mesh/UI/Dropshadow
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Resources/NewSurfaceShader.shader/Custom/NewSurfaceShader
+    mask: 129
+    shaderName: Custom/NewSurfaceShader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Unlit.shader/Super
+      Text Mesh/Unlit/Default
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Default
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Resources/FacePixelSelect.shader/Avatar/FacePixelSelect
+    mask: 129
+    shaderName: Avatar/FacePixelSelect
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/T4M/Shaders/BrushPreview.shader/Hidden/BrushPreview
+    mask: 129
+    shaderName: Hidden/BrushPreview
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Temp/Shader/SceneTemp/PUB_Rock_shader.shader/LDJ/Scene/PUB_Rock_shader
+    mask: 129
+    shaderName: LDJ/Scene/PUB_Rock_shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Unlit Outline.shader/Super
+      Text Mesh/Unlit/Outline
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Outline
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/DiffuseTextureBlend.shader/ProBuilder/Diffuse
+      Texture Blend
+    mask: 129
+    shaderName: ProBuilder/Diffuse Texture Blend
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/DiffuseVertexColor.shader/ProBuilder/Diffuse
+      Vertex Color
+    mask: 129
+    shaderName: ProBuilder/Diffuse Vertex Color
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_FaceHighlight.shader/Hidden/ProBuilder/FaceHighlight
+    mask: 129
+    shaderName: Hidden/ProBuilder/FaceHighlight
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Unlit Dropshadow.shader/Super
+      Text Mesh/Unlit/Dropshadow
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Dropshadow
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_HideVertices.shader/Hidden/ProBuilder/HideVertices
+    mask: 129
+    shaderName: Hidden/ProBuilder/HideVertices
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_NormalPreview.shader/Hidden/ProBuilder/NormalPreview
+    mask: 129
+    shaderName: Hidden/ProBuilder/NormalPreview
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_ReferenceUnlit.shader/ProBuilder/Reference
+      Unlit
+    mask: 129
+    shaderName: ProBuilder/Reference Unlit
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_FacePicker.shader/Hidden/ProBuilder/FacePicker
+    mask: 129
+    shaderName: Hidden/ProBuilder/FacePicker
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_SelectionPicker.shader/Hidden/ProBuilder/SelectionPicker
+    mask: 129
+    shaderName: Hidden/ProBuilder/SelectionPicker
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Unlit Ontop.shader/Super
+      Text Mesh/Unlit/Ontop
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Ontop
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_VertexShader.shader/Hidden/ProBuilder/pb_VertexShader
+    mask: 129
+    shaderName: Hidden/ProBuilder/pb_VertexShader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_VertexPicker.shader/Hidden/ProBuilder/VertexPicker
+    mask: 129
+    shaderName: Hidden/ProBuilder/VertexPicker
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_UnlitVertexColor.shader/ProBuilder/UnlitVertexColor
+    mask: 129
+    shaderName: ProBuilder/UnlitVertexColor
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProGrids/Shader/pg_GridShader.shader/Hidden/ProGrids/pg_GridShader
+    mask: 129
+    shaderName: Hidden/ProGrids/pg_GridShader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_TransparentOverlay.shader/Hidden/ProBuilder/pb_TransparentOverlay
+    mask: 129
+    shaderName: Hidden/ProBuilder/pb_TransparentOverlay
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Code/External/SuperTextMesh/Shader/Unlit/Unlit DropshadowAndOutline.shader/Super
+      Text Mesh/Unlit/Dropshadow and Outline
+    mask: 129
+    shaderName: Super Text Mesh/Unlit/Dropshadow and Outline
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_SmoothingPreview.shader/Hidden/ProBuilder/SmoothingPreview
+    mask: 129
+    shaderName: Hidden/ProBuilder/SmoothingPreview
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Assets/Res/Tools/ProCore/ProBuilder/Shader/pb_UnlitSolidColor.shader/ProBuilder/Unlit
+      Solid Color
+    mask: 129
+    shaderName: ProBuilder/Unlit Solid Color
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Resources/unity_builtin_extra/Mobile/Particles/Alpha Blended
+    mask: 129
+    shaderName: Mobile/Particles/Alpha Blended
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _EMISSION
+  - shaderGuid: Resources/unity_builtin_extra/Skybox/Cubemap
+    mask: 129
+    shaderName: Skybox/Cubemap
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Resources/unity_builtin_extra/Standard (Specular setup)
+    mask: 129
+    shaderName: Standard (Specular setup)
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _NORMALMAP
+    - _SPECGLOSSMAP
+  - shaderGuid: Resources/unity_builtin_extra/Legacy Shaders/Transparent/Cutout/Bumped
+      Diffuse
+    mask: 129
+    shaderName: Legacy Shaders/Transparent/Cutout/Bumped Diffuse
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Resources/unity_builtin_extra/Legacy Shaders/Transparent/Cutout/Diffuse
+    mask: 129
+    shaderName: Legacy Shaders/Transparent/Cutout/Diffuse
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _BOLT_ENABLE
+    - _BRDF_HIGH
+    - _RAIN_ENABLE
+    - _USENORMAL_DISABLE
+    - _USERIMLIGHT_DISABLE
+    - _USESPEC_DISABLE
+    - _USEVERTEXANIM_DISABLE
+  - shaderGuid: Resources/unity_builtin_extra/Unlit/Transparent Cutout
+    mask: 129
+    shaderName: Unlit/Transparent Cutout
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+  - shaderGuid: Resources/unity_builtin_extra/Mobile/Diffuse
+    mask: 129
+    shaderName: Mobile/Diffuse
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _NORMALMAP
+  - shaderGuid: Resources/unity_builtin_extra/Mobile/Unlit (Supports Lightmap)
+    mask: 129
+    shaderName: Mobile/Unlit (Supports Lightmap)
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _EMISSION
+  - shaderGuid: Resources/unity_builtin_extra/Legacy Shaders/Particles/Additive
+    mask: 129
+    shaderName: Legacy Shaders/Particles/Additive
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _OPTION_NONE
+  - shaderGuid: Resources/unity_builtin_extra/Legacy Shaders/Particles/Alpha Blended
+    mask: 129
+    shaderName: Legacy Shaders/Particles/Alpha Blended
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _EMISSION
+  - shaderGuid: Resources/unity_builtin_extra/Unlit/Texture
+    mask: 129
+    shaderName: Unlit/Texture
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Library/unity default resources/Hidden/InternalErrorShader
+    mask: 129
+    shaderName: Hidden/InternalErrorShader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _CUBEMAPDIR_ENABLE_ON
+    - _EMISSION
+    - _ENABLE_EMISSION_ON
+    - _ENABLE_SSSCUSTOM_ON
+    - _ENABLE_SSSFRESNEL_ON
+    - _ENABLEDEBUGCOLOR_ON
+    - _EYE_SPECULAR_ENABLE_ON
+    - _FRESNELONOFF_ON
+    - _KG_ON
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+    - _OPTION_METHOD1
+    - _OPTION_NONE
+    - _SSSCALTYPE_CALU
+    - _SSSCALTYPE_CONST
+    - _SSSCALTYPE_OFF
+  - shaderGuid: Resources/unity_builtin_extra/Skybox/6 Sided
+    mask: 129
+    shaderName: Skybox/6 Sided
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Resources/unity_builtin_extra/Legacy Shaders/Transparent/Diffuse
+    mask: 129
+    shaderName: Legacy Shaders/Transparent/Diffuse
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+  - shaderGuid: Resources/unity_builtin_extra/Unlit/Transparent
+    mask: 129
+    shaderName: Unlit/Transparent
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+  - shaderGuid: Resources/unity_builtin_extra/Legacy Shaders/Diffuse
+    mask: 129
+    shaderName: Legacy Shaders/Diffuse
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Library/unity default resources/GUI/Text Shader
+    mask: 129
+    shaderName: GUI/Text Shader
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Resources/unity_builtin_extra/Standard
+    mask: 129
+    shaderName: Standard
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords:
+    - _ALPHAPREMULTIPLY_ON
+    - _ALPHATEST_ON
+    - _BRDF_HIGH
+    - _EMISSION
+    - _METALLICGLOSSMAP
+    - _NORMALMAP
+  - shaderGuid: Resources/unity_builtin_extra/Legacy Shaders/Particles/Alpha Blended
+      Premultiply
+    mask: 129
+    shaderName: Legacy Shaders/Particles/Alpha Blended Premultiply
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []
+  - shaderGuid: Resources/unity_builtin_extra/Skybox/Panoramic
+    mask: 129
+    shaderName: Skybox/Panoramic
+    shaderType: 0
+    passType: 0
+    shaderCompilerPlatform: 0
+    graphicsTier: 0
+    builtinShaderDefine: 0
+    shaderRequirements: 0
+    keywords: []

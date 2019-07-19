@@ -1,0 +1,18 @@
+﻿namespace GameDataTables;
+
+table ItemTable {
+  Id:int;
+  Name:string;
+  RewardReadme:[string];
+  Hp:float;
+  Cost:int;
+  Level:int;
+  CostMoney:int;
+  ItemID:[int];
+}
+
+table Root_ItemTable {
+  data:[ItemTable];
+}
+
+root_type Root_ItemTable;
