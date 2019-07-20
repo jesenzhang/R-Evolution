@@ -210,7 +210,7 @@ public class GUIHelper
         path = EditorGUILayout.TextField(path);
         if (GUILayout.Button("...", GUILayout.Width(30)))
         {
-            LastFoldPath = EditorUtility.OpenFolderPanel("FlactcPath", LastFoldPath, "*");
+            LastFoldPath = EditorUtility.OpenFolderPanel("FlactcPath", LastFoldPath, "");
             path = LastFoldPath;
             GUIUtility.ExitGUI();
             return;
@@ -218,14 +218,14 @@ public class GUIHelper
         GUILayout.EndHorizontal();
     }
 
-    public static void DrawFilePick(string title, ref string path)
+    public static void DrawFilePick(string title, ref string path,string filter = "")
     {
         GUILayout.BeginHorizontal();
         EditorGUILayout.LabelField(title, GUILayout.MaxWidth(80));
         path = EditorGUILayout.TextField(path);
         if (GUILayout.Button("...", GUILayout.Width(30)))
         {
-            LastFilePath = EditorUtility.OpenFilePanel("FlactcPath", LastFilePath, "*");
+            LastFilePath = EditorUtility.OpenFilePanel("FlactcPath", LastFilePath, filter);
             path = LastFilePath;
             GUIUtility.ExitGUI();
             return;
