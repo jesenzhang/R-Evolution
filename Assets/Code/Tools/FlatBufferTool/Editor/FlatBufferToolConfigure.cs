@@ -18,5 +18,10 @@ public class FlatBufferToolConfigure : BaseConfigure<FlatBufferToolConfigure>
     public string ClassDir = string.Empty;
     //二进制文件生成目录
     public string BinDir = string.Empty;
-
+    //表格读取时 属性名行号
+    public int fieldNameRow = 0;
+    //表格读取时 属性类型行号
+    public int fieldTypeRow = 1;
+    //表格读取时 属性类型行号
+    public int fieldValueRow = 3;
 }

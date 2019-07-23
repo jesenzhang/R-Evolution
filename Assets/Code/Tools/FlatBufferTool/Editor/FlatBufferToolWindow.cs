@@ -61,7 +61,7 @@ public class FlatBufferToolWindow : EditorWindow
         foreach (string excelFilePath in excels)
         {
             List<ExcelSheetData> excelSheetDatas = new List<ExcelSheetData>();
-            FileGenerater.ReadExcel(excelFilePath,ref excelSheetDatas);
+            TableFileGenerater.ReadExcel(excelFilePath,ref excelSheetDatas);
             ExcelDataForEditor excel = new ExcelDataForEditor
             {
                 ExcelPath = excelFilePath
@@ -71,7 +71,7 @@ public class FlatBufferToolWindow : EditorWindow
                 excel.ExcelSheetDatas.Add(new ExcelSheetForEditor() {
                     SheetData = exd,
                     FoldOpen = false,
-                    FbsObject = FileGenerater.GenFbsFileObject(exd) 
+                    FbsObject = TableFileGenerater.GenFbsFileObject(exd) 
                 });
               
             }
@@ -96,8 +96,34 @@ public class FlatBufferToolWindow : EditorWindow
         EditorGUILayout.Separator();
         GUIHelper.DrawFolderPick("BinDir", ref FlatBufferToolConfigure.Configure.BinDir);
         EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
+
+        GUIHelper.DrawIntField("Excel读取字段名行号：",ref FlatBufferToolConfigure.Configure.fieldNameRow,150);
+        EditorGUILayout.Separator();
+        GUIHelper.DrawIntField("Excel读取字段类型行号：", ref FlatBufferToolConfigure.Configure.fieldTypeRow,150);
+        EditorGUILayout.Separator();
+        GUIHelper.DrawIntField("Excel读取字段数值开始行号：", ref FlatBufferToolConfigure.Configure.fieldValueRow,150);
+
+        if (GUILayout.Button("保存配置"))
+        {
+            FlatBufferToolConfigure.Save();
+        }
         
+        EditorGUILayout.Separator();
+        EditorGUILayout.Separator();
         EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("重新读取Excel", GUILayout.MaxWidth(100)))
+        {
+            ReadAllExcel();
+        }
+        if (GUILayout.Button("生成所有表格数据", GUILayout.MaxWidth(150)))
+        {
+            BuildAll();
+        }
+        if (GUILayout.Button("检查表格格式", GUILayout.MaxWidth(100)))
+        {
+            CheckExcelPattern();
+        }
         string btnShowFilter = "显示Excel列表";
         Color preColor = GUI.color;
         GUI.color = ShowExcelInfo ? Color.white : Color.gray;
@@ -106,6 +132,7 @@ public class FlatBufferToolWindow : EditorWindow
             ShowExcelInfo = !ShowExcelInfo;
         }
         GUI.color = preColor;
+
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Separator();
@@ -134,9 +161,14 @@ public class FlatBufferToolWindow : EditorWindow
                             GUILayout.BeginHorizontal();
                             GUILayout.Label("", GUILayout.Width(15));
                             GUILayout.BeginVertical();
+                            GUILayout.BeginHorizontal();
+                            if (GUILayout.Button("导出", GUILayout.Width(100)))
+                            {
+                                BuildSheet(sheet.SheetData);
+                            }
+                            GUILayout.EndHorizontal();
                             int fieldCount = sheet.SheetData.fieldNames.Count;
-                            float itemWidth = (Window.position.size.x - 30) / fieldCount;
-                            FbsTable fbsTable = FileGenerater.GetFbsRootTableDataTypeObj(sheet.FbsObject);
+                            FbsTable fbsTable = TableFileGenerater.GetFbsRootTableDataTypeObj(sheet.FbsObject);
                             if (fbsTable == null)
                             {
                                 Debug.LogError("FbsTable is Null!");
@@ -145,7 +177,8 @@ public class FlatBufferToolWindow : EditorWindow
                             GUILayout.BeginHorizontal(GUIHelper.GetStyle(GUIStyleEnum.BLACKSTYLE));
                             for (int findex = 0; findex < fieldCount; findex++)
                             {
-                                GUILayout.Label(sheet.SheetData.fieldNames[findex], GUIHelper.GetStyle(GUIStyleEnum.MIDDLETITLE), GUILayout.Width(itemWidth));
+                                float itemWidth = sheet.SheetData.fieldMaxSize[findex] * GUIHelper.FontSize;
+                                GUILayout.Label(sheet.SheetData.fieldNames[findex], GUIHelper.GetStyle(GUIStyleEnum.MIDDLETITLE),GUILayout.Width(itemWidth));
                             }
                             GUILayout.EndHorizontal();
 
@@ -153,7 +186,8 @@ public class FlatBufferToolWindow : EditorWindow
                           
                             for (int findex = 0; findex < fieldCount; findex++)
                             {
-                                string typename = FileGenerater.GetTableFieldTypeString(fbsTable.fields[findex]);
+                                float itemWidth = sheet.SheetData.fieldMaxSize[findex] * GUIHelper.FontSize;
+                                string typename = TableFileGenerater.GetTableFieldTypeString(fbsTable.fields[findex]);
                                 GUILayout.Label(typename, GUIHelper.GetStyle(GUIStyleEnum.MIDDLETITLE), GUILayout.Width(itemWidth));
                             }
                             GUILayout.EndHorizontal();
@@ -163,6 +197,7 @@ public class FlatBufferToolWindow : EditorWindow
                                 int dataIndex = Mathf.FloorToInt(vindex % fieldCount);
                                 if(dataIndex==0)
                                     GUILayout.BeginHorizontal();
+                                float itemWidth = sheet.SheetData.fieldMaxSize[dataIndex] * GUIHelper.FontSize;
                                 GUILayout.TextArea(sheet.SheetData.fieldValues[vindex], GUIHelper.GetStyle(GUIStyleEnum.MIDDLETITLE),GUILayout.Width(itemWidth));
                                 if (dataIndex == fieldCount-1)
                                     GUILayout.EndHorizontal();
@@ -179,25 +214,35 @@ public class FlatBufferToolWindow : EditorWindow
 
             GUILayout.EndScrollView();
         }
-        if (GUILayout.Button("Save"))
-        {
-            FlatBufferToolConfigure.Save();
-        }
-
-        EditorGUILayout.Separator();
-
-        if (GUILayout.Button("build"))
-        {
-            string[] excels = FileHelper.GetFiles(FlatBufferToolConfigure.Configure.ExcelDir,ExcelExts);
-            string outSchemaPath = FlatBufferToolConfigure.Configure.SchemaDir;
-            string outJsonPath = FlatBufferToolConfigure.Configure.JsonDir;
-            string outClassPath = FlatBufferToolConfigure.Configure.ClassDir;
-            string outBinPath = FlatBufferToolConfigure.Configure.BinDir;
-            foreach (string excelFilePath in excels) {
-                FileGenerater.BuildAllFromExcel(FlatBufferToolConfigure.Configure.FlactcPath,excelFilePath, outSchemaPath, outJsonPath, outClassPath, outBinPath);
-            }
-        }
+       
         GUILayout.EndVertical();
+    }
+
+    private void BuildAll()
+    {
+        string[] excels = FileHelper.GetFiles(FlatBufferToolConfigure.Configure.ExcelDir, ExcelExts);
+        string outSchemaPath = FlatBufferToolConfigure.Configure.SchemaDir;
+        string outJsonPath = FlatBufferToolConfigure.Configure.JsonDir;
+        string outClassPath = FlatBufferToolConfigure.Configure.ClassDir;
+        string outBinPath = FlatBufferToolConfigure.Configure.BinDir;
+        foreach (string excelFilePath in excels)
+        {
+            TableFileGenerater.BuildAllFromExcel(FlatBufferToolConfigure.Configure.FlactcPath, excelFilePath, outSchemaPath, outJsonPath, outClassPath, outBinPath);
+        }
+    }
+
+    private void BuildSheet(ExcelSheetData sheet)
+    {
+        string outSchemaPath = FlatBufferToolConfigure.Configure.SchemaDir;
+        string outJsonPath = FlatBufferToolConfigure.Configure.JsonDir;
+        string outClassPath = FlatBufferToolConfigure.Configure.ClassDir;
+        string outBinPath = FlatBufferToolConfigure.Configure.BinDir;
+        TableFileGenerater.BuildSheet(sheet, FlatBufferToolConfigure.Configure.FlactcPath, outSchemaPath, outJsonPath, outClassPath, outBinPath);
+    }
+
+    private void CheckExcelPattern()
+    {
+
     }
 
 }

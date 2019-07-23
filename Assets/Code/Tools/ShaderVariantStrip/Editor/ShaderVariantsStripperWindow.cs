@@ -115,8 +115,8 @@ namespace ShaderVariantsStripper
         int minimumKeywordCount;
         //找到的最大关键字数
         int maxKeywordsCountFound = 0;
-        //关键字数   变体数   使用的关键字数  编译的变体数   在白名单中的数量
-        int totalKeywords, totalVariants, totalUsedKeywords, totalBuildVariants, totalInWhitelist;
+        //关键字数   变体数   使用的关键字数  编译的变体数   在过滤名单中的数量
+        int totalKeywords, totalVariants, totalUsedKeywords, totalBuildVariants, totalInFilterList;
         //是否全部
         bool scanAllShaders;
         //排序条件
@@ -127,7 +127,7 @@ namespace ShaderVariantsStripper
 
         Dictionary<string, List<StripShader>> uniqueKeywords, uniqueEnabledKeywords;
 
-        Dictionary<string, int> shaderGUIDToWhitelistIndex;
+        Dictionary<string, int> shaderGUIDToFilterListIndex;
 
         List<KeywordShaderRelation> keywordToShadersList;
 
@@ -139,12 +139,13 @@ namespace ShaderVariantsStripper
 
         int selection = -1;
         string editorstring = "";
-        bool addingKeyword = false;
-        bool showKeyword = false;
-        //显示在白名单中的shader
-        bool showInWhiteListShader = true;
-        //显示不在白名单中的shader
-        bool showNotInWhiteListShader = true;
+        string editorstringTemp = "";
+        int blackListSelection = -1;
+
+        //显示在过滤名单中的shader
+        bool showInFilterListShader = true;
+        //显示不在过滤名单中的shader
+        bool showNotInFilterListShader = true;
         //显示有源文件的shader
         bool showHasSourceShader = true;
         //显示多选shader
@@ -155,10 +156,19 @@ namespace ShaderVariantsStripper
         bool showFilterItems = true;
         Color preColor;
 
+        bool showKeywordTemp = false;
+        bool addingKeywordTemp = false;
+        bool builtinDefaultOpenTemp = false;
+        bool builtinExtraOpenTemp = false;
+        bool builtinAutoStrippedOpenTemp = false;
+        bool builtinUserDefinedOpenTemp = false;
+
+        bool showKeyword = false;
+        bool addingKeyword = false;
         bool builtinDefaultOpen = false;
         bool builtinExtraOpen = false;
-        bool BuiltinAutoStrippedOpen = false;
-        bool BuiltinUserDefinedOpen = false;
+        bool builtinAutoStrippedOpen = false;
+        bool builtinUserDefinedOpen = false;
 
         string[] buidinKeywordsNames = new string[] { "TANGENT_SPACE_ROTATION","FOG_EXP2",
         };
@@ -336,14 +346,14 @@ namespace ShaderVariantsStripper
                 //所有关键字都被使用了
                 if (totalKeywords == totalUsedKeywords || totalKeywords == 0)
                 {
-                    string statestring = "shader总数: " + totalShaderCount.ToString() + "  使用关键字的shader总数: " + shaderList.Count.ToString() + "\n关键字总数: " + totalKeywords.ToString() + "  变体总数: " + totalVariants.ToString() + " 在白名单中的shader总数：" + totalInWhitelist;
+                    string statestring = "shader总数: " + totalShaderCount.ToString() + "  使用关键字的shader总数: " + shaderList.Count.ToString() + "\n关键字总数: " + totalKeywords.ToString() + "  变体总数: " + totalVariants.ToString() + " 在过滤名单中的shader总数：" + totalInFilterList;
                     EditorGUILayout.HelpBox(statestring, MessageType.Info);
                 }
                 else
                 {
                     int keywordsPerc = totalUsedKeywords * 100 / totalKeywords;
                     int variantsPerc = totalBuildVariants * 100 / totalVariants;
-                    string statestring = "shader总数: " + totalShaderCount.ToString() + "  使用关键字的shader总数: " + shaderList.Count.ToString() + "\n被使用的关键字占比: " + totalUsedKeywords.ToString() + "/" + totalKeywords.ToString() + " (" + keywordsPerc.ToString() + "%) 实际变体占比: " + totalBuildVariants.ToString() + "/" + totalVariants.ToString() + " (" + variantsPerc.ToString() + "%)" + " 在白名单中的shader总数：" + totalInWhitelist;
+                    string statestring = "shader总数: " + totalShaderCount.ToString() + "  使用关键字的shader总数: " + shaderList.Count.ToString() + "\n被使用的关键字占比: " + totalUsedKeywords.ToString() + "/" + totalKeywords.ToString() + " (" + keywordsPerc.ToString() + "%) 实际变体占比: " + totalBuildVariants.ToString() + "/" + totalVariants.ToString() + " (" + variantsPerc.ToString() + "%)" + " 在过滤名单中的shader总数：" + totalInFilterList;
                     EditorGUILayout.HelpBox(statestring, MessageType.Info);
                 }
                 EditorGUILayout.Separator();
@@ -380,20 +390,20 @@ namespace ShaderVariantsStripper
                         showMultiSelect = !showMultiSelect;
                     }
                     GUI.color = preColor;
-                    string btnShowString = "显示白名单中的shader";
+                    string btnShowString = "显示过滤名单中的shader";
                     preColor = GUI.color;
-                    GUI.color = showInWhiteListShader ? Color.white : Color.gray;
+                    GUI.color = showInFilterListShader ? Color.white : Color.gray;
                     if (GUILayout.Button(btnShowString, GUILayout.MaxWidth(200)))
                     {
-                        showInWhiteListShader = !showInWhiteListShader;
+                        showInFilterListShader = !showInFilterListShader;
                     }
                     GUI.color = preColor;
                     preColor = GUI.color;
-                    GUI.color = showNotInWhiteListShader ? Color.white : Color.gray;
-                    string btnShowString2 = "显示白名单之外的shader";
+                    GUI.color = showNotInFilterListShader ? Color.white : Color.gray;
+                    string btnShowString2 = "显示过滤名单之外的shader";
                     if (GUILayout.Button(btnShowString2, GUILayout.MaxWidth(200)))
                     {
-                        showNotInWhiteListShader = !showNotInWhiteListShader;
+                        showNotInFilterListShader = !showNotInFilterListShader;
                     }
                     GUI.color = preColor;
                     preColor = GUI.color;
@@ -489,7 +499,7 @@ namespace ShaderVariantsStripper
             if (shaderList != null)
             {
                 GUILayout.BeginVertical(blackStyle);
-                EditorGUILayout.LabelField("变体剔除白名单", GUILayout.Width(200));
+                EditorGUILayout.LabelField("变体剔除过滤名单", GUILayout.Width(200));
                 int newtarget = EditorGUILayout.Popup(selectBuildTarget, displayBuildTargets);
                 if (selectBuildTarget != newtarget)
                 {
@@ -507,7 +517,7 @@ namespace ShaderVariantsStripper
                     GUILayout.EndHorizontal();
 
                     GUILayout.BeginHorizontal(blackStyle);
-                    EditorGUILayout.LabelField("是否使用白名单", GUILayout.Width(200));
+                    EditorGUILayout.LabelField("是否使用白名单过滤", GUILayout.Width(200));
                     bool useWhitelist = EditorGUILayout.Toggle(currentStripConfigure.useWhitelist, GUILayout.Width(18));
                     GUILayout.EndHorizontal();
 
@@ -523,6 +533,9 @@ namespace ShaderVariantsStripper
                     if (useWhitelist != currentStripConfigure.useWhitelist)
                     {
                         currentStripConfigure.useWhitelist = useWhitelist;
+                        ScanProject();
+                        GUIUtility.ExitGUI();
+                        return;
                     }
                     if (enableLog != currentStripConfigure.enableLog)
                     {
@@ -532,25 +545,56 @@ namespace ShaderVariantsStripper
 
                 if (currentStripConfigure.useWhitelist)
                 {
-                    GUILayout.Label("剔除白名单过滤模板：");
+                    GUILayout.Label("白名单剔除过滤名单过滤模板：");
                     GUILayout.BeginHorizontal();
                     GUILayout.Label("", GUILayout.Width(15), GUILayout.Height(18));
                     GUILayout.BeginVertical();
                     ShaderVariantsStripperFilter filter = DefaultShaderVariantsStripperFilter;
-                    DrawShaderVariantsStripperFilter(ref filter);
+                    DrawShaderVariantsStripperFilter(ref filter, !currentStripConfigure.useWhitelist, ref showKeywordTemp, ref addingKeywordTemp, ref builtinDefaultOpenTemp, ref builtinExtraOpenTemp, ref builtinAutoStrippedOpenTemp, ref builtinUserDefinedOpenTemp, ref editorstringTemp);
                     GUILayout.EndVertical();
                     GUILayout.EndHorizontal();
 
-                    if (GUILayout.Button(new GUIContent("对选中shader生成剔除白名单", "每个shader创建一个白名单 默认使用全部关键字 只会生成白名单内的变体")))
+                    if (GUILayout.Button(new GUIContent("对选中shader生成剔除过滤名单", "每个shader创建一个过滤名单 默认使用全部关键字 只会生成过滤名单内的变体")))
                     {
-                        GenWhiteList();
+                        GenFilterList();
                         GUIUtility.ExitGUI();
                         return;
                     }
 
-                    if (GUILayout.Button(new GUIContent("将选中shader从白名单中删除")))
+                    if (GUILayout.Button(new GUIContent("将选中shader从过滤名单中删除")))
                     {
-                        RemoveWhiteList();
+                        RemoveFilterList();
+                        GUIUtility.ExitGUI();
+                        return;
+                    }
+                }
+                else//黑名单添加过滤项
+                {
+                    GUILayout.Label("黑名单剔除名单过滤项模板：");
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label("", GUILayout.Width(15), GUILayout.Height(18));
+                    GUILayout.BeginVertical();
+                    ShaderVariantsStripperFilter filter = DefaultShaderVariantsStripperFilter;
+                    DrawShaderVariantsStripperFilter(ref filter, !currentStripConfigure.useWhitelist, ref showKeywordTemp, ref addingKeywordTemp, ref builtinDefaultOpenTemp, ref builtinExtraOpenTemp, ref builtinAutoStrippedOpenTemp, ref builtinUserDefinedOpenTemp, ref editorstringTemp);
+                    GUILayout.EndVertical();
+                    GUILayout.EndHorizontal();
+
+                    if (GUILayout.Button(new GUIContent("使用选中shader添加剔除过滤项")))
+                    {
+                        for (int i = 0; i < shaderList.Count; i++)
+                        {
+                            StripShader shader = shaderList[i];
+                            if (shader.showing && shader.selected)
+                                AddDefaultFilter(ref shader);
+                        }
+                        GUIUtility.ExitGUI();
+                        return;
+                    }
+
+                    if (GUILayout.Button(new GUIContent("添加剔除过滤项")))
+                    {
+                        StripShader s =  new StripShader();
+                        AddDefaultFilter(ref s);
                         GUIUtility.ExitGUI();
                         return;
                     }
@@ -559,9 +603,11 @@ namespace ShaderVariantsStripper
                 EditorGUILayout.Separator();
                 EditorGUILayout.Separator();
                 EditorGUILayout.Separator();
-
-                //绘制当前选中的shader的白名单过滤配置
+                
+                //绘制当前选中的shader的过滤名单过滤配置
                 DrawShaderFilterInspector();
+
+                EditorGUILayout.Separator();
 
                 if (GUILayout.Button(new GUIContent("保存")))
                 {
@@ -589,50 +635,88 @@ namespace ShaderVariantsStripper
         //绘制选中的shader的过滤信息
         void DrawShaderFilterInspector()
         {
-            if (selection >= 0 && shaderList.Count > selection)
+            if (currentStripConfigure.useWhitelist)
             {
-                GUILayout.Label("当前选中shader过滤项：");
-                stripScrollViewPos = GUILayout.BeginScrollView(stripScrollViewPos);
-                StripShader stripShader = shaderList[selection];
-                ShaderVariantsStripperFilter filter = GetShaderFilterItem(ref stripShader);
-                if (filter != null)
+                if (selection >= 0 && shaderList.Count > selection)
                 {
-                    DrawShaderVariantsStripperFilter(ref filter);
-                    addingKeyword = EditorGUILayout.Foldout(addingKeyword, new GUIContent("添加关键字："), true, foldoutNormal);
-                    if (addingKeyword)
+                    GUILayout.Label("当前选中shader过滤项：");
+                    stripScrollViewPos = GUILayout.BeginScrollView(stripScrollViewPos);
+                    StripShader stripShader = shaderList[selection];
+                    ShaderVariantsStripperFilter filter = GetShaderFilterItem(ref stripShader);
+                    if (filter != null)
                     {
-                        builtinDefaultOpen = EditorGUILayout.Foldout(builtinDefaultOpen, "BuiltinDefaultKeys", true);
-                        if (builtinDefaultOpen)
-                            DrawBuildInShaderKeywordSelectGrid(UnityEngine.Rendering.ShaderKeywordType.BuiltinDefault, ref filter.keywords);
-                        builtinExtraOpen = EditorGUILayout.Foldout(builtinExtraOpen, "BuiltinExtraKeys", true);
-                        if (builtinExtraOpen)
-                            DrawBuildInShaderKeywordSelectGrid(UnityEngine.Rendering.ShaderKeywordType.BuiltinExtra, ref filter.keywords);
-                        BuiltinAutoStrippedOpen = EditorGUILayout.Foldout(BuiltinAutoStrippedOpen, "BuiltinAutoStrippedKeys", true);
-                        if (BuiltinAutoStrippedOpen)
-                            DrawBuildInShaderKeywordSelectGrid(UnityEngine.Rendering.ShaderKeywordType.BuiltinAutoStripped, ref filter.keywords);
-                        BuiltinUserDefinedOpen = EditorGUILayout.Foldout(BuiltinUserDefinedOpen, "BuiltinUserDefinedKeys", true);
-                        if (BuiltinUserDefinedOpen)
-                            DrawBuildInShaderKeywordSelectGrid(UnityEngine.Rendering.ShaderKeywordType.UserDefined, ref filter.keywords);
-                        editorstring = "";
-                        editorstring = GUILayout.TextField(editorstring);
-                        editorstring = editorstring.Trim();
-                        editorstring = editorstring.ToUpper();
-                        if (GUILayout.Button(new GUIContent("添加关键字", "关键字以分号间隔")))
-                        {
-                            string[] keys = editorstring.Split(';');
-                            for (int kk = 0; kk < keys.Length; kk++)
-                            {
-                                if (!filter.keywords.Contains(keys[kk]))
-                                {
-                                    filter.keywords.Add(keys[kk]);
-                                }
-                            }
-                            GUIUtility.ExitGUI();
-                            return;
-                        }
+                        DrawShaderVariantsStripperFilter(ref filter, true, ref showKeyword, ref addingKeyword, ref builtinDefaultOpen, ref builtinExtraOpen, ref builtinAutoStrippedOpen, ref builtinUserDefinedOpen, ref editorstring);
+                        EditorGUILayout.Separator();
                     }
-
+                    GUILayout.EndScrollView();
                 }
+            }
+            else
+            {
+                GUILayout.Label("黑名单过滤项列表：");
+                stripScrollViewPos = GUILayout.BeginScrollView(stripScrollViewPos);
+                List<ShaderVariantsStripperFilter> filterlist = currentStripConfigure.GetFilterList();
+                for (int findex = 0; findex < filterlist.Count; findex++)
+                {
+                    ShaderVariantsStripperFilter filter = filterlist[findex];
+                    if (filter != null)
+                    {
+                        GUILayout.BeginHorizontal();
+                        if (GUILayout.Button("X", GUILayout.Width(18)))
+                        {
+                            filterlist.RemoveAt(findex);
+                        }
+                        GUILayout.Label("", GUILayout.Width(15));
+                       /* bool open = blackListSelection == findex;
+                        bool newopen = EditorGUILayout.Foldout(open, "" + findex);
+                        {
+                            if (newopen != open)
+                            {
+                                if (blackListSelection != findex)
+                                {
+                                    blackListSelection = findex;
+                                    showKeyword = false;
+                                    addingKeyword = false;
+                                    builtinDefaultOpen = false;
+                                    builtinExtraOpen = false;
+                                    builtinAutoStrippedOpen = false;
+                                    builtinUserDefinedOpen = false;
+                                    editorstring = "";
+                                }
+                                else
+                                {  blackListSelection = -1;}
+                            }
+                            
+                        }*/
+                        if (GUILayout.Button("" + findex, foldoutNormal))
+                        {
+                            if (blackListSelection != findex)
+                            {
+                                blackListSelection = findex;
+                                showKeyword = false;
+                                addingKeyword = false;
+                                builtinDefaultOpen = false;
+                                builtinExtraOpen = false;
+                                builtinAutoStrippedOpen = false;
+                                builtinUserDefinedOpen = false;
+                                editorstring = "";
+                            }
+                            else
+                            {
+                                blackListSelection = -1;
+                            }
+                        }
+                        if (blackListSelection == findex)
+                        {
+                            GUILayout.BeginVertical();
+                            DrawShaderVariantsStripperFilter(ref filter, true, ref showKeyword, ref addingKeyword, ref builtinDefaultOpen, ref builtinExtraOpen, ref builtinAutoStrippedOpen, ref builtinUserDefinedOpen, ref editorstring);
+                            GUILayout.EndVertical();
+                        }
+                        GUILayout.EndHorizontal();
+                        EditorGUILayout.Separator();
+                    }
+                }
+               
                 GUILayout.EndScrollView();
             }
         }
@@ -646,9 +730,9 @@ namespace ShaderVariantsStripper
                 StripShader shader = shaderList[s];
                 shader.showing = false;
                 //筛选显示的shader
-                if (shader.inStripWhiteList && !showInWhiteListShader)
+                if (shader.inStripFilterList && !showInFilterListShader)
                     continue;
-                if (!shader.inStripWhiteList && !showNotInWhiteListShader)
+                if (!shader.inStripFilterList && !showNotInFilterListShader)
                     continue;
                 if (shader.keywordEnabledCount < minimumKeywordCount)
                     continue;
@@ -688,7 +772,7 @@ namespace ShaderVariantsStripper
                 #region 着色器选项开关绘制区
                 EditorGUILayout.BeginHorizontal();
                 string shaderName = shader.isReadOnly ? shader.shaderName + " (只读)" : shader.shaderName;
-                string inwhitestate = shader.inStripWhiteList ? " (在白名单中) " : " (不在白名单中) ";
+                string inwhitestate = shader.inStripFilterList ? " (在过滤名单中) " : " (不在过滤名单中) ";
                 string foldName = shader.hasSource ? "" + s + " " + shaderName + " (" + shader.keywords.Count + " 关键字（keywords）, " + shader.keywordEnabledCount + " 生效(enabled), " + shader.actualBuildVariantCount + "编译的变体(Variant))； 总共" + shader.totalVariantCount + "变体(包括unused shader_features))" + inwhitestate : "" + s + " " + shaderName + " (" + shader.keywordEnabledCount + " 关键字被材质使用)" + inwhitestate;
                 //   shader.foldout = EditorGUILayout.Foldout(shader.foldout, new GUIContent(foldName), shader.hasSource?(shader.editedByShaderControl ? foldoutBold : foldoutNormal): foldoutDim);
                 //选中的shader
@@ -700,7 +784,7 @@ namespace ShaderVariantsStripper
                 else
                     shader.selected = false;
                 GUIStyle btnStyle = shader.hasSource ? (shader.editedByShaderControl ? foldoutBold : foldoutNormal) : foldoutDim;
-                GUI.color = shader.inStripWhiteList ? GUI.color = Color.white : GUI.color = Color.red;
+                GUI.color = shader.inStripFilterList ? GUI.color = Color.white : GUI.color = Color.red;
                 GUI.color = selection == s ? Color.yellow : GUI.color;
                 if (GUILayout.Button(new GUIContent(foldName), btnStyle))
                 {
@@ -736,8 +820,8 @@ namespace ShaderVariantsStripper
                             GUIUtility.ExitGUI();
                             return;
                         }
-                        //白名单操作
-                        DrawShaderWhitelistOption(ref shader);
+                        //过滤名单操作
+                        DrawShaderFilterListOption(ref shader);
                         EditorGUILayout.EndHorizontal();
                     }
                     #endregion
@@ -751,8 +835,8 @@ namespace ShaderVariantsStripper
                         DrawObjectLocateButton(shader.path);
                         //绘制打开按钮
                         DrawObjectOpenButton(shader.path);
-                        //白名单操作
-                        DrawShaderWhitelistOption(ref shader);
+                        //过滤名单操作
+                        DrawShaderFilterListOption(ref shader);
                         if (!shader.pendingChanges)
                             GUI.enabled = false;
                         if (GUILayout.Button(new GUIContent("保存", "保存关键字的改变 点击关键字左边的切换勾选 以打开或关闭关键字) 备份在同目录下生成"), GUILayout.Width(60)))
@@ -894,27 +978,27 @@ namespace ShaderVariantsStripper
             }
         }
 
-        //绘制白名单曹组
-        void DrawShaderWhitelistOption(ref StripShader shader)
+        //绘制过滤名单曹组
+        void DrawShaderFilterListOption(ref StripShader shader)
         {
-            if (!shader.inStripWhiteList)
+            if (!shader.inStripFilterList)
             {
-                if (GUILayout.Button(new GUIContent("添加到白名单", "添加默认过滤配置"), GUILayout.Width(100)))
+                if (GUILayout.Button(new GUIContent("添加到过滤名单", "添加默认过滤配置"), GUILayout.Width(100)))
                 {
                     AddDefaultFilter(ref shader);
                     UpdateProjectStats();
                     GUIUtility.ExitGUI();
                 }
             }
-            if (shader.inStripWhiteList)
+            if (shader.inStripFilterList)
             {
-                if (GUILayout.Button(new GUIContent("从白名单移除"), GUILayout.Width(100)))
+                if (GUILayout.Button(new GUIContent("从过滤名单移除"), GUILayout.Width(100)))
                 {
-                    RemoveFromWhiteList(ref shader);
+                    RemoveFromFilterList(ref shader);
                     UpdateProjectStats();
                     GUIUtility.ExitGUI();
                 }
-                if (GUILayout.Button(new GUIContent("应用剔除关键字", "修改变体剔除白名单关键字"), GUILayout.Width(100)))
+                if (GUILayout.Button(new GUIContent("应用剔除关键字", "修改变体剔除过滤名单关键字"), GUILayout.Width(100)))
                 {
                     ApplyStripKeywords(ref shader);
                     UpdateProjectStats();
@@ -975,7 +1059,7 @@ namespace ShaderVariantsStripper
                                 EditorGUIUtility.ExitGUI();
                                 return;
                             }
-                            if (GUILayout.Button(new GUIContent("查看白名单过滤配置"), GUILayout.Width(120)))
+                            if (GUILayout.Button(new GUIContent("查看过滤名单过滤配置"), GUILayout.Width(120)))
                             {
                                 selection = shaderList.IndexOf(shader);
                                 OnShaderSelectionChange();
@@ -989,8 +1073,8 @@ namespace ShaderVariantsStripper
             }
 
         }
-        //绘制一个shader白名单剔除过滤对象的UI
-        void DrawShaderVariantsStripperFilter(ref ShaderVariantsStripperFilter filter, int usedFor = 0)
+        //绘制一个shader过滤名单剔除过滤对象的UI
+        void DrawShaderVariantsStripperFilter(ref ShaderVariantsStripperFilter filter,bool showaddkey,ref bool showKeyword,ref bool adding,ref bool defaultOpen,ref bool extraOpen,ref bool autoStrippedOpen,ref bool userDefinedOpen,ref string editorstring)
         {
             GUILayout.BeginHorizontal(blackStyle);
             EditorGUILayout.LabelField("筛选项：", GUILayout.Width(mTitleWiith));
@@ -1000,7 +1084,7 @@ namespace ShaderVariantsStripper
             {
                 GUILayout.BeginHorizontal(blackStyle);
                 EditorGUILayout.LabelField("名称：", GUILayout.Width(mTitleWiith));
-                EditorGUILayout.LabelField(filter.shaderName, GUILayout.Width(mCommonItemWidth));
+                EditorGUILayout.TextField(filter.shaderName, GUILayout.Width(mCommonItemWidth));
                 GUILayout.EndHorizontal();
             }
             if ((filter.mask & MatchLayer.ShaderType) == MatchLayer.ShaderType)
@@ -1068,71 +1152,45 @@ namespace ShaderVariantsStripper
                 }
                 GUILayout.EndHorizontal();
             }
-        }
-        void BuildinKeywordInit()
-        {
-            for (int i = 0; i < buidinKeywordsNames.Length; i++)
-            {
-                string keyWordName = buidinKeywordsNames[i];
-                UnityEngine.Rendering.ShaderKeyword shaderKeyword = new UnityEngine.Rendering.ShaderKeyword(keyWordName);
-                if (shaderKeyword != null)
-                {
-                    bool isUserDefined = shaderKeyword.GetKeywordType() == UnityEngine.Rendering.ShaderKeywordType.UserDefined;
-                    bool isBuiltinDefault = shaderKeyword.GetKeywordType() == UnityEngine.Rendering.ShaderKeywordType.BuiltinDefault;
-                    bool isBuiltinExtra = shaderKeyword.GetKeywordType() == UnityEngine.Rendering.ShaderKeywordType.BuiltinExtra;
-                    bool isBuiltinAutoStripped = shaderKeyword.GetKeywordType() == UnityEngine.Rendering.ShaderKeywordType.BuiltinAutoStripped;
-                    bool isNone = shaderKeyword.GetKeywordType() == UnityEngine.Rendering.ShaderKeywordType.None;
 
-                    if (isBuiltinDefault && !buildInDefaultKeys.Contains(keyWordName))
-                        buildInDefaultKeys.Add(keyWordName);
-                    if (isBuiltinExtra && !buildInExtraKeys.Contains(keyWordName))
-                        buildInExtraKeys.Add(keyWordName);
-                    if (isBuiltinAutoStripped && !buildInAutoStripKeys.Contains(keyWordName))
-                        buildInAutoStripKeys.Add(keyWordName);
-                    if (isUserDefined && !userDefineKeys.Contains(keyWordName))
-                        userDefineKeys.Add(keyWordName);
-                    if (isNone)
+            if (showaddkey)
+            { 
+                adding = EditorGUILayout.Foldout(adding, new GUIContent("添加关键字："), true, foldoutNormal);
+                if (adding)
+                {
+                    defaultOpen = EditorGUILayout.Foldout(defaultOpen, "BuiltinDefaultKeys", true);
+                    if (defaultOpen)
+                        DrawBuildInShaderKeywordSelectGrid(UnityEngine.Rendering.ShaderKeywordType.BuiltinDefault, ref filter.keywords);
+                    extraOpen = EditorGUILayout.Foldout(extraOpen, "BuiltinExtraKeys", true);
+                    if (extraOpen)
+                        DrawBuildInShaderKeywordSelectGrid(UnityEngine.Rendering.ShaderKeywordType.BuiltinExtra, ref filter.keywords);
+                    autoStrippedOpen = EditorGUILayout.Foldout(autoStrippedOpen, "BuiltinAutoStrippedKeys", true);
+                    if (autoStrippedOpen)
+                        DrawBuildInShaderKeywordSelectGrid(UnityEngine.Rendering.ShaderKeywordType.BuiltinAutoStripped, ref filter.keywords);
+                    userDefinedOpen = EditorGUILayout.Foldout(userDefinedOpen, "BuiltinUserDefinedKeys", true);
+                    if (userDefinedOpen)
+                        DrawBuildInShaderKeywordSelectGrid(UnityEngine.Rendering.ShaderKeywordType.UserDefined, ref filter.keywords);
+                 
+                    editorstring = GUILayout.TextField(editorstring);
+                    editorstring = editorstring.Trim();
+                    editorstring = editorstring.ToUpper();
+                    if (GUILayout.Button(new GUIContent("添加关键字", "关键字以分号间隔")))
                     {
-                        Debug.Log("NONE " + keyWordName);
+                        string[] keys = editorstring.Split(';');
+                        for (int kk = 0; kk < keys.Length; kk++)
+                        {
+                            if (!filter.keywords.Contains(keys[kk]))
+                            {
+                                filter.keywords.Add(keys[kk]);
+                            }
+                        }
+                        GUIUtility.ExitGUI();
+                        return;
                     }
                 }
-                else
-                {
-                    Debug.Log("Failed keyWordName " + keyWordName);
-                }
             }
-            string defaultkeys = "";
-            for (int i = 0; i < buildInDefaultKeys.Count; i++)
-            {
-                defaultkeys = defaultkeys + "\"" + buildInDefaultKeys[i] + "\",";
-            }
-            Debug.Log("defaultkeys " + defaultkeys);
-
-            string extrakeys = "";
-            for (int i = 0; i < buildInExtraKeys.Count; i++)
-            {
-                extrakeys = extrakeys + "\"" + buildInExtraKeys[i] + "\",";
-            }
-            Debug.Log("extrakeys " + extrakeys);
-
-            string autoStripkeys = "";
-            for (int i = 0; i < buildInAutoStripKeys.Count; i++)
-            {
-                autoStripkeys = autoStripkeys + "\"" + buildInAutoStripKeys[i] + "\",";
-            }
-            Debug.Log("autoStripkeys " + autoStripkeys);
-
-            string userdefineKeys = "";
-            for (int i = 0; i < userDefineKeys.Count; i++)
-            {
-                userdefineKeys = userdefineKeys + "\"" + userDefineKeys[i] + "\",";
-            }
-            Debug.Log("userdefineKeys " + userdefineKeys);
-            Debug.Log("buildInDefaultKeys.Count" + buildInDefaultKeys.Count);
-            Debug.Log("buildInExtraKeys.Count" + buildInExtraKeys.Count);
-            Debug.Log("buildInAutoStripKeys.Count" + buildInAutoStripKeys.Count);
-            Debug.Log("userDefineKeys.Count" + userDefineKeys.Count);
         }
+
         //扫描工程shader和材质
         void ScanProject()
         {
@@ -1310,7 +1368,7 @@ namespace ShaderVariantsStripper
             totalUsedKeywords = 0;
             totalVariants = 0;
             totalBuildVariants = 0;
-            totalInWhitelist = 0;
+            totalInFilterList = 0;
             if (shaderList == null)
                 return;
             if (uniqueKeywords == null)
@@ -1354,12 +1412,12 @@ namespace ShaderVariantsStripper
                 totalBuildVariants += shader.actualBuildVariantCount;
                 if (GetShaderFilterItem(ref shader) == null)
                 {
-                    shader.inStripWhiteList = false;
+                    shader.inStripFilterList = false;
                 }
                 else
                 {
-                    shader.inStripWhiteList = true;
-                    totalInWhitelist++;
+                    shader.inStripFilterList = true;
+                    totalInFilterList++;
                 }
             }
             if (keywordToShadersList == null)
@@ -1379,21 +1437,21 @@ namespace ShaderVariantsStripper
                 return y.shaders.Count.CompareTo(x.shaders.Count);
             });
         }
-        //生成默认白名单
-        void GenWhiteList()
+        //生成默认过滤名单
+        void GenFilterList()
         {
             if (shaderList != null && currentStripConfigure != null)
             {
-                List<ShaderVariantsStripperFilter> whitelist = currentStripConfigure.GetWhitelist();
-                if (shaderGUIDToWhitelistIndex == null)
+                List<ShaderVariantsStripperFilter> filterlist = currentStripConfigure.GetFilterList();
+                if (shaderGUIDToFilterListIndex == null)
                 {
-                    shaderGUIDToWhitelistIndex = new Dictionary<string, int>();
+                    shaderGUIDToFilterListIndex = new Dictionary<string, int>();
                 }
                 else
                 {
-                    shaderGUIDToWhitelistIndex.Clear();
+                    shaderGUIDToFilterListIndex.Clear();
                 }
-                whitelist.Clear();
+                filterlist.Clear();
                 for (int i = 0; i < shaderList.Count; i++)
                 {
                     StripShader shader = shaderList[i];
@@ -1402,8 +1460,8 @@ namespace ShaderVariantsStripper
                 }
             }
         }
-        //删除白名单
-        void RemoveWhiteList()
+        //删除过滤名单
+        void RemoveFilterList()
         {
             if (shaderList != null && currentStripConfigure != null)
             {
@@ -1412,69 +1470,69 @@ namespace ShaderVariantsStripper
                     StripShader shader = shaderList[i];
                     if (shader.showing && shader.selected)
                     {
-                        RemoveFromWhiteList(ref shader);
+                        RemoveFromFilterList(ref shader);
                     }
                 }
             }
         }
-        //设置stripShader 和 白名单的映射字典
-        void SetShaderGUIDToWhitelistIndex(string shaderName, int index)
+        //设置stripShader 和 过滤名单的映射字典
+        void SetShaderGUIDToFilterListIndex(string shaderName, int index)
         {
-            if (shaderGUIDToWhitelistIndex == null)
+            if (shaderGUIDToFilterListIndex == null)
             {
-                shaderGUIDToWhitelistIndex = new Dictionary<string, int>();
+                shaderGUIDToFilterListIndex = new Dictionary<string, int>();
             }
-            if (shaderGUIDToWhitelistIndex.ContainsKey(shaderName))
+            if (shaderGUIDToFilterListIndex.ContainsKey(shaderName))
             {
-                shaderGUIDToWhitelistIndex[shaderName] = index;
+                shaderGUIDToFilterListIndex[shaderName] = index;
             }
             else
             {
-                shaderGUIDToWhitelistIndex.Add(shaderName, index);
+                shaderGUIDToFilterListIndex.Add(shaderName, index);
             }
         }
-        void RemoveShaderGUIDToWhitelistIndex(string shaderName)
+        void RemoveShaderGUIDToFilterListIndex(string shaderName)
         {
-            if (shaderGUIDToWhitelistIndex != null)
+            if (shaderGUIDToFilterListIndex != null)
             {
-                if (shaderGUIDToWhitelistIndex.ContainsKey(shaderName))
+                if (shaderGUIDToFilterListIndex.ContainsKey(shaderName))
                 {
-                    shaderGUIDToWhitelistIndex.Remove(shaderName);
+                    shaderGUIDToFilterListIndex.Remove(shaderName);
                 }
             }
         }
         //获取shader在白名中的index
-        int GetShaderWhitelistIndex(string guid)
+        int GetShaderFilterListIndex(string guid)
         {
-            if (shaderGUIDToWhitelistIndex == null)
+            if (shaderGUIDToFilterListIndex == null)
             {
                 return -1;
             }
-            if (shaderGUIDToWhitelistIndex.ContainsKey(guid))
+            if (shaderGUIDToFilterListIndex.ContainsKey(guid))
             {
-                int index = shaderGUIDToWhitelistIndex[guid];
-                List<ShaderVariantsStripperFilter> whitelist = currentStripConfigure.GetWhitelist();
-                if (whitelist == null || index >= whitelist.Count)
+                int index = shaderGUIDToFilterListIndex[guid];
+                List<ShaderVariantsStripperFilter> filterlist = currentStripConfigure.GetFilterList();
+                if (filterlist == null || index >= filterlist.Count)
                     return -1;
-                if (whitelist[index].shaderGuid != guid)
+                if (filterlist[index].shaderGuid != guid)
                     return -1;
                 return index;
             }
             return -1;
         }
-        //获取白名单过滤项
+        //获取过滤名单过滤项
         ShaderVariantsStripperFilter GetShaderFilterItem(ref StripShader shader)
         {
             if (shaderList != null && currentStripConfigure != null)
             {
-                List<ShaderVariantsStripperFilter> whitelist = currentStripConfigure.GetWhitelist();
+                List<ShaderVariantsStripperFilter> filterlist = currentStripConfigure.GetFilterList();
                 bool find = false;
-                int index = GetShaderWhitelistIndex(shader.GUID);
+                int index = GetShaderFilterListIndex(shader.GUID);
                 if (index == -1)
                 {
-                    for (int i = 0; i < whitelist.Count; i++)
+                    for (int i = 0; i < filterlist.Count; i++)
                     {
-                        ShaderVariantsStripperFilter afilter = whitelist[i];
+                        ShaderVariantsStripperFilter afilter = filterlist[i];
                         if (afilter.shaderName == shader.shaderName && afilter.shaderGuid == shader.GUID)
                         {
                             find = true;
@@ -1489,9 +1547,9 @@ namespace ShaderVariantsStripper
                 }
                 if (find)
                 {
-                    shader.inStripWhiteList = true;
-                    SetShaderGUIDToWhitelistIndex(shader.GUID, index);
-                    ShaderVariantsStripperFilter filter = whitelist[index];
+                    shader.inStripFilterList = true;
+                    SetShaderGUIDToFilterListIndex(shader.GUID, index);
+                    ShaderVariantsStripperFilter filter = filterlist[index];
                     return filter;
                 }
                 return null;
@@ -1503,7 +1561,7 @@ namespace ShaderVariantsStripper
         {
             if (shaderList != null && currentStripConfigure != null)
             {
-                List<ShaderVariantsStripperFilter> whitelist = currentStripConfigure.GetWhitelist();
+                List<ShaderVariantsStripperFilter> filterlist = currentStripConfigure.GetFilterList();
                 ShaderVariantsStripperFilter filter = new ShaderVariantsStripperFilter();
 
                 //默认只过滤shader名和关键字
@@ -1523,28 +1581,28 @@ namespace ShaderVariantsStripper
                 {
                     filter.keywords.Add(shader.enabledKeywords[k]);
                 }
-                SetShaderGUIDToWhitelistIndex(shader.GUID, whitelist.Count);
-                whitelist.Add(filter);
-                shader.inStripWhiteList = true;
+                SetShaderGUIDToFilterListIndex(shader.GUID, filterlist.Count);
+                filterlist.Add(filter);
+                shader.inStripFilterList = true;
             }
         }
-        //从白名单移除
-        void RemoveFromWhiteList(ref StripShader shader)
+        //从过滤名单移除
+        void RemoveFromFilterList(ref StripShader shader)
         {
             if (shaderList != null && currentStripConfigure != null)
             {
-                List<ShaderVariantsStripperFilter> whitelist = currentStripConfigure.GetWhitelist();
-                int index = GetShaderWhitelistIndex(shader.GUID);
+                List<ShaderVariantsStripperFilter> filterlist = currentStripConfigure.GetFilterList();
+                int index = GetShaderFilterListIndex(shader.GUID);
                 if (index >= 0)
                 {
-                    RemoveShaderGUIDToWhitelistIndex(shader.GUID);
-                    whitelist.RemoveAt(index);
-                    shader.inStripWhiteList = false;
+                    RemoveShaderGUIDToFilterListIndex(shader.GUID);
+                    filterlist.RemoveAt(index);
+                    shader.inStripFilterList = false;
                 }else
                 {
-                    for (int i = 0; i < whitelist.Count; i++)
+                    for (int i = 0; i < filterlist.Count; i++)
                     {
-                        ShaderVariantsStripperFilter afilter = whitelist[i];
+                        ShaderVariantsStripperFilter afilter = filterlist[i];
                         if (afilter.shaderName == shader.shaderName && afilter.shaderGuid == shader.GUID)
                         {
                             index = i;
@@ -1553,9 +1611,9 @@ namespace ShaderVariantsStripper
                     }
                     if (index >= 0)
                     {
-                        RemoveShaderGUIDToWhitelistIndex(shader.GUID);
-                        whitelist.RemoveAt(index);
-                        shader.inStripWhiteList = false;
+                        RemoveShaderGUIDToFilterListIndex(shader.GUID);
+                        filterlist.RemoveAt(index);
+                        shader.inStripFilterList = false;
                     }
                 }
               

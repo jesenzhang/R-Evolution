@@ -469,6 +469,7 @@ namespace ShaderVariantsStripper
                    .FirstOrDefault()
                    .ToString();
                 mConfigurepath = path.Replace("/ShaderVariantsStripperConfigure.cs", "");
+
             }
             return GetPlatformPath(mConfigurepath, "strippingConfigure.asset", useActiveBuildTarget);
         }
@@ -520,18 +521,20 @@ namespace ShaderVariantsStripper
             AssetDatabase.SaveAssets();
         }
 
-        public List<ShaderVariantsStripperFilter> GetFilters()
+        public List<ShaderVariantsStripperFilter> GetFilterList()
         {
-            if (mFilters == null)
-                mFilters = new List<ShaderVariantsStripperFilter>();
-            return mFilters;
-        }
-
-        public List<ShaderVariantsStripperFilter> GetWhitelist()
-        {
-            if (mWhitelist == null)
-                mWhitelist = new List<ShaderVariantsStripperFilter>();
-            return mWhitelist;
+            if (useWhitelist)
+            {
+                if (mWhitelist == null)
+                    mWhitelist = new List<ShaderVariantsStripperFilter>();
+                return mWhitelist;
+            }
+            else
+            {
+                if (mFilters == null)
+                    mFilters = new List<ShaderVariantsStripperFilter>();
+                return mFilters;
+            }
         }
         public ShaderVariantsStripperConfigure()
         {

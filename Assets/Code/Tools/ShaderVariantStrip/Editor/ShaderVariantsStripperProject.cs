@@ -52,8 +52,12 @@ namespace ShaderVariantsStripper
 
         public bool KeepVariantByConfigure(Shader shader, ShaderSnippetData snippet, ShaderCompilerData shaderVariant)
         {
-            List<ShaderVariantsStripperFilter> filters = ShaderVariantsStripperConfigure.Configure.GetFilters();
+            List<ShaderVariantsStripperFilter> filters = ShaderVariantsStripperConfigure.Configure.GetFilterList();
 
+            if (shader.name == "LDJ/Standard")
+            {
+                Debug.Log("ss");
+            }
             bool result = true;
             foreach (var filter in filters)
             {
@@ -83,19 +87,19 @@ namespace ShaderVariantsStripper
                 if ((filter.mask & MatchLayer.ShaderCompilerPlatform) == MatchLayer.ShaderCompilerPlatform)
                 {
                     StripShaderCompilerPlatform shaderCompilerPlatform = StripTypeConvert.ConvertUnityTypeToStripType(shaderVariant.shaderCompilerPlatform);
-                    int ret = ((filter.shaderCompilerPlatform & shaderCompilerPlatform) == shaderCompilerPlatform) ? (int)(MatchLayer.PassType) : 0;
+                    int ret = ((filter.shaderCompilerPlatform & shaderCompilerPlatform) == shaderCompilerPlatform) ? (int)(MatchLayer.ShaderCompilerPlatform) : 0;
                     filterresult |= ret;
                 }
                 //GraphicsTier
                 if ((filter.mask & MatchLayer.GraphicsTier) == MatchLayer.GraphicsTier)
                 {
                     StripGraphicsTier graphicsTier = StripTypeConvert.ConvertUnityTypeToStripType(shaderVariant.graphicsTier);
-                    int ret = ((filter.graphicsTier & graphicsTier) == graphicsTier) ? (int)(MatchLayer.PassType) : 0;
+                    int ret = ((filter.graphicsTier & graphicsTier) == graphicsTier) ? (int)(MatchLayer.GraphicsTier) : 0;
                     filterresult |= ret;
                 }
 
                 //builtinShaderDefine 黑名单有任意一种enable 就认为不通过
-                if ((filter.mask & MatchLayer.GraphicsTier) == MatchLayer.BuiltinShaderDefine)
+                if ((filter.mask & MatchLayer.BuiltinShaderDefine) == MatchLayer.BuiltinShaderDefine)
                 {
                     UnityEngine.Rendering.BuiltinShaderDefine[] builtinShaderDefine = StripTypeConvert.ConvertStripTypeToUnityTypes(filter.builtinShaderDefine);
                     bool has = false;
@@ -112,7 +116,7 @@ namespace ShaderVariantsStripper
                 }
 
                 //ShaderRequirements
-                if ((filter.mask & MatchLayer.GraphicsTier) == MatchLayer.ShaderRequirements)
+                if ((filter.mask & MatchLayer.ShaderRequirements) == MatchLayer.ShaderRequirements)
                 {
                     int ret = (filter.shaderRequirements & shaderVariant.shaderRequirements) == filter.shaderRequirements ? (int)(MatchLayer.ShaderRequirements) : 0;
                     filterresult |= ret;
@@ -121,13 +125,15 @@ namespace ShaderVariantsStripper
                 //Keywords
                 if ((filter.mask & MatchLayer.Keywords) == MatchLayer.Keywords)
                 {
+                    //使用黑名单中的任意一个就剔除
                     bool ret = false;
                     foreach (var key in filter.keywords)
                     {
                         ShaderKeyword shaderKeyword = new ShaderKeyword(key);
                         ret = ret || shaderVariant.shaderKeywordSet.IsEnabled(shaderKeyword);
+                        if (ret)
+                            break;
                     }
-
                     int bitret = ret ? (int)(MatchLayer.Keywords) : 0;
                     filterresult |= bitret;
                 }
@@ -147,11 +153,7 @@ namespace ShaderVariantsStripper
 
         public bool KeepVariantByWhitelist(Shader shader, ShaderSnippetData snippet, ShaderCompilerData shaderVariant)
         {
-            if (shader.name == "ShaderVariantsOptimized")
-            {
-                Debug.Log("sss");
-            }
-            List<ShaderVariantsStripperFilter> filters = ShaderVariantsStripperConfigure.Configure.GetWhitelist();
+            List<ShaderVariantsStripperFilter> filters = ShaderVariantsStripperConfigure.Configure.GetFilterList();
             bool result = false;
             foreach (var filter in filters)
             {
@@ -185,19 +187,19 @@ namespace ShaderVariantsStripper
                 if ((filter.mask & MatchLayer.ShaderCompilerPlatform) == MatchLayer.ShaderCompilerPlatform)
                 {
                     StripShaderCompilerPlatform shaderCompilerPlatform = StripTypeConvert.ConvertUnityTypeToStripType(shaderVariant.shaderCompilerPlatform);
-                    int ret = ((filter.shaderCompilerPlatform & shaderCompilerPlatform) == shaderCompilerPlatform) ? (int)(MatchLayer.PassType) : 0;
+                    int ret = ((filter.shaderCompilerPlatform & shaderCompilerPlatform) == shaderCompilerPlatform) ? (int)(MatchLayer.ShaderCompilerPlatform) : 0;
                     filterresult |= ret;
                 }
                 //GraphicsTier
                 if ((filter.mask & MatchLayer.GraphicsTier) == MatchLayer.GraphicsTier)
                 {
                     StripGraphicsTier graphicsTier = StripTypeConvert.ConvertUnityTypeToStripType(shaderVariant.graphicsTier);
-                    int ret = ((filter.graphicsTier & graphicsTier) == graphicsTier) ? (int)(MatchLayer.PassType) : 0;
+                    int ret = ((filter.graphicsTier & graphicsTier) == graphicsTier) ? (int)(MatchLayer.GraphicsTier) : 0;
                     filterresult |= ret;
                 }
 
                 //builtinShaderDefine
-                if ((filter.mask & MatchLayer.GraphicsTier) == MatchLayer.BuiltinShaderDefine)
+                if ((filter.mask & MatchLayer.BuiltinShaderDefine) == MatchLayer.BuiltinShaderDefine)
                 {
                     //所有enable的key 有一个不在列表里的 就认为不通过
                     UnityEngine.Rendering.BuiltinShaderDefine[] builtinShaderDefine = StripTypeConvert.ConvertStripTypeToUnityTypes(filter.builtinShaderDefine);
@@ -220,7 +222,7 @@ namespace ShaderVariantsStripper
                 }
 
                 //ShaderRequirements
-                if ((filter.mask & MatchLayer.GraphicsTier) == MatchLayer.ShaderRequirements)
+                if ((filter.mask & MatchLayer.ShaderRequirements) == MatchLayer.ShaderRequirements)
                 {
                     int ret = (filter.shaderRequirements & shaderVariant.shaderRequirements) == filter.shaderRequirements ? (int)(MatchLayer.ShaderRequirements) : 0;
                     filterresult |= ret;
@@ -235,21 +237,17 @@ namespace ShaderVariantsStripper
                     foreach (ShaderKeyword akey in allkeys)
                     {
                         bool enable = shaderVariant.shaderKeywordSet.IsEnabled(akey);
-                        bool isCustom = akey.GetKeywordType() == ShaderKeywordType.UserDefined;
-                        bool isBuiltinDefault = akey.GetKeywordType() == ShaderKeywordType.BuiltinDefault;
-                        bool isBuiltinExtra = akey.GetKeywordType() == ShaderKeywordType.BuiltinExtra;
-                        bool isBuiltinAutoStripped = akey.GetKeywordType() == ShaderKeywordType.BuiltinAutoStripped;
-                        if (enable && isCustom)
+                        if (enable)
                         {
                             string keyWordName = akey.GetKeywordName();
 #if UNITY_2018_3_OR_NEWER
-                             keyWordName = akey.GetKeywordName();
+                            keyWordName = akey.GetKeywordName();
 #else
                              keyWordName = akey.GetName();
 #endif
-                            bool include = filter.keywords.Contains(keyWordName); 
+                            bool include = filter.keywords.Contains(keyWordName);
                             ret = ret && include;
-                            //使用了白名单意外的自定义key 跳出for 剔除变体
+                            //使用了过滤名单以外的自定义key 跳出for 剔除变体
                             if (ret == false)
                             {
                                 break;
@@ -284,7 +282,7 @@ namespace ShaderVariantsStripper
 
             int inputShaderVariantCount = shaderVariants.Count;
             string prefix = "VARIANT: " + shader.name + " (";
-             
+
             if (snippet.passName.Length > 0)
                 prefix += snippet.passName + ", ";
 
@@ -299,7 +297,7 @@ namespace ShaderVariantsStripper
             for (int i = 0; i < shaderVariants.Count; ++i)
             {
                 string log = prefix;
-                
+
                 log += shaderVariants[i].shaderCompilerPlatform.ToString() + "  ";
                 log += shaderVariants[i].graphicsTier.ToString() + "  ";
 
@@ -308,12 +306,12 @@ namespace ShaderVariantsStripper
                     ShaderKeyword[] keywords = shaderVariants[i].shaderKeywordSet.GetShaderKeywords();
                     for (int labelIndex = 0; labelIndex < keywords.Count(); ++labelIndex)
                     {
-                        ShaderKeyword akey=  keywords[labelIndex];
+                        ShaderKeyword akey = keywords[labelIndex];
                         bool isUserDefined = akey.GetKeywordType() == ShaderKeywordType.UserDefined;
                         bool isBuiltinDefault = akey.GetKeywordType() == ShaderKeywordType.BuiltinDefault;
                         bool isBuiltinExtra = akey.GetKeywordType() == ShaderKeywordType.BuiltinExtra;
                         bool isBuiltinAutoStripped = akey.GetKeywordType() == ShaderKeywordType.BuiltinAutoStripped;
-                       
+
 #if UNITY_2018_3_OR_NEWER
                         string keyWordName = akey.GetKeywordName();
 #else
@@ -389,9 +387,9 @@ namespace ShaderVariantsStripper
                     File.AppendAllText(logFile, log + "\n");
                 }
 
-              
+
             }
-           
+
 
             if (ShaderVariantsStripperConfigure.Configure.enableLog)
             {

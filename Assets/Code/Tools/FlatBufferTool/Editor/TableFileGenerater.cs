@@ -11,6 +11,7 @@ public class ExcelSheetData
     public List<string> fieldNames;
     public List<string> fieldTypes;
     public List<string> fieldValues;
+    public List<int> fieldMaxSize;
 
     public ExcelSheetData()
     {
@@ -18,9 +19,11 @@ public class ExcelSheetData
         fieldNames = new List<string>();
         fieldTypes = new List<string>();
         fieldValues = new List<string>();
+        fieldMaxSize = new List<int>();
     }
 }
 
+#region FlatBuffer数据定义
 //基本数据类型
 public enum FbsDataType
 {
@@ -216,7 +219,55 @@ public class FbsFile
     }
 }
 
-public class FileGenerater
+#endregion
+
+#region ProtoBuffer数据定义
+//基本数据类型
+public enum PbsDataType
+{
+    NONE = 0,
+    //标量 类型
+    //8 bit: bool
+    BOOL = 1,
+    //32 bit: int (int32), uint (uint32), float (float32)
+    INT32 = 2,
+    SINT32 = 3,
+    FIXED32 = 4,
+    SFIXED32 = 5,
+    UINT32 = 6,
+    FLOAT = 7,
+    //64 bit: long (int64), ulong (uint64), double (float64)
+    INT64 = 8,
+    UINT64 = 9,
+    SINT64 = 10,
+    FIXED64 = 11,
+    SFIXED64 =12,
+    DOUBLE = 13,
+    //非标量的字段
+    STRING = 14,
+    bytes = 15,
+}
+
+//fbs schema文件的组成元素类型
+public enum PbsFileElement
+{
+    NONE = 0,
+    TABLE = 1,
+    STRUCT = 2,
+    UNION = 3,
+    ENUM = 4,
+    NAMESPACE = 5,
+    ATTRIBUTE = 6,
+    ROOT_TYPE = 7,
+    FILE_IDENTIFIER = 8,
+}
+public class PbsEnums
+{
+    public static string[] ProtoBuildInKeys = new string[] { "\"syntax = \"proto3\";\"" };
+}
+#endregion
+
+public class TableFileGenerater
 {
     private static StringBuilder sb;
     private static StringBuilder StrBuilder
@@ -872,30 +923,61 @@ public class FileGenerater
                     List<string> fieldNames = excelSheetData.fieldNames;
                     List<string> fieldTypes = excelSheetData.fieldTypes;
                     List<string> fieldValues = excelSheetData.fieldValues;
+                    List<int> fieldMaxSize = excelSheetData.fieldMaxSize;
                     excelSheetData.sheetName = tableName;
+                    List<int> removeCols = new List<int>();
                     for (int row = 0; row < reader.RowCount; row++)
                     {
                         reader.Read();
                         for (int col = 0; col < reader.FieldCount; col++)
                         {
+                            string str = ("" + reader.GetValue(col)).Trim();
+                           
                             //前两行是字段定义
-                            if (row == 0)
+                            if (row == FlatBufferToolConfigure.Configure.fieldNameRow)
                             {
-                                fieldNames.Add(("" + (string)reader.GetValue(col)).Trim());
+                                if (str == "" || str == string.Empty)
+                                {
+                                    if (!removeCols.Contains(col))
+                                    {
+                                        removeCols.Add(col);
+                                    }
+                                }
+                                else
+                                {
+                                    fieldNames.Add(str);
+                                    fieldMaxSize.Add(0);
+                                }
                             }
                             else
-                            if (row == 1)
+                            if (row == FlatBufferToolConfigure.Configure.fieldTypeRow)
                             {
-                                fieldTypes.Add(("" + (string)reader.GetValue(col)).Trim());
+                                if(!removeCols.Contains(col))
+                                    fieldTypes.Add(str);
                             }
                             else
-                            if (row >= 3)
+                            if (row >= FlatBufferToolConfigure.Configure.fieldValueRow)
                             {
-                                fieldValues.Add(("" + reader.GetValue(col)).Trim());
+                                if (!removeCols.Contains(col))
+                                    fieldValues.Add(str);
                             }
-                            object str = (object)reader.GetValue(col);
+                            int reduce = 0;
+                            for (reduce = 0; reduce < removeCols.Count; reduce++)
+                            {
+                                if (col <= removeCols[reduce])
+                                {
+                                    break;
+                                }
+                            }
+                            string[] splits = str.Split('\n');
+                            foreach (string s in splits)
+                            {
+                                if (!removeCols.Contains(col))
+                                    if (fieldMaxSize[col- reduce] < s.Length) { fieldMaxSize[col- reduce] = s.Length; };
+                            }
                         }
                     }
+          
                     excelSheetDatas.Add(excelSheetData);
                 } while (reader.NextResult());
             }
@@ -919,7 +1001,7 @@ public class FileGenerater
             FbsTableField fbsTableField = new FbsTableField();
             fbsTableField.fieldName = excelSheetData.fieldNames[j];
             string dataTypeStr = excelSheetData.fieldTypes[j];
-            FileGenerater.GetFbsDataTypeByString(dataTypeStr, ref fbsTableField.fieldType, ref fbsTableField.fieldTypeName, ref fbsTableField.dataType, ref fbsTableField.isArray);
+            TableFileGenerater.GetFbsDataTypeByString(dataTypeStr, ref fbsTableField.fieldType, ref fbsTableField.fieldTypeName, ref fbsTableField.dataType, ref fbsTableField.isArray);
             fbsTable.fields.Add(fbsTableField);
         }
         fbsFile.tables.Add(fbsTable);
@@ -949,9 +1031,9 @@ public class FileGenerater
             FbsFile fbsFile = GenFbsFileObject(sheet);
             string schemaPath = string.Empty;
             string jsonPath = string.Empty;
-            FileGenerater.GenFbsSchemaFile(fbsFile, outSchemaPath, ref schemaPath);
+            TableFileGenerater.GenFbsSchemaFile(fbsFile, outSchemaPath, ref schemaPath);
 
-            FileGenerater.GenJsonFile(fbsFile, sheet.fieldValues, outJsonPath, ref jsonPath);
+            TableFileGenerater.GenJsonFile(fbsFile, sheet.fieldValues, outJsonPath, ref jsonPath);
 
             if (!Directory.Exists(outClassPath))
             {
@@ -963,5 +1045,25 @@ public class FileGenerater
             }
             CmdHelper.RunFlatC(flatcPath, schemaPath, jsonPath, outClassPath, outBinPath);
         }
+    }
+    
+    public static void BuildSheet(ExcelSheetData sheet, string flatcPath,string outSchemaPath, string outJsonPath, string outClassPath, string outBinPath)
+    {
+        FbsFile fbsFile = GenFbsFileObject(sheet);
+        string schemaPath = string.Empty;
+        string jsonPath = string.Empty;
+        TableFileGenerater.GenFbsSchemaFile(fbsFile, outSchemaPath, ref schemaPath);
+
+        TableFileGenerater.GenJsonFile(fbsFile, sheet.fieldValues, outJsonPath, ref jsonPath);
+
+        if (!Directory.Exists(outClassPath))
+        {
+            Directory.CreateDirectory(outClassPath);
+        }
+        if (!Directory.Exists(outBinPath))
+        {
+            Directory.CreateDirectory(outBinPath);
+        }
+        CmdHelper.RunFlatC(flatcPath, schemaPath, jsonPath, outClassPath, outBinPath);
     }
 }

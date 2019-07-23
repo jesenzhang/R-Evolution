@@ -29,7 +29,7 @@ public class StripShader
     public bool editedByShaderControl;
     public bool hasBackup;
     public bool isReadOnly;
-    public bool inStripWhiteList;
+    public bool inStripFilterList;
     public bool showing;
     public bool selected;
 

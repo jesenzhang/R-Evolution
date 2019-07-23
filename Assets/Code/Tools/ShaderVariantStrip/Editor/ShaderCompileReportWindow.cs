@@ -53,7 +53,7 @@ namespace ShaderVariantsStripper
         int minimumKeywordCount;
         //找到的最大关键字数
         int maxKeywordsCountFound = 0;
-        bool showInWhiteListShader;
+        bool showInFilterListShader;
 
         Texture2D MakeTex(int width, int height, Color col)
         {
@@ -182,10 +182,10 @@ namespace ShaderVariantsStripper
 
             string btnShowString = "显示完全剔除的shader";
             preColor = GUI.color;
-            GUI.color = showInWhiteListShader ? Color.white : Color.gray;
+            GUI.color = showInFilterListShader ? Color.white : Color.gray;
             if (GUILayout.Button(btnShowString, GUILayout.Width(200)))
             {
-                showInWhiteListShader = !showInWhiteListShader;
+                showInFilterListShader = !showInFilterListShader;
             }
             GUI.color = preColor;
 
@@ -242,7 +242,7 @@ namespace ShaderVariantsStripper
                     
                     if (info.keywordsCount < minimumKeywordCount)
                         continue;
-                    if (!showInWhiteListShader)
+                    if (!showInFilterListShader)
                     {
                         if (info.totalVaraints == info.strippedVaraints)
                         {

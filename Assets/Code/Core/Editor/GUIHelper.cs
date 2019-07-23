@@ -28,6 +28,8 @@ public class GUIHelper
 {
     public static string LastFoldPath = Application.dataPath;
     public static string LastFilePath = Application.dataPath;
+    public static Rect TempRect = new Rect();
+    public static int FontSize = 12;
 
     #region GUI
     private GenericMenu m_operationMenu;
@@ -218,10 +220,10 @@ public class GUIHelper
         GUILayout.EndHorizontal();
     }
 
-    public static void DrawFilePick(string title, ref string path,string filter = "")
+    public static void DrawFilePick(string title, ref string path,string filter = "", int titleWidth = 80)
     {
         GUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField(title, GUILayout.MaxWidth(80));
+        EditorGUILayout.LabelField(title, GUILayout.MaxWidth(titleWidth));
         path = EditorGUILayout.TextField(path);
         if (GUILayout.Button("...", GUILayout.Width(30)))
         {
@@ -230,6 +232,14 @@ public class GUIHelper
             GUIUtility.ExitGUI();
             return;
         }
+        GUILayout.EndHorizontal();
+    }
+
+    public static void DrawIntField(string title,ref int value,int titleWidth = 80)
+    {
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField(title, GUILayout.MaxWidth(titleWidth));
+        value = EditorGUILayout.DelayedIntField(value,GUILayout.MaxWidth(50));
         GUILayout.EndHorizontal();
     }
 }
