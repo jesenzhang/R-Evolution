@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -30,13 +31,45 @@ public class GUIHelper
     public static string LastFilePath = Application.dataPath;
     public static Rect TempRect = new Rect();
     public static int FontSize = 12;
+    public static GUIContent TempContent = new GUIContent();
+    public static List<string> TempStringList = new List<string>();
+
+    private static Dictionary<string, bool> cacheBoolState = new Dictionary<string, bool>();
+    private static Dictionary<string, int> cacheIntState = new Dictionary<string, int>();
+
+    public delegate void OnSelectChanged(int value);
+    public delegate void OnCheckChanged(bool value);
+
+    public static void RemoveCacheIntState(string key)
+    {
+        if (cacheIntState.ContainsKey(key))
+        {
+            cacheIntState.Remove(key);
+        }
+    }
+
+    public static void RemoveCacheBoolState(string key)
+    {
+        if (cacheBoolState.ContainsKey(key))
+        {
+            cacheBoolState.Remove(key);
+        }
+    }
+
+    public static void CleanCache()
+    {
+        if (cacheBoolState != null)
+            cacheBoolState.Clear();
+        if (cacheIntState != null)
+            cacheIntState.Clear();
+    }
 
     #region GUI
     private GenericMenu m_operationMenu;
     //UI样式
     public static GUIStyle blackStyle, middleTitleStyle, commentStyle, disabledStyle, foldoutBold, foldoutNormal, foldoutDim, foldoutRTF, buttonNormal, buttonSelected, stateStyle;
     //图标
-    public static  GUIContent matIcon, shaderIcon;
+    public static GUIContent matIcon, shaderIcon;
 
     private Color m_preColor;
     //左侧shader列表ScrollView位置
@@ -85,8 +118,8 @@ public class GUIHelper
             default:
                 return null;
         }
-      
-       
+
+
     }
 
     public static GUIStyle GetStyle(GUIStyleEnum gUIStyle)
@@ -205,41 +238,274 @@ public class GUIHelper
         }
     }
 
-    public static void DrawFolderPick(string title,ref string path)
+    public static void DrawFolderPick(string title, ref string path, string defaultPath = "", int titleWidth = 80, string tooltip = "")
     {
         GUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField(title, GUILayout.MaxWidth(80));
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        if (path == string.Empty || path == "")
+        {
+            path = defaultPath;
+        }
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
         path = EditorGUILayout.TextField(path);
         if (GUILayout.Button("...", GUILayout.Width(30)))
         {
-            LastFoldPath = EditorUtility.OpenFolderPanel("FlactcPath", LastFoldPath, "");
+            LastFoldPath = EditorUtility.OpenFolderPanel(title, LastFoldPath, "");
             path = LastFoldPath;
             GUIUtility.ExitGUI();
             return;
         }
         GUILayout.EndHorizontal();
     }
-
-    public static void DrawFilePick(string title, ref string path,string filter = "", int titleWidth = 80)
+    public static void DrawFolderPick(string title, ref string path, int titleWidth = 80, string tooltip = "")
+    {
+        DrawFolderPick(title, ref path, "", titleWidth, tooltip);
+    }
+    public static void DrawFolderPick(string title, ref string path,string defaultPath = "")
+    {
+        DrawFolderPick(title, ref path,defaultPath, 80, "");
+    }
+    public static void DrawFolderPick(string title, ref string path)
+    {
+        DrawFolderPick(title, ref path, "", 80, "");
+    }
+    public static void DrawFilePick(string title, ref string path, string filter = "", string defaultPath = "", int titleWidth = 80, string tooltip = "")
     {
         GUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField(title, GUILayout.MaxWidth(titleWidth));
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        if (path == string.Empty || path == "")
+        {
+            path = defaultPath;
+        }
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
         path = EditorGUILayout.TextField(path);
         if (GUILayout.Button("...", GUILayout.Width(30)))
         {
-            LastFilePath = EditorUtility.OpenFilePanel("FlactcPath", LastFilePath, filter);
+            LastFilePath = EditorUtility.OpenFilePanel(title, LastFilePath, filter);
             path = LastFilePath;
             GUIUtility.ExitGUI();
             return;
         }
         GUILayout.EndHorizontal();
     }
+    public static void DrawFilePick(string title, ref string path, string filter = "", int titleWidth = 80, string tooltip = "")
+    {
+        DrawFilePick(title, ref path, filter = "", "", titleWidth, tooltip);
+    }
+    public static void DrawFilePick(string title, ref string path)
+    {
+        DrawFilePick(title, ref path,"", "", 80, "");
+    }
 
-    public static void DrawIntField(string title,ref int value,int titleWidth = 80)
+    public static void DrawIntField(string title,ref int value, int titleWidth = 80, string tooltip = "", params GUILayoutOption[] option)
     {
         GUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField(title, GUILayout.MaxWidth(titleWidth));
-        value = EditorGUILayout.DelayedIntField(value,GUILayout.MaxWidth(50));
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        value = EditorGUILayout.DelayedIntField(value,option);
         GUILayout.EndHorizontal();
     }
+
+    public static void DrawLabel(string title,string value,int titleWidth = 80, string tooltip = "", params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        GUILayout.Label(value, option);
+        GUILayout.EndHorizontal();
+    }
+    public static void DrawTextField(string title, ref string value, string defaultValue = "", int titleWidth = 80, string tooltip = "", params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        if (value == string.Empty)
+        {
+            value = defaultValue;
+        }
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        value = EditorGUILayout.DelayedTextField(value, option);
+        GUILayout.EndHorizontal();
+    }
+    public static void DrawTextField(string title, ref string value)
+    {
+        DrawTextField(title, ref value, "", 80, "");
+    }
+    public static void DrawTextField(string title, ref string value, int titleWidth = 80, string tooltip = "", params GUILayoutOption[] option)
+    {
+        DrawTextField(title, ref value, "", titleWidth, tooltip, option);
+    }
+    
+    public static bool DrawFold(string key,string title,int titleWidth = 80, string tooltip = "",bool toggleOnLabel=true, GUIStyle uIStyle = null)
+    {
+        GUILayout.BeginHorizontal();
+        bool value = false;
+        if (!cacheBoolState.ContainsKey(key))
+        {
+            cacheBoolState.Add(key, false);
+        }
+        else
+        {
+            value = cacheBoolState[key];
+        }
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        cacheBoolState[key] = EditorGUILayout.Foldout(value, TempContent, toggleOnLabel, uIStyle==null?GetStyle(GUIStyleEnum.FOLDOUTNORMAL): uIStyle);
+        GUILayout.EndHorizontal();
+        return cacheBoolState[key];
+    }
+
+    public static void DrawButton(string title,Action onClick, GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        if (uIStyle == null? GUILayout.Button(TempContent, option):GUILayout.Button(TempContent, uIStyle, option))
+        {
+            onClick?.Invoke();
+            GUIUtility.ExitGUI();
+        }
+        GUILayout.EndHorizontal();
+    }
+
+    public static void DrawToolbar(string key,string[] titles, int defaultValue = 0, OnSelectChanged onClick = null,GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        int select = defaultValue;
+        if (!cacheIntState.ContainsKey(key))
+        {
+            cacheIntState.Add(key, select);
+        }
+        else
+        {
+            select = cacheIntState[key];
+        }
+        cacheIntState[key] = uIStyle == null ? GUILayout.Toolbar(select, titles, option) : GUILayout.Toolbar(select, titles, uIStyle, option);
+        if(select!= cacheIntState[key])
+        {
+            onClick?.Invoke(cacheIntState[key]);
+            GUIUtility.ExitGUI();
+        }
+        GUILayout.EndHorizontal();
+    }
+
+   
+    public static void DrawToggle(string key, string title, bool defaultValue = false, OnCheckChanged onClick = null, int titleWidth = 80, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        bool value = defaultValue;
+        if (!cacheBoolState.ContainsKey(key))
+        {
+            cacheBoolState.Add(key, value);
+        }
+        else
+        {
+            value = cacheBoolState[key];
+        }
+        cacheBoolState[key] = uIStyle == null ? EditorGUILayout.Toggle( value, option) : EditorGUILayout.Toggle(value, uIStyle, option);
+        if (value != cacheBoolState[key])
+        {
+            onClick?.Invoke(cacheBoolState[key]);
+            GUIUtility.ExitGUI();
+        }
+        GUILayout.EndHorizontal();
+    }
+    public static void DrawToggle(string title, ref bool value, OnCheckChanged onClick = null, int titleWidth = 80, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        bool nvalue = uIStyle == null ? EditorGUILayout.Toggle(value, option) : EditorGUILayout.Toggle(value, uIStyle, option);
+        if (value != nvalue)
+        {
+            value = nvalue;
+            onClick?.Invoke(value);
+            GUIUtility.ExitGUI();
+        }
+        GUILayout.EndHorizontal();
+    }
+    public static void DrawToggleLeft(string key, string title, bool defaultValue = false, OnCheckChanged onClick = null, int titleWidth = 80, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        bool value = defaultValue;
+        if (!cacheBoolState.ContainsKey(key))
+        {
+            cacheBoolState.Add(key, value);
+        }
+        else
+        {
+            value = cacheBoolState[key];
+        }
+        cacheBoolState[key] = uIStyle == null ? EditorGUILayout.Toggle(value, option) : EditorGUILayout.Toggle(value, uIStyle, option);
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        if (value != cacheBoolState[key])
+        {
+            onClick?.Invoke(cacheBoolState[key]);
+            GUIUtility.ExitGUI();
+        }
+        GUILayout.EndHorizontal();
+    }
+
+    public static void DrawToggleLeft(string title, ref bool value, OnCheckChanged onClick = null, int titleWidth = 80, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        bool nvalue = uIStyle == null ? EditorGUILayout.Toggle(value, option) : EditorGUILayout.Toggle(value, uIStyle, option);
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        if (value != nvalue)
+        {
+            value = nvalue;
+            onClick?.Invoke(value);
+            GUIUtility.ExitGUI();
+        }
+        GUILayout.EndHorizontal();
+    }
+
+    
+    public static void DrawDeleteItem(string title, Action onClick, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        if (uIStyle == null ? GUILayout.Button("X", GUILayout.Width(18)) : GUILayout.Button("X", uIStyle, GUILayout.Width(18)))
+        {
+            onClick?.Invoke();
+            GUIUtility.ExitGUI();
+        }
+        GUILayout.Label(TempContent, option);
+        GUILayout.EndHorizontal();
+    }
+
+    public static System.Enum DrawEnumPopup(string title, System.Enum value, int titleWidth = 80, string tooltip = "", params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        System.Enum nvalue = EditorGUILayout.EnumPopup(value, option);
+        GUILayout.EndHorizontal();
+        return nvalue;
+    }
+
+
+    public static int DrawMaskField(string title,int mask,Type type,int titleWidth = 80, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    {
+        GUILayout.BeginHorizontal();
+        TempContent.text = title;
+        TempContent.tooltip = tooltip;
+        mask = uIStyle == null ? EditorGUILayout.MaskField(TempContent, mask, Enum.GetNames(type), option):EditorGUILayout.MaskField(TempContent, mask, Enum.GetNames(type), uIStyle, option);
+        GUILayout.EndHorizontal();
+        return mask;
+    }
+
 }

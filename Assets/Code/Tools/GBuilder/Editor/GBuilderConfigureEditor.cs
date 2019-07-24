@@ -7,196 +7,91 @@ using UnityEditor;
 using UnityEngine;
 
 public class GBuilderConfigureEditor : EditorWindow
-{ 
+{
+    int titleWidth = 120;
+    List<string> tempStringList = new List<string>();
+    Vector2 sceneListPos;
+
+
     public static GBuilderConfigureEditor curwindow;
     [MenuItem("GBuilder/Window", false,100)]
     static void ShowEditor()
     {
         curwindow = EditorWindow.GetWindow<GBuilderConfigureEditor>();
-        curwindow.titleContent = new GUIContent("打包设置");         // 窗口的标题  
+        curwindow.titleContent = new GUIContent("GBuilder");         // 窗口的标题  
     }
+    private void OnEnable()
+    {
+        tempStringList = new List<string>();
+        GUIHelper.CleanCache();
+    }
+
+    private void OnDisable()
+    {
+        tempStringList = null;
+        GBuilderConfigure.Save();
+    }
+
     #region Main Motheds
     private void OnGUI()
     {
+        Event uievent = Event.current;
         EditorGUILayout.BeginVertical();
-        EditorGUILayout.LabelField("BaseSetting");
-        BuildTarget old = GBuilderConfigure.Configure.buildTarget;
         // 设置目标平台
-        GBuilderConfigure.Configure.buildTarget = (BuildTarget)EditorGUILayout.EnumPopup("buildTarget(目标平台):", GBuilderConfigure.Configure.buildTarget);
-        if (old != GBuilderConfigure.Configure.buildTarget)
-        {
-            GBuilderConfigure.PlatformConfigure.buildTarget = GBuilderConfigure.Configure.buildTarget;
-            GBuilderConfigure.SavePlatformConfig();
-            GBuilderConfigure.ReadPlatformConfig();
-            GBuilderConfigure.ReadBuildConfigure();
+        GBuilderConfigure.CurrentBuildTarget = (BuildTarget)GUIHelper.DrawEnumPopup("BuildTarget:", GBuilderConfigure.CurrentBuildTarget, titleWidth);
+        if(GBuilderConfigure.CurrentBuildTarget != GBuilderConfigure.Configure.AppBuildTarget)
+            GBuilderConfigure.Configure.AppBuildTarget = GBuilderConfigure.CurrentBuildTarget;
 
+        if (GUIHelper.DrawFold("PathSetting", "PathSetting"))
+        {
+            EditorGUILayout.Separator();
+            // 设置unity目录
+            GUIHelper.DrawFilePick("UnityPath:", ref GBuilderConfigure.Configure.UnityPath, "", titleWidth, "Uniy路径");
+            EditorGUILayout.Separator();
+            // 设置unity目录
+            GUIHelper.DrawFilePick("XcodePath:", ref GBuilderConfigure.Configure.XcodePath, "", titleWidth, "Xcode路径");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawFolderPick("ProjectPath:", ref GBuilderConfigure.Configure.ProjectPath,Application.dataPath + "/../", titleWidth, "工程目录");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawFolderPick("BundlePath:", ref GBuilderConfigure.Configure.BundlePath,PathHelper.ProjectPlatformPath("AssetBundleData", GBuilderConfigure.CurrentBuildTarget),titleWidth, "资源的生成目录");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawFolderPick("BuildPath:", ref GBuilderConfigure.Configure.BuildPath, PathHelper.ProjectPlatformPath("Build", GBuilderConfigure.CurrentBuildTarget), titleWidth, "App生成生成目录");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawFolderPick("ReportPath:", ref GBuilderConfigure.Configure.ReportPath, PathHelper.ProjectPlatformPath("BuildReport", GBuilderConfigure.CurrentBuildTarget), titleWidth, "编译报告生成目录");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawFolderPick("AppReleasePath:", ref GBuilderConfigure.Configure.AppReleasePath, PathHelper.ProjectPlatformPath("AppRelease", GBuilderConfigure.CurrentBuildTarget),titleWidth, "应用发布目录");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawFolderPick("ResReleasePath:", ref GBuilderConfigure.Configure.ResReleasePath, PathHelper.ProjectPlatformPath("ResRelease", GBuilderConfigure.CurrentBuildTarget), titleWidth, "资源发布目录");
+            EditorGUILayout.Separator();
         }
-        EditorGUILayout.Separator();
+        if (GUIHelper.DrawFold("ConfigureSetting", "ConfigureSetting"))
+        {
+            GUIHelper.DrawTextField("AppName", ref GBuilderConfigure.Configure.AppName,"game",80, "程序名称");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawIntField("ParentResVersion", ref GBuilderConfigure.Configure.ParentResVersion, 80, "上次打包资源版本");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawIntField("ResVersion", ref GBuilderConfigure.Configure.ResVersion, 80, "资源版本");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawIntField("SvnVersion", ref GBuilderConfigure.Configure.SvnVersion, 80, "Svn版本");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawIntField("CodeVersion", ref GBuilderConfigure.Configure.CodeVersion, 80, "代码版本");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawIntField("VersionPrefix", ref GBuilderConfigure.Configure.VersionPrefix, 80, "版本前缀 大版本号");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawLabel("PublishVersion", GBuilderConfigure.Configure.PublishVersion);
+            EditorGUILayout.Separator();
+            GUIHelper.DrawTextField("ResServerURL", ref GBuilderConfigure.Configure.ResServerURL, "", 80, "资源下载服务器地址");
+            EditorGUILayout.Separator();
+            GUIHelper.DrawTextField("AppServerURL", ref GBuilderConfigure.Configure.AppServerURL, "", 80, "App下载服务器地址");
+        }
 
-        GUILayout.BeginHorizontal();
-        // 设置unity目录
-        EditorGUILayout.LabelField("unityPath(Uniy路径):", GUILayout.Width(180));
-        GBuilderConfigure.Configure.unityPath = EditorGUILayout.TextField(GBuilderConfigure.Configure.unityPath);
-        if (GUILayout.Button("...",GUILayout.Width(30)))
-        {
-            // 导入
-            string path = EditorUtility.OpenFilePanel("choose unityPath", Application.dataPath, "*");
-            if (path.Length != 0)
-            {
-                GBuilderConfigure.Configure.unityPath = path;
-            }
-        }
-        GUILayout.EndHorizontal();
-        EditorGUILayout.Separator();
-        GUILayout.BeginHorizontal();
-        // 设置unity目录
-        EditorGUILayout.LabelField("xcodePath(Xcode路径):", GUILayout.Width(180));
-        GBuilderConfigure.Configure.unityPath = EditorGUILayout.TextField(GBuilderConfigure.Configure.xcodePath);
-        if (GUILayout.Button("...", GUILayout.Width(30)))
-        {
-            // 导入
-            string path = EditorUtility.OpenFilePanel("choose xcodePath", Application.dataPath, "*");
-            if (path.Length != 0)
-            {
-                GBuilderConfigure.Configure.xcodePath = path;
-            }
-        }
-        GUILayout.EndHorizontal();
-        EditorGUILayout.Separator();
-        GUILayout.BeginHorizontal();
-        // projectPath
-        EditorGUILayout.LabelField("projectPath(工程目录):", GUILayout.Width(180));
-        GBuilderConfigure.Configure.projectPath = EditorGUILayout.TextField(GBuilderConfigure.Configure.projectPath);
-        if (GUILayout.Button("...", GUILayout.Width(30)))
-        {
-            // 导入
-            string path = EditorUtility.OpenFolderPanel("choose projectPath", Application.dataPath, "");
-            if (path.Length != 0)
-            {
-                GBuilderConfigure.Configure.projectPath = path;
-            }
-        }
-        GUILayout.EndHorizontal();
-        EditorGUILayout.Separator();
-        GUILayout.BeginHorizontal();
-        // bundlePath
-        EditorGUILayout.LabelField("bundlePath(资源的生成目录):",GUILayout.Width(180));
-        GBuilderConfigure.Configure.bundlePath = EditorGUILayout.TextField( GBuilderConfigure.Configure.bundlePath);
-        if (GUILayout.Button("...", GUILayout.Width(30)))
-        {
-            // 导入
-            string path = EditorUtility.OpenFolderPanel("choose bundlePath", Application.dataPath, "");
-            if (path.Length != 0)
-            {
-                GBuilderConfigure.Configure.bundlePath = path;
-            }
-        }
-        GUILayout.EndHorizontal();
-        EditorGUILayout.Separator();
-        GUILayout.BeginHorizontal();
-        // packageExportPath
-        EditorGUILayout.LabelField("packageExportPath(app发布目录):", GUILayout.Width(180));
-        GBuilderConfigure.Configure.packageExportPath = EditorGUILayout.TextField(GBuilderConfigure.Configure.packageExportPath);
-        if (GUILayout.Button("...", GUILayout.Width(30)))
-        {
-            // 导入
-            string path = EditorUtility.OpenFolderPanel("choose packageExportPath", Application.dataPath, "");
-            if (path.Length != 0)
-            {
-                GBuilderConfigure.Configure.packageExportPath = path;
-            }
-        }
-        GUILayout.EndHorizontal();
-        EditorGUILayout.Separator();
-        GUILayout.BeginHorizontal();
-        // resExportPath
-        EditorGUILayout.LabelField("resExportPath(资源发布目录):", GUILayout.Width(180));
-        GBuilderConfigure.Configure.resExportPath = EditorGUILayout.TextField(GBuilderConfigure.Configure.resExportPath);
-        if (GUILayout.Button("...", GUILayout.Width(30)))
-        {
-            // 导入
-            string path = EditorUtility.OpenFolderPanel("choose resExportPath", Application.dataPath, "");
-            if (path.Length != 0)
-            {
-                GBuilderConfigure.Configure.resExportPath = path;
-            }
-        }
-        GUILayout.EndHorizontal();
-        EditorGUILayout.Separator();
-        GUILayout.BeginHorizontal();
-        if (GBuilderConfigure.Configure.build_location == string.Empty)
-        {
-            GBuilderConfigure.Configure.build_location = Application.dataPath + "/../Build";
-        }
-        GBuilderConfigure.Configure.build_location = EditorGUILayout.TextField("build_location(app生成位置):", GBuilderConfigure.Configure.build_location);
-        if (GUILayout.Button("...", GUILayout.Width(30)))
-        {
-            string path = EditorUtility.OpenFolderPanel("choose build_location", Application.dataPath, "");
-            if (path.Length != 0)
-            {
-                GBuilderConfigure.Configure.build_location = path;
-            }
-        }
-        GUILayout.EndHorizontal();
-        EditorGUILayout.Separator();
-        GUILayout.BeginHorizontal();
-        if (GBuilderConfigure.Configure.report_location == string.Empty)
-        {
-            GBuilderConfigure.Configure.report_location = Application.dataPath + "/../Build";
-        }
-        GBuilderConfigure.Configure.build_location = EditorGUILayout.TextField("build_location(app生成位置):", GBuilderConfigure.Configure.build_location);
-        if (GUILayout.Button("...", GUILayout.Width(30)))
-        {
-            string path = EditorUtility.OpenFolderPanel("choose build_location", Application.dataPath, "");
-            if (path.Length != 0)
-            {
-                GBuilderConfigure.Configure.build_location = path;
-            }
-        }
-        GUILayout.EndHorizontal();
-        EditorGUILayout.Separator();
-
-        if (GBuilderConfigure.Configure.appName == string.Empty)
-        {
-            GBuilderConfigure.Configure.appName = "game";
-        }
-        GBuilderConfigure.Configure.appName = EditorGUILayout.TextField("appName(程序名称)", GBuilderConfigure.Configure.appName);
-
-
-        // publishVersion
-        GBuilderConfigure.Configure.publishVersion = EditorGUILayout.TextField("publishVersion(发布版本号)", GBuilderConfigure.Configure.publishVersion);
-        EditorGUILayout.Separator();
-        // versionPrefix
-        GBuilderConfigure.Configure.versionPrefix = EditorGUILayout.TextField("versionPrefix(版本号前缀)", GBuilderConfigure.Configure.versionPrefix);
-
-        EditorGUILayout.Separator();
-        // resVersion
-        GBuilderConfigure.Configure.parentResVersion = EditorGUILayout.IntField("parentResVersion(上次打包资源版本):", GBuilderConfigure.Configure.parentResVersion);
-        EditorGUILayout.Separator();
-        // resVersion
-        GBuilderConfigure.Configure.resVersion = EditorGUILayout.IntField("resVersion(资源版本):", GBuilderConfigure.Configure.resVersion);
-        EditorGUILayout.Separator();
-        // svnVersion
-        GBuilderConfigure.Configure.svnVersion = EditorGUILayout.IntField("svnVersion:", GBuilderConfigure.Configure.svnVersion);
-        EditorGUILayout.Separator();
-        // codeVersion
-        GBuilderConfigure.Configure.codeVersion = EditorGUILayout.IntField("codeVersion(代码版本):", GBuilderConfigure.Configure.codeVersion);
-        EditorGUILayout.Separator();
-        // appURL
-        GBuilderConfigure.Configure.appURL = EditorGUILayout.TextField("appURL(app更新链接):", GBuilderConfigure.Configure.appURL);
-        EditorGUILayout.Separator();
-        // resURL
-        GBuilderConfigure.Configure.resURL = EditorGUILayout.TextField("resURL(资源热更目录):", GBuilderConfigure.Configure.resURL);
-        EditorGUILayout.Separator();
         // hotFix
-        bool hotfix = EditorGUILayout.ToggleLeft("hotFix(是否热更新)", GBuilderConfigure.Configure.hotFix);
-        if (GBuilderConfigure.Configure.hotFix != hotfix)
-        {
-            GBuilderConfigure.Configure.hotFix = hotfix;
-            BuildTargetGroup buildTargetGroup = GBuilderConfigure.Configure.buildTarget == BuildTarget.Android ? BuildTargetGroup.Android : GBuilderConfigure.Configure.buildTarget == BuildTarget.iOS ? BuildTargetGroup.iOS : BuildTargetGroup.Standalone;
+        EditorGUILayout.Separator();
+        GUIHelper.DrawToggle("HotFix",ref GBuilderConfigure.Configure.HotFix,(fix)=> {
+            BuildTargetGroup buildTargetGroup = GBuilderConfigure.Configure.AppBuildTarget == BuildTarget.Android ? BuildTargetGroup.Android : GBuilderConfigure.Configure.AppBuildTarget == BuildTarget.iOS ? BuildTargetGroup.iOS : BuildTargetGroup.Standalone;
             string oldDefineSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(buildTargetGroup).Trim();
             int hotfixindex = oldDefineSymbols.IndexOf("HOTFIX");
-            if (hotfixindex >= 0 && GBuilderConfigure.Configure.hotFix == false)
+            if (hotfixindex >= 0 && GBuilderConfigure.Configure.HotFix == false)
             {
                 string newDefineSymbols = "";
                 if (oldDefineSymbols.IndexOf(";HOTFIX;") >= 0)
@@ -213,50 +108,121 @@ public class GBuilderConfigureEditor : EditorWindow
                 };
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefineSymbols);
             }
-            else if (hotfixindex < 0 && GBuilderConfigure.Configure.hotFix)
+            else if (hotfixindex < 0 && GBuilderConfigure.Configure.HotFix)
             {
                 string newDefineSymbols = oldDefineSymbols + ";HOTFIX";
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefineSymbols);
             }
+        },30,"是否开启热更新");
+        
+        EditorGUILayout.Separator();
+        // appUpdate
+        GUIHelper.DrawToggle("AppUpdate", ref GBuilderConfigure.Configure.AppUpdate, null, 30, "是否更新大版本");
+        EditorGUILayout.Separator();
+        // publish
+        GUIHelper.DrawToggle("Release", ref GBuilderConfigure.Configure.Release, null, 30, "是否拷贝资源到发布目录");
+
+        EditorGUILayout.Separator();
+        
+        if (GUIHelper.DrawFold("ScenesInBuild", "Scenes In Build",80,"打包场景",true))
+        {
+            sceneListPos = GUILayout.BeginScrollView(sceneListPos,GUILayout.MaxHeight(200));
+            EditorGUILayout.BeginHorizontal();
+            GUIHelper.DrawToolbar("ShowScenesBar",new string[] {"HideAllScenes","ShowAllScenes" },0, (index) => {
+                if (index == 1)
+                {
+                    AddAllScenes(ref tempStringList);
+                }
+                if (index == 0)
+                {
+                    tempStringList.Clear();
+                }
+            });
+            EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.BeginVertical(GUILayout.MinHeight(100), GUILayout.MaxHeight(200));
+            if (GBuilderConfigure.Configure.Scenes.Count == 0 && tempStringList.Count==0)
+            {
+                GUILayout.FlexibleSpace();
+                GUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUILayout.Label("Drag and drop scene assets/folders here");
+                GUILayout.FlexibleSpace();
+                GUILayout.EndHorizontal();
+                GUILayout.FlexibleSpace();
+            }
+            else
+            {
+                for (int i = 0; i < GBuilderConfigure.Configure.Scenes.Count; i++)
+                {
+                    GUIHelper.DrawToggleLeft(GBuilderConfigure.Configure.Scenes[i], GBuilderConfigure.Configure.Scenes[i],true,(check) =>
+                    {
+                        if (check == false)
+                        {
+                            GBuilderConfigure.Configure.Scenes.RemoveAt(i);
+                        }
+                    });
+                }
+                for (int i = 0; i < tempStringList.Count; i++)
+                {
+                    if (!GBuilderConfigure.Configure.Scenes.Contains(tempStringList[i]))
+                    {
+                      GUIHelper.DrawToggleLeft(tempStringList[i], tempStringList[i],false, (check) =>
+                      {
+                          if (check == true)
+                          {
+                              GBuilderConfigure.Configure.Scenes.Add(tempStringList[i]);
+                          }
+                      });
+                    }
+                }
+            }
+            EditorGUILayout.EndVertical();
+            if (GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition))
+            {
+                if (uievent.type == EventType.DragUpdated || uievent.type == EventType.DragPerform)
+                {
+                    if (DragAndDrop.paths.Length > 0)
+                    {
+                        DragAndDrop.visualMode = DragAndDropVisualMode.Link;
+                    }
+                }
+                if (uievent.type == EventType.DragPerform)
+                {
+                    DragAndDrop.AcceptDrag();
+                    AddScenes(ref GBuilderConfigure.Configure.Scenes, DragAndDrop.paths);
+                    GBuilderConfigure.Save();
+                    Repaint();
+                }
+            }
+            GUILayout.EndScrollView();
         }
 
         EditorGUILayout.Separator();
-        // appUpdate
-        GBuilderConfigure.Configure.appUpdate = EditorGUILayout.ToggleLeft("appUpdate(是否更新大版本)",GBuilderConfigure.Configure.appUpdate);
-        EditorGUILayout.Separator();
-        // publish
-        GBuilderConfigure.Configure.publish = EditorGUILayout.ToggleLeft("publish(拷贝资源到发布目录)", GBuilderConfigure.Configure.publish);
-        EditorGUILayout.Separator();
-
-        GBuilderConfigure.Configure.options = (BuildOptions)EditorGUILayout.MaskField(new GUIContent("Build Options(打包app选项)"), (int)GBuilderConfigure.Configure.options, Enum.GetNames(typeof(BuildOptions)));
-      
+        GBuilderConfigure.Configure.Options = (BuildOptions)GUIHelper.DrawMaskField("Build Options:",(int)GBuilderConfigure.Configure.Options, typeof(BuildOptions));
 
         EditorGUILayout.Separator();
 
         if (GUILayout.Button("Save"))
         {
-            GBuilderConfigure.SaveBuildConfigure();
-            GBuilderConfigure.SavePlatformConfig();
+            GBuilderConfigure.Save();
         }
 
         if (GUILayout.Button("Build Asset Only"))
         {
-            GBuilderConfigure.SaveBuildConfigure();
-            GBuilderConfigure.SavePlatformConfig();
+            GBuilderConfigure.Save();
 
             if (!EditorUtility.DisplayDialog("Build Asset Only", "Are you sure to build asset only ?", "Yes", "No"))
             {
                 return;
             }
             JenkinsBuildAssetBundle.BuildAssetBundle();
-            GBuilderConfigure.SaveBuildConfigure();
-            GBuilderConfigure.SavePlatformConfig();
+            GBuilderConfigure.Save();
         }
 
         if (GUILayout.Button("Build App Only"))
         {
-            GBuilderConfigure.SaveBuildConfigure();
-            GBuilderConfigure.SavePlatformConfig();
+            GBuilderConfigure.Save();
             if (!EditorUtility.DisplayDialog("Build App Only", "Are you sure to build App only ?", "Yes", "No"))
             {
                 return;
@@ -266,8 +232,7 @@ public class GBuilderConfigureEditor : EditorWindow
 
         if (GUILayout.Button("Build Asset And App"))
         {
-            GBuilderConfigure.SaveBuildConfigure();
-            GBuilderConfigure.SavePlatformConfig();
+            GBuilderConfigure.Save();
             if (!EditorUtility.DisplayDialog("Build  Asset And App", "Are you sure to build asset and app?", "Yes", "No"))
             {
                 return;
@@ -276,6 +241,40 @@ public class GBuilderConfigureEditor : EditorWindow
         }
 
         EditorGUILayout.EndVertical();
+    }
+
+    private void AddAllScenes(ref List<string> list)
+    {
+        list.Clear();
+       string[] paths = FileHelper.FindAssets("t:Scene");
+        AddScenes(ref list, paths);
+    }
+
+    private void AddScenes(ref List<string> sceneSet_, string[] paths)
+    {
+        for (int i = 0; i < paths.Length; ++i)
+        {
+            string path = paths[i].Replace('\\', '/');
+
+            if (File.Exists(path))
+            {
+                Type type = AssetDatabase.GetMainAssetTypeAtPath(path);
+
+                if (type == typeof(SceneAsset))
+                {
+                   // string spath = AssetDatabase.AssetPathToGUID(path);
+                    if (!sceneSet_.Contains(path))
+                    {
+                        sceneSet_.Add(path);
+                        GUIHelper.RemoveCacheBoolState(path);
+                    }
+                }
+            }
+            else if (Directory.Exists(path))
+            {
+                AddScenes(ref sceneSet_,Directory.GetFiles(path, "*.*", SearchOption.AllDirectories));
+            }
+        }
     }
 
     private void OnDestroy()

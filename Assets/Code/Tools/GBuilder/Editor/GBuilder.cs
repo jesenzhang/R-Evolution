@@ -40,14 +40,14 @@ public class GBuilder
         }
         try
             {
-                if (GBuilderConfigure.Configure.buildTarget == BuildTarget.Android || GBuilderConfigure.Configure.buildTarget == BuildTarget.iOS || GBuilderConfigure.Configure.buildTarget == BuildTarget.StandaloneWindows64)
+                if (GBuilderConfigure.Configure.AppBuildTarget == BuildTarget.Android || GBuilderConfigure.Configure.AppBuildTarget == BuildTarget.iOS || GBuilderConfigure.Configure.AppBuildTarget == BuildTarget.StandaloneWindows64)
                 {
                     string oldvesion = PlayerSettings.bundleVersion;
                     List<string> scenes;
-                    string build_location = GBuilderConfigure.Configure.build_location;
-                    string report_location = GBuilderConfigure.Configure.report_location;
-                    string appName = GBuilderConfigure.Configure.appName;
-                    switch (GBuilderConfigure.Configure.buildTarget)
+                    string build_location = GBuilderConfigure.Configure.BuildPath;
+                    string report_location = GBuilderConfigure.Configure.ReportPath;
+                    string appName = GBuilderConfigure.Configure.AppName;
+                    switch (GBuilderConfigure.Configure.AppBuildTarget)
                     {
                         case BuildTarget.Android:
                         {
@@ -76,13 +76,11 @@ public class GBuilder
                     //随包场景
                     scenes = new List<string>() { "Assets/Scene/Scene_Start.unity", "Assets/Scene/Scene_Switch.unity" };
                     foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes) scene.enabled = false;
-
-                    GBuilderConfigure.Configure.GenPublishVersion();
-                    PlayerSettings.bundleVersion = GBuilderConfigure.Configure.publishVersion;
+                    PlayerSettings.bundleVersion = GBuilderConfigure.Configure.PublishVersion;
                     buildPlayerOptions.scenes = scenes.ToArray();
                     buildPlayerOptions.locationPathName = build_location;
-                    buildPlayerOptions.target = GBuilderConfigure.Configure.buildTarget;
-                    buildPlayerOptions.options = GBuilderConfigure.Configure.options;
+                    buildPlayerOptions.target = GBuilderConfigure.Configure.AppBuildTarget;
+                    buildPlayerOptions.options = GBuilderConfigure.Configure.Options;
 
                     BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
                     BuildResult ret = report.summary.result;
@@ -90,7 +88,7 @@ public class GBuilder
                     if (ret == BuildResult.Succeeded)
                     {
                         JenkinsBuildAssetBundle.SaveConfigure();
-                        if (GBuilderConfigure.Configure.publish)
+                        if (GBuilderConfigure.Configure.Release)
                             JenkinsBuildAssetBundle.CopyResAppToSharePath();
                     }
                     else

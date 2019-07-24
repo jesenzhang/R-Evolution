@@ -2,12 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
 public static class PathHelper
 {
-    public static string GetPlatformPath(string head,BuildTarget buildTarget,string tail)
+    public static string ProjectPath
+    {
+        get
+        {
+            return Application.dataPath+"/../";
+        }
+    }
+    public static string ProjectPathAppend(string tail)
+    {
+        return string.Format("{0}/../{1}", Application.dataPath, tail);
+    }
+    public static string ProjectPlatformPath(string head, BuildTarget buildTarget, string tail = "")
+    {
+        return GetPlatformPath(ProjectPathAppend(head), buildTarget, tail);
+    }
+
+    public static string GetPlatformPath(string head,BuildTarget buildTarget,string tail="")
     {
         string rootPath = head;
         if (buildTarget != BuildTarget.NoTarget)
@@ -24,5 +41,22 @@ public static class PathHelper
             return  rootPath;
         }
         return string.Format("{0}/{1}", rootPath, tail);
+    }
+
+    private static List<string> GetSceneAssetPaths()
+    {
+        var scenePaths = AssetDatabase.GetAllAssetPaths().Where(path =>
+        {
+            Type type = AssetDatabase.GetMainAssetTypeAtPath(path);
+
+            if (type == typeof(SceneAsset))
+            {
+                return true;
+            }
+
+            return false;
+        });
+
+        return new List<string>(scenePaths);
     }
 }

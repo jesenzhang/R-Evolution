@@ -118,10 +118,10 @@ public class JenkinsBuildAssetBundle
         GBuilderConfigure config = GBuilderConfigure.Configure;
         if (config!=null)
         {
-            BuildTarget target = config.buildTarget;
+            BuildTarget target = config.AppBuildTarget;
             bool result = true;
-            m_SvnVersion = config.svnVersion.ToString();
-            int nVer = config.resVersion;
+            m_SvnVersion = config.SvnVersion.ToString();
+            int nVer = config.ResVersion;
             if (nVer == -1)
             {
                 m_LastAbVersion = "-1";
@@ -132,25 +132,25 @@ public class JenkinsBuildAssetBundle
                 m_LastAbVersion = nVer.ToString();
                 m_CurrAbVersion = (nVer + 1).ToString();
             }
-            m_AppURL = config.appURL;
-            m_ResURL = config.resURL;
-            m_AppUpdate = config.appUpdate;
+            m_AppURL = config.AppServerURL;
+            m_ResURL = config.ResServerURL;
+            m_AppUpdate = config.AppUpdate;
             bool isSame = CompareCodeSign(target);
-            if (config.codeVersion == -1)
+            if (config.CodeVersion == -1)
             {
                 m_AppVersion = "100";
             }
             else
             {
-                m_AppVersion = config.codeVersion.ToString();
+                m_AppVersion = config.CodeVersion.ToString();
                 if (!isSame && m_AppUpdate)
                 {
-                    m_AppVersion = (config.codeVersion + 1).ToString();
+                    m_AppVersion = (config.CodeVersion + 1).ToString();
                 }
             }
            
             ClearAssetBundles();
-            result = BuildAssetBundle(target, config.bundlePath);
+            result = BuildAssetBundle(target, config.BundlePath);
             if (!result) { return result; }
             UpdateAssetBundleVersion(target);
             CopyAssetBundles(target);
@@ -165,10 +165,10 @@ public class JenkinsBuildAssetBundle
     public static void SaveConfigure()
     {
         GBuilderConfigure config = GBuilderConfigure.Configure;
-        config.parentResVersion = int.Parse(m_LastAbVersion);
-        config.resVersion = int.Parse(m_CurrAbVersion);
-        config.codeVersion = int.Parse(m_AppVersion);
-        GBuilderConfigure.SaveBuildConfigure();
+        config.ParentResVersion = int.Parse(m_LastAbVersion);
+        config.ResVersion = int.Parse(m_CurrAbVersion);
+        config.CodeVersion = int.Parse(m_AppVersion);
+        GBuilderConfigure.Save();
     }
     #endregion
     public static string[] GetPlatformCodeList(BuildTarget buildTarget)
@@ -628,7 +628,7 @@ public class JenkinsBuildAssetBundle
     public static void CopyResAppToSharePath()
     {
         string targetDir = string.Empty;
-        BuildTarget buildTarget = GBuilderConfigure.Configure.buildTarget;
+        BuildTarget buildTarget = GBuilderConfigure.Configure.AppBuildTarget;
         if (buildTarget == BuildTarget.iOS)
         {
             targetDir = "iOS";
@@ -641,12 +641,12 @@ public class JenkinsBuildAssetBundle
         {
             targetDir = "Windows";
         }
-        string version = GBuilderConfigure.Configure.resVersion.ToString();
-        string packageName = GetAppName(GBuilderConfigure.Configure.buildTarget, GBuilderConfigure.Configure.codeVersion.ToString(), GBuilderConfigure.Configure.resVersion.ToString());
-        string resSrc = string.Format("{0}/{1}/{2}", GBuilderConfigure.Configure.bundlePath, targetDir, version);
-        string resDst = string.Format("{0}/{1}/{2}", GBuilderConfigure.Configure.resExportPath, targetDir, version);
-        string packageSrc = string.Format("{0}/Build/{1}", GBuilderConfigure.Configure.projectPath, packageName);
-        string packageDst = string.Format("{0}/{1}/{2}", GBuilderConfigure.Configure.packageExportPath, targetDir, packageName);
+        string version = GBuilderConfigure.Configure.ResVersion.ToString();
+        string packageName = GetAppName(GBuilderConfigure.Configure.AppBuildTarget, GBuilderConfigure.Configure.CodeVersion.ToString(), GBuilderConfigure.Configure.ResVersion.ToString());
+        string resSrc = string.Format("{0}/{1}/{2}", GBuilderConfigure.Configure.BundlePath, targetDir, version);
+        string resDst = string.Format("{0}/{1}/{2}", GBuilderConfigure.Configure.ResReleasePath, targetDir, version);
+        string packageSrc = string.Format("{0}/Build/{1}", GBuilderConfigure.Configure.ProjectPath, packageName);
+        string packageDst = string.Format("{0}/{1}/{2}", GBuilderConfigure.Configure.AppReleasePath, targetDir, packageName);
         
         CopyFiles(resSrc, resDst, null);
       

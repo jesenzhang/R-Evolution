@@ -26,11 +26,11 @@ public class BaseConfigure<T> where T : BaseConfigure<T>
     public static BuildTarget CurrentBuildTarget
     {
         get {
-            if (configure.IsValidBuildTarget(currentTarget))
+            if (Configure.IsValidBuildTarget(currentTarget))
             {
                 return currentTarget;
             }
-            BuildTarget[] buildTargets = configure.SupportBuildTargets();
+            BuildTarget[] buildTargets = Configure.SupportBuildTargets();
             if (buildTargets != null && buildTargets.Length>=1)
             {
                 currentTarget = buildTargets[0];
@@ -41,10 +41,16 @@ public class BaseConfigure<T> where T : BaseConfigure<T>
 
         set
         {
-            if (configure.IsValidBuildTarget(currentTarget))
-                currentTarget = value;
-            else
-                Debug.LogError("Not Valid BuildTarget");
+            if (currentTarget != value)
+            {
+                if (configure.IsValidBuildTarget(value))
+                {
+                    currentTarget = value;
+                    configure.ReadConfigure(currentTarget);
+                }
+                else
+                    Debug.LogError("Not Valid BuildTarget");
+            }
         }
     }
 
@@ -57,24 +63,19 @@ public class BaseConfigure<T> where T : BaseConfigure<T>
 
     private bool IsValidBuildTarget(BuildTarget buildTarget)
     {
-        if (buildTarget != BuildTarget.NoTarget)
+        BuildTarget[] buildTargets = SupportBuildTargets();
+        if (buildTargets != null)
         {
-            BuildTarget[] buildTargets = SupportBuildTargets();
-            if (buildTargets != null)
+            for (int i = 0; i < buildTargets.Length; i++)
             {
-                for (int i = 0; i < buildTargets.Length; i++)
+                if (buildTargets[i] == buildTarget)
                 {
-                    if (buildTargets[i] == buildTarget)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
-            return false;
         }
-        return true;
+        return false;
     }
-
     public virtual string ConfigureFileName()
     {
         string classname = typeof(T).Name;

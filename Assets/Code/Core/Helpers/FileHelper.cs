@@ -9,31 +9,47 @@ using UnityEngine;
 public class FileHelper
 {
     static List<string> ResultList = new List<string>();
+
     //找出所有文件夹全目录下的资源路径  AssetDatabase.FindAssets
-    public string[] FindAssets(string filter, string[] searchInFolders)
+    public static string[] FindAssets(string filter, string[] searchInFolders = null)
     {
-        foreach (var p in searchInFolders)
+        ResultList.Clear();
+        string[] guids = null;
+        if (searchInFolders != null)
         {
-            if (System.IO.Directory.Exists(p) == false)
+            foreach (var p in searchInFolders)
             {
-                System.IO.Directory.CreateDirectory(p);
+                if (System.IO.Directory.Exists(p))
+                {
+                     guids = AssetDatabase.FindAssets(filter, searchInFolders);
+                }
+                else
+                {
+                    Debug.LogFormat("Find Asset Directory {0} is not exist! ", p);
+                }
             }
         }
-        string[] guids = AssetDatabase.FindAssets(filter, searchInFolders);
-        string[] paths = new string[guids.Length];
-        List<string> outPaths = new List<string>();
-        for (int i = 0; i < guids.Length; ++i)
+        else
         {
-            string temppath = AssetDatabase.GUIDToAssetPath(guids[i]);
-            if (File.Exists(temppath) && !outPaths.Contains(temppath))
+             guids = AssetDatabase.FindAssets(filter);
+        }
+        if (guids != null)
+        {
+            string[] paths = new string[guids.Length];
+            for (int i = 0; i < guids.Length; ++i)
             {
-                outPaths.Add(temppath);
+                string temppath = AssetDatabase.GUIDToAssetPath(guids[i]);
+                temppath = temppath.Replace("\\", "/");
+                if (File.Exists(temppath) && !ResultList.Contains(temppath))
+                {
+                    ResultList.Add(temppath);
+                }
             }
         }
-        return outPaths.ToArray();
+        return ResultList.ToArray();
     }
 
-
+  
     /// <summary>
     /// 找出目录下的所有子目录
     /// </summary>
@@ -118,7 +134,6 @@ public class FileHelper
         }
         return path.Substring(index + 1, path.Length - index - 1);
     }
-    
 
     public static string SystemPathToAssetPath(string systemPath)
     {
