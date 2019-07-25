@@ -113,14 +113,15 @@ public class GBuilderConfigureEditor : EditorWindow
                 string newDefineSymbols = oldDefineSymbols + ";HOTFIX";
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(buildTargetGroup, newDefineSymbols);
             }
-        },30,"是否开启热更新");
-        
+        },80,"是否开启热更新");
         EditorGUILayout.Separator();
         // appUpdate
-        GUIHelper.DrawToggle("AppUpdate", ref GBuilderConfigure.Configure.AppUpdate, null, 30, "是否更新大版本");
+        GUIHelper.DrawToggle("AppUpdate", ref GBuilderConfigure.Configure.AppUpdate, null, 80, "是否更新大版本");
+        EditorGUILayout.Separator();
+        GUIHelper.DrawToggle("BuildAppX86", ref GBuilderConfigure.Configure.BuildAppX86, null, 80, "是否支持X86(关闭可以加快生成速度)");
         EditorGUILayout.Separator();
         // publish
-        GUIHelper.DrawToggle("Release", ref GBuilderConfigure.Configure.Release, null, 30, "是否拷贝资源到发布目录");
+        GUIHelper.DrawToggle("PublishRes", ref GBuilderConfigure.Configure.PublishRes, null, 80, "是否拷贝资源到发布目录");
 
         EditorGUILayout.Separator();
         
@@ -227,7 +228,7 @@ public class GBuilderConfigureEditor : EditorWindow
             {
                 return;
             }
-            GBuilder.BuildAppByConfigure();
+            GBuilder.BuildPlayer();
         }
 
         if (GUILayout.Button("Build Asset And App"))

@@ -16,7 +16,7 @@ public class CmdHelper
     /// </summary>
     /// <param name="toolPath"></param>
     /// <param name="arguments"></param>
-    public static void ExcuteProcess(string toolPath, string arguments,bool useMono = false)
+    public static bool ExcuteProcess(string toolPath, string arguments,bool useMono = false)
     {
         using (Process p = new Process())
         {
@@ -41,7 +41,15 @@ public class CmdHelper
             //p.StandardOutput.ReadToEnd();
             p.WaitForExit();//等待程序执行完退出进程
             p.Close();
+            return p.ExitCode == 0;
         }
+    }
+
+    private static bool ExecuteCommand(string commandName, string commandParams)
+    {
+        var process = Process.Start(commandName, commandParams);
+        process.WaitForExit();
+        return process.ExitCode == 0;
     }
 
     private static string ProcCmd(bool showWindows, params string[] cmd)

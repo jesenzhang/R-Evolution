@@ -70,7 +70,8 @@ public class FileHelper
                 bool strip = false;
                 foreach (var ext in stripDirKeys)
                 {
-                    if (childdir.Contains(ext))
+                   string dir = childdir + "/";
+                    if (dir.Contains(ext))
                     {
                         strip = true;
                         break;
@@ -92,20 +93,32 @@ public class FileHelper
     /// <param name="fileExtlist">要找的文件扩展名类型数组</param>
     /// <param name="searchOption">搜索目录范围</param>
     /// <returns></returns>
-    public static string[] GetFiles(string path, string[] fileExtlist, SearchOption searchOption = SearchOption.TopDirectoryOnly)
+    public static string[] GetFiles(string path, string[] fileExtlist, bool strip = false, SearchOption searchOption = SearchOption.TopDirectoryOnly)
     {
        string[] files = System.IO.Directory.GetFiles(path, "*", searchOption);
         ResultList.Clear();
         foreach (var file in files)
         {
             string afile = file.Replace("\\", "/");
+            bool next = false;
             foreach (var ext in fileExtlist)
             {
-                if (afile.EndsWith(ext))
+                if (afile.EndsWith(ext) || ext == "*")
                 {
-                    ResultList.Add(afile);
+                    if (strip)
+                    {
+                        next = true;
+                        break;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
+            if (next)
+                continue;
+            ResultList.Add(afile);
         }
         return ResultList.ToArray();
     }
@@ -239,5 +252,12 @@ public class FileHelper
             Debug.LogError("SearchFilesFilter error : " + e.Message);
             return null;
         }
+    }
+
+    public static void Rename(string oldpath,string newpath)
+    {
+        // 改名方法
+        FileInfo fi = new FileInfo(oldpath); //xx/xx/aa.rar
+        fi.MoveTo(newpath); //xx/xx/xx.rar
     }
 }

@@ -60,8 +60,9 @@ public class GBuilderConfigure : BaseConfigure<GBuilderConfigure>
     //是否进行大版本更新
     public bool AppUpdate;
     //是否拷贝app res 到发布目录
-    public bool Release = true;
-
+    public bool PublishRes = true;
+    //是否支持X86(关闭可以加快生成速度)
+    public bool BuildAppX86 = true;      
     public BuildOptions Options;
     //应用名
     public string AppName = string.Empty;

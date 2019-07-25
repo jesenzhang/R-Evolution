@@ -61,7 +61,7 @@ public class BaseConfigure<T> where T : BaseConfigure<T>
         return DefaultTargets;
     }
 
-    private bool IsValidBuildTarget(BuildTarget buildTarget)
+    public bool IsValidBuildTarget(BuildTarget buildTarget)
     {
         BuildTarget[] buildTargets = SupportBuildTargets();
         if (buildTargets != null)

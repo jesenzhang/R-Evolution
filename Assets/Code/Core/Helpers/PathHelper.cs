@@ -12,7 +12,7 @@ public static class PathHelper
     {
         get
         {
-            return Application.dataPath+"/../";
+            return Application.dataPath + "/../";
         }
     }
     public static string ProjectPathAppend(string tail)
@@ -24,7 +24,7 @@ public static class PathHelper
         return GetPlatformPath(ProjectPathAppend(head), buildTarget, tail);
     }
 
-    public static string GetPlatformPath(string head,BuildTarget buildTarget,string tail="")
+    public static string GetPlatformPath(string head, BuildTarget buildTarget, string tail = "")
     {
         string rootPath = head;
         if (buildTarget != BuildTarget.NoTarget)
@@ -38,7 +38,7 @@ public static class PathHelper
         }
         if (tail == string.Empty || tail == "")
         {
-            return  rootPath;
+            return rootPath;
         }
         return string.Format("{0}/{1}", rootPath, tail);
     }
@@ -58,5 +58,37 @@ public static class PathHelper
         });
 
         return new List<string>(scenePaths);
+    }
+
+    public static string GetAppPlatformExt(BuildTarget buildTarget)
+    {
+        switch (buildTarget)
+        {
+            case BuildTarget.Android:
+                {
+                    return ".apk";
+                }
+            case BuildTarget.iOS:
+                {
+                    return ".ipa";
+                }
+            case BuildTarget.StandaloneWindows:
+            case BuildTarget.StandaloneWindows64:
+                {
+                    return ".exe";
+                }
+            default:
+                return "";
+        }
+    }
+
+    public static void ClearPath(string filePath)
+    {
+        if (Directory.Exists(filePath)) Directory.Delete(filePath, true);
+    }
+
+    public static string Combine(params string[] paths)
+    {
+       return Path.Combine(paths);
     }
 }

@@ -408,7 +408,7 @@ public class GUIHelper
         {
             value = cacheBoolState[key];
         }
-        cacheBoolState[key] = uIStyle == null ? EditorGUILayout.Toggle( value, option) : EditorGUILayout.Toggle(value, uIStyle, option);
+        cacheBoolState[key] = uIStyle == null ? EditorGUILayout.Toggle(value, option) : EditorGUILayout.Toggle(value, uIStyle, option);
         if (value != cacheBoolState[key])
         {
             onClick?.Invoke(cacheBoolState[key]);
@@ -431,7 +431,7 @@ public class GUIHelper
         }
         GUILayout.EndHorizontal();
     }
-    public static void DrawToggleLeft(string key, string title, bool defaultValue = false, OnCheckChanged onClick = null, int titleWidth = 80, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    public static void DrawToggleLeft(string key, string title, bool defaultValue = false, OnCheckChanged onClick = null, int toggleWidth = 20, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
     {
         GUILayout.BeginHorizontal();
         TempContent.text = title;
@@ -445,8 +445,8 @@ public class GUIHelper
         {
             value = cacheBoolState[key];
         }
-        cacheBoolState[key] = uIStyle == null ? EditorGUILayout.Toggle(value, option) : EditorGUILayout.Toggle(value, uIStyle, option);
-        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        cacheBoolState[key] = uIStyle == null ? EditorGUILayout.Toggle(value, GUILayout.MaxWidth(toggleWidth)) : EditorGUILayout.Toggle(value, uIStyle, GUILayout.MaxWidth(toggleWidth));
+        EditorGUILayout.LabelField(TempContent, option);
         if (value != cacheBoolState[key])
         {
             onClick?.Invoke(cacheBoolState[key]);
@@ -455,13 +455,13 @@ public class GUIHelper
         GUILayout.EndHorizontal();
     }
 
-    public static void DrawToggleLeft(string title, ref bool value, OnCheckChanged onClick = null, int titleWidth = 80, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
+    public static void DrawToggleLeft(string title, ref bool value, OnCheckChanged onClick = null, int toggleWidth = 20, string tooltip = "", GUIStyle uIStyle = null, params GUILayoutOption[] option)
     {
         GUILayout.BeginHorizontal();
         TempContent.text = title;
         TempContent.tooltip = tooltip;
-        bool nvalue = uIStyle == null ? EditorGUILayout.Toggle(value, option) : EditorGUILayout.Toggle(value, uIStyle, option);
-        EditorGUILayout.LabelField(TempContent, GUILayout.MaxWidth(titleWidth));
+        bool nvalue = uIStyle == null ? EditorGUILayout.Toggle(value, GUILayout.MaxWidth(toggleWidth)) : EditorGUILayout.Toggle(value, uIStyle, GUILayout.MaxWidth(toggleWidth));
+        EditorGUILayout.LabelField(TempContent, option );
         if (value != nvalue)
         {
             value = nvalue;
