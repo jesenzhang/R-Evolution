@@ -93,14 +93,14 @@ public class FileHelper
     /// <param name="fileExtlist">要找的文件扩展名类型数组</param>
     /// <param name="searchOption">搜索目录范围</param>
     /// <returns></returns>
-    public static string[] GetFiles(string path, string[] fileExtlist, bool strip = false, SearchOption searchOption = SearchOption.TopDirectoryOnly)
+    public static string[] GetFiles(string path, string[] fileExtlist,SearchOption searchOption = SearchOption.TopDirectoryOnly,bool strip = false)
     {
        string[] files = System.IO.Directory.GetFiles(path, "*", searchOption);
         ResultList.Clear();
         foreach (var file in files)
         {
             string afile = file.Replace("\\", "/");
-            bool next = false;
+            bool next = true;
             foreach (var ext in fileExtlist)
             {
                 if (afile.EndsWith(ext) || ext == "*")
@@ -112,6 +112,7 @@ public class FileHelper
                     }
                     else
                     {
+                        next = false;
                         break;
                     }
                 }

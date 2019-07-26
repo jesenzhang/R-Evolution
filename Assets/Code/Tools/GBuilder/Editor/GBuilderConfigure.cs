@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GFramework.Core;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class GBuilderConfigure : BaseConfigure<GBuilderConfigure>
     //打包工程目录
     public string ProjectPath;
     //资源打包的存放路径
-    public string BundlePath;
+    public string LocalBundlePath;
     //打包工作目录
     public string BuildPath = string.Empty; 
     //编译报告生成路径
@@ -52,7 +53,7 @@ public class GBuilderConfigure : BaseConfigure<GBuilderConfigure>
     {
         get
         {
-               return string.Format("{0}.{1}.{2}", VersionPrefix, CodeVersion, ResVersion);
+               return string.Format("{0}.{1}.{2}.{3}", VersionPrefix, CodeVersion, ResVersion,SvnVersion);
         }
     }
     //是否热更新
@@ -76,6 +77,8 @@ public class GBuilderConfigure : BaseConfigure<GBuilderConfigure>
         return supportBuildTargets;
     }
 
+    public Triple<string, string[], string[]>[] CodeCheckRules;
 
-   
+
+
 }

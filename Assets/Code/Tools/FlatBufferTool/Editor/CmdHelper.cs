@@ -40,7 +40,7 @@ public class CmdHelper
             //获取输出信息
             //p.StandardOutput.ReadToEnd();
             p.WaitForExit();//等待程序执行完退出进程
-            p.Close();
+           // p.Close();
             return p.ExitCode == 0;
         }
     }

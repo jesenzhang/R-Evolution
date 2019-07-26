@@ -6,6 +6,7 @@ using System;
 using UnityEditor.Build.Reporting;
 using System.IO;
 using System.Text;
+using GFramework.Core;
 
 /// <summary>
 ///   Builder unity相关的函数调用。供给给外部使用
@@ -26,21 +27,148 @@ public class GBuilder
         }
         if (GBuilderConfigure.Configure != null)
         {
-            //  if (JenkinsBuildAssetBundle.BuildAssetBundle())
-            {
-                BuildPlayer();
-            }
+            Build();
         }
     }
 
 
-
+    #region 变量
     private static BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
     //打包开始时间
     private static string mBuildBeginTime;
+    //导出的app名
+    private static string PublishAppName()
+    {
+        BuildTarget mBuildTarget = GBuilderConfigure.Configure.AppBuildTarget;
+        string appName = GBuilderConfigure.Configure.AppName;
+        int prefix = GBuilderConfigure.Configure.VersionPrefix;
+        int codev = GBuilderConfigure.Configure.CodeVersion;
+        int resv = GBuilderConfigure.Configure.ResVersion;
+        int svnv = GBuilderConfigure.Configure.SvnVersion;
+        return string.Format("{0}_{1}_{2}_{3}_{4}_{5}{6}", appName, prefix, codev, resv, svnv, mBuildBeginTime, PathHelper.GetAppPlatformExt(mBuildTarget));
+    }
 
+    //bundle生成目录下的当前资源版本的版本文件路径
+    private static string LocalBundleVersionFilePath()
+    {
+        string bundlePath = GBuilderConfigure.Configure.LocalBundlePath;
+        int resv = GBuilderConfigure.Configure.ResVersion;
+        string resPath = PathHelper.Combine(bundlePath, resv.ToString());
+        string mVersionPath = PathHelper.Combine(resPath, "version.txt");
+        return mVersionPath;
+    }
 
-    public static void BuildPlayer()
+    //bundle生成目录下的代码签名文件路径
+    private static string LocalBundleCodeSignFilePath()
+    {
+        string bundlePath = GBuilderConfigure.Configure.LocalBundlePath;
+        string mVersionPath = PathHelper.Combine(bundlePath, "codesign.txt");
+        return mVersionPath;
+    }
+
+    //bundle生成目录下的代码签名文件对比路径
+    private static string LocalBundleCodeSignReportPath()
+    {
+        string bundlePath = GBuilderConfigure.Configure.LocalBundlePath;
+        string mVersionPath = PathHelper.Combine(bundlePath, "CodeSignReport");
+        return mVersionPath;
+    }
+
+    //bundle生成目录下的当前资源版本的assetBundle文件夹路径
+    private static string LocalBundleVersionBundleDataPath()
+    {
+        string bundlePath = GBuilderConfigure.Configure.LocalBundlePath;
+        int resv = GBuilderConfigure.Configure.ResVersion;
+        string resPath = PathHelper.Combine(bundlePath, resv.ToString());
+        string mBundlePath = PathHelper.Combine(resPath, "BundleData");
+        return mBundlePath;
+    }
+
+    //本地生成的App路径
+    private static string LocalBuildAppPath()
+    {
+        BuildTarget mBuildTarget = GBuilderConfigure.Configure.AppBuildTarget;
+        string buildPath = GBuilderConfigure.Configure.BuildPath;
+        string appName = GBuilderConfigure.Configure.AppName;
+        string appPath = PathHelper.Combine(buildPath, appName, PathHelper.GetAppPlatformExt(mBuildTarget));
+        return appPath;
+    }
+
+    //当前版本的资源包的发布路径
+    private static string VersionResPublishPath()
+    {
+        string resURL = GBuilderConfigure.Configure.ResServerURL;
+        int resv = GBuilderConfigure.Configure.ResVersion;
+        string resPublishPath = PathHelper.Combine(resURL, resv.ToString());
+        return resPublishPath;
+    }
+
+    //当前版本的app的发布路径
+    private static string VersionAppPublishPath()
+    {
+        string appURL = GBuilderConfigure.Configure.AppServerURL;
+        string appPublishPath = PathHelper.Combine(appURL, PublishAppName());
+        return appPublishPath;
+    }
+
+    #endregion
+     
+    #region 打包流程
+
+    //总入口
+    public static void Build()
+    { 
+        //保留原版本号
+        string oldvesion = PlayerSettings.bundleVersion;
+        bool ret = BuildBundle();
+        if (ret)
+        {
+            ret = BuildPlayer();
+        }
+        if (ret)
+        {
+            //成功写入版本号文件
+            WriteVersionFile();
+            //保存配置文件
+            GBuilderConfigure.Save();
+        }
+        //发布资源
+        PublishPackage(ret);
+
+        //判断编译结果
+        RevertVersion(ret, oldvesion);
+    }
+
+    //打包bundle
+    private static bool BuildBundle()
+    {
+        try
+        {
+            //资源打包成功更资源新版本号
+            UpdateVersion();
+        }
+        catch {
+        }
+        finally {
+        }
+        return true;
+    }
+
+    //更新配置变量的资源版本号
+    private static void UpdateVersion()
+    {
+        GBuilderConfigure.Configure.ParentResVersion = GBuilderConfigure.Configure.ResVersion;
+        GBuilderConfigure.Configure.ResVersion += 1;
+    }
+
+    //更新代码版本
+    private static void UpdateCodeVersion()
+    {
+        BuildCodeSign(LocalBundleCodeSignFilePath(), LocalBundleCodeSignReportPath(), GBuilderConfigure.Configure.CodeCheckRules, ref GBuilderConfigure.Configure.CodeVersion, GBuilderConfigure.Configure.AppUpdate);
+    }
+
+    //打包App
+    public static bool BuildPlayer()
     {
         mBuildBeginTime = DateTime.Now.ToString("yyyy_MM_dd_HH_mm");
         BuildTarget mBuildTarget = GBuilderConfigure.Configure.AppBuildTarget;
@@ -48,8 +176,8 @@ public class GBuilder
         {
             if (GBuilderConfigure.Configure.IsValidBuildTarget(mBuildTarget))
             {
-                //保留原版本号
-                string oldvesion = PlayerSettings.bundleVersion;
+                //更新代码codeversion
+                UpdateCodeVersion();
                 //不带后缀的应用名
                 string appName = GBuilderConfigure.Configure.AppName;
                 //build生成位置 android是apk路径 ios是导出xcode的目录 windows是exe路径
@@ -74,51 +202,44 @@ public class GBuilder
                 BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
                 BuildResult ret = report.summary.result;
                 //编译成功或失败
-                bool mPlayerBuildSuccess = report != null && ret == BuildResult.Succeeded;
+                bool mPlayerBuildSuccess = (report != null && ret == BuildResult.Succeeded);
                 //编译报告写入
                 WriteReport(report, report_location);
-                //判断编译结果
-                if (mPlayerBuildSuccess)
-                {
-                    CompileXCode(mPlayerBuildSuccess,mBuildTarget,appName);
-                    JenkinsBuildAssetBundle.SaveConfigure();
-                    if (GBuilderConfigure.Configure.PublishRes)
-                        JenkinsBuildAssetBundle.CopyResAppToSharePath();
-                }
-                else
-                { 
-                    //打包失败 回滚 版本号
-                    PlayerSettings.bundleVersion = oldvesion;
-                    throw new Exception("BuildPlayer Failed");
-                }
+                //编译xcode
+                CompileXCode(ref mPlayerBuildSuccess);
+                return mPlayerBuildSuccess;
             }
             else
             {
                 Debug.LogError("Not Support BuildTarget");
+                return false;
             }
         }
         catch (Exception e)
         {
             Debug.LogError(e.Message + "\n" + e.StackTrace);
+            return false;
         }
     }
 
-    private static void BuildCodeSign(string mCodeSignPath, string[] codePaths)
-    {      
-        //找出当前目标平台所有需要检查的代码
-        string[] dirfilter = new string[] { "/Editor/",".."};
-        string[] fileTypes = new string[] { ".cs", ".dll"};
+    //生成代码md5列表
+    private static void BuildCodeSign(string mCodeSignPath,string reportPath,Triple<string, string[], string[]>[] codePathTypes ,ref int codeVersion,bool upadteCodeVer = true)
+    {
         var codesigns = new Dictionary<string, string>();
-        foreach (var dir in codePaths)
+        //找出当前目标平台所有需要检查的代码 
+        foreach (var trip in codePathTypes)
         {
-            string[] dirs = FileHelper.GetDirectorys(dir, dirfilter);
+            string dir = trip.first;
+            string[] dirfilter = trip.second;
+            string[] fileTypes = trip.third;
+            string[] dirs = FileHelper.GetDirectorys(dir, dirfilter, SearchOption.AllDirectories);
             foreach (var filePath in dirs)
             {
-                string[] files  = FileHelper.GetFiles(filePath, fileTypes);
+                string[] files = FileHelper.GetFiles(filePath, fileTypes, SearchOption.AllDirectories, false);
                 foreach (var file in files)
                 {
                     //计算hash 加入字典
-                    string hash =  HashHelper.HashToString(HashHelper.CalculateMD5(File.ReadAllBytes(file)));
+                    string hash = HashHelper.HashToString(HashHelper.CalculateMD5(File.ReadAllBytes(file)));
                     codesigns.Add(file, hash);
                 }
             }
@@ -130,7 +251,7 @@ public class GBuilder
             while (reader != null && !reader.EndOfStream)
             {
                 string[] sp = reader.ReadLine().Split(new string[] { "===" }, StringSplitOptions.None);
-                oldcodesigns.Add(sp[1], sp[0]);
+                oldcodesigns.Add(sp[0],sp[1]);
             }
             reader.Close();
         }
@@ -138,11 +259,9 @@ public class GBuilder
         //检查代码签名是否一致,不一致更新版本号
         List<string> adds = new List<string>(), removes = new List<string>(), modifies = new List<string>();
         //检查变更或者删除列表
-        foreach (var code in codesigns)
+        foreach (var code in oldcodesigns)
         {
-            string codesign = null;
-            commoncodes.TryGetValue(code.Key, out codesign);
-            if (string.IsNullOrEmpty(codesign)) platformcodes.TryGetValue(code.Key, out codesign);
+            codesigns.TryGetValue(code.Key, out string codesign);
             if (string.IsNullOrEmpty(codesign))
             {
                 //代码被删除了
@@ -155,33 +274,36 @@ public class GBuilder
             }
         }
         //检查新增列表
-        foreach (var code in commoncodes) if (!codesigns.ContainsKey(code.Key)) adds.Add(code.Key);
-        foreach (var code in platformcodes) if (!codesigns.ContainsKey(code.Key)) adds.Add(code.Key);
-
+        foreach (var code in codesigns) if (!oldcodesigns.ContainsKey(code.Key)) adds.Add(code.Key);
+        //发生变化 
         if (adds.Count != 0 || removes.Count != 0 || modifies.Count != 0)
         {
             //生成签名文件
             using (var writer = new StreamWriter(mCodeSignPath, false))
             {
-                foreach (var code in commoncodes) writer.WriteLine(string.Format("{0}==={1}", code.Value, code.Key));
-                foreach (var code in platformcodes) writer.WriteLine(string.Format("{0}==={1}", code.Value, code.Key));
+                foreach (var code in codesigns) writer.WriteLine(string.Format("{0}==={1}", code.Value, code.Key));
                 writer.Close();
             }
-            if (codesigns.Count != 0)
+            if (upadteCodeVer)
             {
-                //生成对比文件
-                using (var writer = new StreamWriter(string.Format("{0}/codesign_{1}_to_{2}.txt", mComparePath, mAppVersion, mAppVersion + 1, false)))
+                if (codesigns.Count != 0)
                 {
-                    foreach (var file in adds) writer.WriteLine(string.Format("a {0}", file));
-                    foreach (var file in removes) writer.WriteLine(string.Format("d {0}", file));
-                    foreach (var file in modifies) writer.WriteLine(string.Format("m {0}", file));
-                    writer.Close();
+                    //生成对比文件
+                    using (var writer = new StreamWriter(string.Format("{0}/codesign_{1}_to_{2}.txt", reportPath, codeVersion, codeVersion + 1, false)))
+                    {
+                        foreach (var file in adds) writer.WriteLine(string.Format("a {0}", file));
+                        foreach (var file in removes) writer.WriteLine(string.Format("d {0}", file));
+                        foreach (var file in modifies) writer.WriteLine(string.Format("m {0}", file));
+                        writer.Close();
+                    }
+                    //修改程序版本号
+                    codeVersion += 1;
                 }
-                //修改程序版本号
-                mAppVersion += 1;
             }
-        }
+        } 
     }
+
+    //写入编译报告
     private static void WriteReport(BuildReport report, string filePath)
     {
         if (report != null)
@@ -237,12 +359,17 @@ public class GBuilder
             File.WriteAllText(filePath, allReport);
         }
     }
-    private static void CompileXCode(bool mPlayerBuildSuccess,BuildTarget mBuildTarget,string appName)
+    
+    //导出xcode项目 编译生成ipa
+    private static void CompileXCode(ref bool mPlayerBuildSuccess)
     {
+        BuildTarget mBuildTarget = GBuilderConfigure.Configure.AppBuildTarget;
         if (mPlayerBuildSuccess && mBuildTarget == BuildTarget.iOS)
         {
             if (mBuildTarget == BuildTarget.iOS)
-            {
+            { 
+                //不带后缀的应用名
+                string appName = GBuilderConfigure.Configure.AppName;
                 string buildPath = GBuilderConfigure.Configure.BuildPath;
                 BuildOptions opts = GBuilderConfigure.Configure.Options;
                 //调试模式
@@ -264,52 +391,62 @@ public class GBuilder
             }
         }
     }
-
-    //导出的app名
-    private static string PublishAppName(BuildTarget mBuildTarget)
+   
+    //更新Resversion资源文件夹下的版本文件
+    private static void WriteVersionFile()
     {
-        string appName = GBuilderConfigure.Configure.AppName;
-        int prefix = GBuilderConfigure.Configure.VersionPrefix;
+        BuildTarget mBuildTarget = GBuilderConfigure.Configure.AppBuildTarget;
+        string pAppName = PublishAppName();
+        int resv = GBuilderConfigure.Configure.ResVersion;
         int codev = GBuilderConfigure.Configure.CodeVersion;
-        int resv = GBuilderConfigure.Configure.ResVersion;
         int svnv = GBuilderConfigure.Configure.SvnVersion;
-        return string.Format("{0}_{1}_{2}_{3}_{4}_{5}{6}", appName, prefix, codev, resv, svnv, mBuildBeginTime,PathHelper.GetAppPlatformExt(mBuildTarget));
+
+        //更新版本文件
+        VersionInfo mVersionData = new VersionInfo();
+        mVersionData.appVersion = codev.ToString();
+        mVersionData.resVersion = resv.ToString();
+        mVersionData.version = GBuilderConfigure.Configure.PublishVersion;
+        mVersionData.appName = pAppName;
+        mVersionData.appUrl = VersionAppPublishPath();
+        mVersionData.resUrl = VersionResPublishPath();
+        File.WriteAllText(LocalBundleVersionFilePath(), JsonUtility.ToJson(mVersionData));
     }
-    
-    private static void UploadPackage(bool mPackageBuildSuccess, BuildTarget mBuildTarget)
+
+    //发布 app和资源包
+    private static void PublishPackage(bool mPackageBuildSuccess)
     {
-        string buildPath = GBuilderConfigure.Configure.BuildPath;
-        string appURL = GBuilderConfigure.Configure.AppServerURL;
-        string resURL = GBuilderConfigure.Configure.ResServerURL;
-        string appName = GBuilderConfigure.Configure.AppName;
-        string appPath = PathHelper.Combine(buildPath, appName, PathHelper.GetAppPlatformExt(mBuildTarget));
-        string appPublishPath = PathHelper.Combine(appURL, PublishAppName(mBuildTarget));
-        string bundlePath = GBuilderConfigure.Configure.BundlePath;
-        int resv = GBuilderConfigure.Configure.ResVersion;
-        string resPath = PathHelper.Combine(bundlePath, resv.ToString());
-        string resPublishPath = PathHelper.Combine(resURL, resv.ToString());
-        string mVersionPath = PathHelper.Combine(resPath, "version.txt");
-        string mCodeSignPath = PathHelper.Combine(resPath, "codesign.txt");
         //上传资源包
         if (mPackageBuildSuccess && GBuilderConfigure.Configure.PublishRes)
         {
+            ///scp 命令  -r  递归复制整个目录。  src 可以使一个目录 一个文件 会是 /src/* 目录下全部  dst 对应src 拷贝目录时没有目录路径会创建重命名为目标路径 有目标路径文件夹时拷贝到目标目录下 文件名不变 目标路径是多级不存在的路径会失败 拷贝文件时不会自动创建目录
             //安装包
-            CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", appPath, appPublishPath));
+            CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", LocalBuildAppPath(), VersionAppPublishPath()));
             //资源包
-            CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", resPath, resPublishPath));
+            CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", LocalBundleVersionBundleDataPath(), VersionResPublishPath()));
             //版本文件
-            CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", mVersionPath, resPublishPath));
+            CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", LocalBundleVersionFilePath(), VersionResPublishPath()));
             //签名文件
-            CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", mCodeSignPath, resPublishPath));
+            CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", LocalBundleCodeSignFilePath(), VersionResPublishPath()));
             //对比结果
            // CmdHelper.ExcuteProcess("scp", string.Format("-r {0} {1}", mComparePath, resPublishPath));
         }
     }
 
-    private static void RevertVersion(bool mPackageBuildSuccess, BuildTarget mBuildTarget)
+    //失败回滚
+    private static void RevertVersion(bool mPlayerBuildSuccess,string oldvesion)
     {
-        if (!mPackageBuildSuccess)
+        if (!mPlayerBuildSuccess)
         {
+            BuildTarget mBuildTarget = GBuilderConfigure.Configure.AppBuildTarget;
+            //判断编译结果
+            if (!mPlayerBuildSuccess)
+            {
+                //打包失败 回滚 版本号
+                PlayerSettings.bundleVersion = oldvesion;
+                throw new Exception("BuildPlayer Failed");
+            }
         }
     }
+
+    #endregion
 }

@@ -53,7 +53,7 @@ public class GBuilderConfigureEditor : EditorWindow
             EditorGUILayout.Separator();
             GUIHelper.DrawFolderPick("ProjectPath:", ref GBuilderConfigure.Configure.ProjectPath,Application.dataPath + "/../", titleWidth, "工程目录");
             EditorGUILayout.Separator();
-            GUIHelper.DrawFolderPick("BundlePath:", ref GBuilderConfigure.Configure.BundlePath,PathHelper.ProjectPlatformPath("AssetBundleData", GBuilderConfigure.CurrentBuildTarget),titleWidth, "资源的生成目录");
+            GUIHelper.DrawFolderPick("LocalBundlePath:", ref GBuilderConfigure.Configure.LocalBundlePath,PathHelper.ProjectPlatformPath("AssetBundleData", GBuilderConfigure.CurrentBuildTarget),titleWidth, "资源的生成目录");
             EditorGUILayout.Separator();
             GUIHelper.DrawFolderPick("BuildPath:", ref GBuilderConfigure.Configure.BuildPath, PathHelper.ProjectPlatformPath("Build", GBuilderConfigure.CurrentBuildTarget), titleWidth, "App生成生成目录");
             EditorGUILayout.Separator();
@@ -217,7 +217,7 @@ public class GBuilderConfigureEditor : EditorWindow
             {
                 return;
             }
-            JenkinsBuildAssetBundle.BuildAssetBundle();
+            
             GBuilderConfigure.Save();
         }
 
