@@ -904,6 +904,7 @@ public class TableFileGenerater
         jsonBuilder.Clear();
     }
 
+    //读取excel 依赖于ExcelDataReader
     public static void ReadExcel(string excelFilePath, ref List<ExcelSheetData> excelSheetDatas)
     {
         using (var stream = File.Open(excelFilePath, FileMode.Open, FileAccess.Read))

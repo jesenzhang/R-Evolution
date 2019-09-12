@@ -2,13 +2,13 @@
 using System.Reflection;
 using System;
 
-namespace GFramework.Core
+namespace GameBase
 {
     public abstract class Singleton<T> where T : Singleton<T>
     {
-        protected static T mInstance;
+        protected static T m_Instance;
 
-        static object mLock = new object();
+        static object m_Lock = new object();
 
         protected Singleton()
         {
@@ -18,39 +18,28 @@ namespace GFramework.Core
         {
             get
             {
-                lock (mLock)
+                lock (m_Lock)
                 {
-                    if (mInstance == null)
+                    if (m_Instance == null)
                     {
-                        // 获取私有构造函数
-                        var ctors = typeof(T).GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic);
+                        m_Instance = typeof(T).InvokeMember(typeof(T).Name, System.Reflection.BindingFlags.CreateInstance | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic, null, null, null) as T;
 
-                        // 获取无参构造函数
-                        var ctor = Array.Find(ctors, c => c.GetParameters().Length == 0);
-
-                        if (ctor == null)
-                        {
-                            throw new Exception("Non-Public Constructor() not found! in " + typeof(T));
-                        }
-
-                        // 通过构造函数，常见实例
-                        var mInstance = ctor.Invoke(null) as T;
-                        mInstance.OnSingletonInit();
+                        m_Instance.OnSingletonInit();
                     }
                 }
 
-                return mInstance;
+                return m_Instance;
             }
         }
 
         public virtual void Dispose()
         {
-            mInstance = null;
+            m_Instance = null;
         }
 
         public virtual void OnSingletonInit()
         {
         }
     }
- 
+
 }

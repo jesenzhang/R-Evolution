@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GFramework.Core
+namespace GameBase
 {
     /// <summary>
     /// Singleton base class.
@@ -8,7 +8,7 @@ namespace GFramework.Core
     /// </summary>
     public class SingletonMono<T> : MonoBehaviour where T : MonoBehaviour
     {
-        protected static T instance;
+        protected static T m_Instance;
 
         /// <summary>
         /// Returns the instance of this singleton.
@@ -17,20 +17,19 @@ namespace GFramework.Core
         {
             get
             {
-                if (instance == null)
+                if (m_Instance == null)
                 {
-                    instance = (T)FindObjectOfType(typeof(T));
+                    m_Instance = (T)FindObjectOfType(typeof(T));
 
-                    if (instance == null)
+                    if (m_Instance == null)
                     {
                         GameObject obj = new GameObject(typeof(T).ToString());
-                        instance = obj.AddComponent<T>();
-                        //Debug.LogError("An instance of " + typeof(T) + 
-                        //   " is needed in the scene, but there is none.");
+                        m_Instance = obj.AddComponent<T>();
                     }
                 }
-                return instance;
+                return m_Instance;
             }
         }
+
     }
 }
